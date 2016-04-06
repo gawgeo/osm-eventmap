@@ -2,8 +2,8 @@ angular.module('osmTestApp', [])
     //use strict
     .controller('osmTestAppCtrl', function () {
         console.log("OSM-Test App running!");
-        // OSM imports and settings
-
+        
+            // OSM imports and settings
         var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
         var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
