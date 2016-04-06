@@ -18,6 +18,7 @@ Eine globale Installation von Node ist notwendig.
 * Projekt clonen 
 
 Move to directory and type into console:
+
 * npm install bower express grunt-cli -g grunt-contrib-watch grunt-express grunt-open matchdep
 * bower install angular bootstrap jquery leaflet
 
