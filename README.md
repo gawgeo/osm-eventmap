@@ -26,6 +26,7 @@ Move to directory and type into console:
 ### Star des Projekts ###
 
 Move to directory and type into console:
+
 * node server
 
 Project accesible via: localhost:8080
