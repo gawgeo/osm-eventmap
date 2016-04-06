@@ -1,8 +1,8 @@
 # OSM-Test-App #
 
 Einfache OSM-Test-App zur Implementierung rudimentärer OSM-Funktionalität, hier auf Basis von node und leaflet.js.
-Eine globale Installation von Node ist notwendig.
 
+Eine globale Installation von Node ist notwendig.(https://nodejs.org/en/download/)
 
 ### Verwendete Technologien (so far) ###
 
