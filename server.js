@@ -14,6 +14,12 @@ Schnittstelle zur Datenbank später hier rein
 server.get('*', function(req, res){
     res.sendFile('index.html');
 });
+server.get('/getTest', function(req, res){
+    res.send('Get Test approved');
+});
+server.get('/api', function(req, res) {
+    res.send({name:"QZ",anzahl:40});
+});
 */
 
 //Lets start our server
