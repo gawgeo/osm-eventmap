@@ -7,7 +7,7 @@ Eine globale Installation von Node ist notwendig.
 ### Verwendete Technologien (so far) ###
 
 * node for server (node.js, express.js)
-* angularjs
+* angular.js
 * bootstrap 3
 * leaflet.js
 * grunt
