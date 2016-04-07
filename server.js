@@ -17,10 +17,11 @@ server.get('*', function(req, res){
 server.get('/getTest', function(req, res){
     res.send('Get Test approved');
 });
+*/
 server.get('/api', function(req, res) {
     res.send({name:"QZ",anzahl:40});
 });
-*/
+
 
 //Lets start our server
 server.listen(PORT, function(){
