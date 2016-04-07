@@ -25,16 +25,12 @@ module.exports = function(grunt) {
 
         // grunt-watch will monitor the projects files
         watch: {
-            all: {
-                // Replace with whatever file you want to trigger the update from
-                // Either as a String for a single entry
-                // or an Array of String for multiple entries
-                // You can use globing patterns like `css/**/*.css`
-                // See https://github.com/gruntjs/grunt-contrib-watch#files
-                files: 'index.html',
-                options: {
-                    livereload: true
-                }
+            src: {
+                files: ['js/*.js', 'css/*.css', 'view/*.html', '*.html'],
+                tasks: []
+            },
+            options: {
+                livereload: true
             }
         },
 
