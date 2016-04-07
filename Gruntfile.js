@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         // grunt-watch will monitor the projects files
         watch: {
             src: {
-                files: ['js/*.js', 'css/*.css', 'view/*.html', '*.html'],
+                files: ['js/*.js', 'css/*.css', 'html/*.html', '*.html'],
                 tasks: []
             },
             options: {

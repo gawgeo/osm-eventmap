@@ -32,3 +32,8 @@
     height: 500px;
     border: solid 1px grey;
 }
+
+.markerList {
+    width: 100%;
+    padding-top: 2em;
+}
