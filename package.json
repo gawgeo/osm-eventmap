@@ -1,5 +1,5 @@
 {
-  "name": "grunt-livereload-renewed",
+  "name": "osm-Test-app",
   "version": "1.0.0",
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -9,6 +9,7 @@
     "grunt-open": "~0.2.1"
   },
   "dependencies": {
+    "bower": "^1.7.9",
     "express": "^4.13.4"
   }
 }

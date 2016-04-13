@@ -1,0 +1,23 @@
+{
+  "name": "OSM-Test-App",
+  "description": "Open Street Maps test project",
+  "main": "",
+  "authors": [
+    "Tobias Domnik <tobias.domnik@kit.edu>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.3",
+    "bootstrap": "~3.3.6",
+    "leaflet": "^0.7.7",
+    "jquery": "^2.2.3"
+  }
+}
