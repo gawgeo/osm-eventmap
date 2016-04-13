@@ -1,6 +1,7 @@
 #header {
     position: relative;
     padding: 30px 15px;
+    margin-bottom: 0;
     text-align: center;
     color: rgba(0, 0, 0, .8);
     background-image: url(../img/redox_01.png);
@@ -27,13 +28,14 @@
 }
 
 #simpleMap {
-    margin: 100px auto;
+    margin: 50px auto;
     width: 800px;
     height: 500px;
     border: solid 1px grey;
 }
 
-.markerList {
+.markerDetails {
     width: 100%;
-    padding-top: 2em;
+    height: 200px;
+    overflow: scroll;
 }

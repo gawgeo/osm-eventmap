@@ -1,11 +1,26 @@
 <div ng-controller="osmTestAppCtrl">
     <div id="header">OSM-Test-App</div>
     <div id="wrap">
+        <button ng-click="clear()">Clear All!</button>
+        <button ng-click="clearMarker()">Clear Marker!</button>
         <div id="simpleMap"></div>
-    </div>
-    <div class="markerList">
+        <div class="markerDetails">
+            <table class="table">
+                <tr>
+                    <th>Nr.</th>
+                    <th>Lng</th>
+                    <th>Lat</th>
+                    <th>Name</th>
+                </tr>
+                <tr ng-repeat="m in markers">
+                    <td>{{$index}}</td>
+                    <td>{{m.getLatLng().lng}}</td>
+                    <td>{{m.getLatLng().lat}}</td>
+                    <td>Marker</td>
+                </tr>
+            </table>
+        </div>
 
     </div>
-
     <div id="footer"></div>
 </div>
