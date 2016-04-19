@@ -1,7 +1,6 @@
 #header {
     position: relative;
     padding: 30px 15px;
-    margin-bottom: 0;
     text-align: center;
     color: rgba(0, 0, 0, .8);
     background-image: url(../img/redox_01.png);
@@ -38,4 +37,8 @@
     width: 100%;
     height: 200px;
     overflow: scroll;
+}
+
+.dbTest {
+    padding-left: 15em;
 }

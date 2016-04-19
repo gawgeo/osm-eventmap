@@ -3,6 +3,7 @@
     <div id="wrap">
         <button ng-click="clear()">Clear All!</button>
         <button ng-click="clearMarker()">Clear Marker!</button>
+        <span class="dbTest"> Speichervorgänge in der sqLite-DB bis zur letzten Abfrage: {{dbTest}} </span>
         <div id="simpleMap"></div>
         <div class="markerDetails">
             <table class="table">
@@ -11,12 +12,16 @@
                     <th>Lng</th>
                     <th>Lat</th>
                     <th>Name</th>
+                    <th>POST</th>
+                    <th>GET</th>
                 </tr>
                 <tr ng-repeat="m in markers">
                     <td>{{$index}}</td>
                     <td>{{m.getLatLng().lng}}</td>
                     <td>{{m.getLatLng().lat}}</td>
                     <td>Marker</td>
+                    <td><button ng-click="post()">Save</button></td>
+                    <td><button ng-click="get()">Load</button></td>
                 </tr>
             </table>
         </div>

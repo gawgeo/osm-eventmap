@@ -1,6 +1,6 @@
 angular.module('osmTestApp', [])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $compile) {
+  .controller('osmTestAppCtrl', function ($scope, $compile, $http) {
       console.log("OSM-Test App running!");
 
       // OSM imports and settings
@@ -80,6 +80,25 @@ angular.module('osmTestApp', [])
       // Scope variables für außerhalb der Map
       $scope.layers = map._layers; //Übersicht über alle Layer der map
       $scope.markers = markerGroup._layers;
+      $scope.dbTest;
+
+      $scope.get = function () {
+          $http.get('/data').then(function (res) {
+              console.log(res.data.count);
+              $scope.dbTest = res.data.count;
+              window.alert("Daten von Datenbank erhalten!");
+          }, function() {
+              window.alert("Fehler!");
+          });
+      };
+
+      $scope.post = function () {
+          $http.post('/data', {}).then(function() {
+              window.alert("Daten an Datenbank gesendet!");
+          }, function() {
+              window.alert("Fehler!");
+          });
+      };
 
   });
 
