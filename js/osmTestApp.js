@@ -35,9 +35,12 @@ angular.module('osmTestApp', [])
       map.on('click', function (event) {
           var linkFn = $compile('<button ng-click="deleteThis()">Delete!</button>');
           var content = linkFn($scope);
-          var marker = L.marker(event.latlng).bindPopup(content[0]).on("popupopen", function () {
+          var marker = L.marker(event.latlng);
+
+
+          marker.bindPopup(content[0]).on("popupopen", function () {
               var currentMarker = this;
-              $scope.deleteThis= function () {
+              $scope.deleteThis = function () {
                   $scope.deleteMarker(currentMarker);
               }
           });
@@ -46,6 +49,9 @@ angular.module('osmTestApp', [])
           map.addLayer(markerGroup);
           updateView();
       });
+
+
+
 
       // delete one marker by popup
       $scope.deleteMarker = function (thisMarker) {
@@ -64,7 +70,7 @@ angular.module('osmTestApp', [])
       };
 
       // update view
-      function updateView () {
+      function updateView() {
           $scope.$apply();
       }
 
@@ -76,29 +82,64 @@ angular.module('osmTestApp', [])
       };
       L.control.layers([], overlay).addTo(map);
 
-      
+
       // Scope variables für außerhalb der Map
       $scope.layers = map._layers; //Übersicht über alle Layer der map
       $scope.markers = markerGroup._layers;
-      $scope.dbTest;
 
-      $scope.get = function () {
-          $http.get('/data').then(function (res) {
-              console.log(res.data.count);
-              $scope.dbTest = res.data.count;
-              window.alert("Daten von Datenbank erhalten!");
-          }, function() {
-              window.alert("Fehler!");
-          });
+
+      $scope.saveMarker = function (marker) {
+          saveMarker({'markerName': 'Test', 'lng': 123.4532, 'lat': 1324.324});
       };
 
-      $scope.post = function () {
-          $http.post('/data', {}).then(function() {
-              window.alert("Daten an Datenbank gesendet!");
-          }, function() {
-              window.alert("Fehler!");
-          });
+      $scope.getMarkers = function () {
+          var markers = [];
+          $scope.markers = getMarkers();
       };
 
+      $scope.deleteMarker = function () {
+          deleteMarker({'markerName': 'Test', 'lng': 123.4532, 'lat': 1324.324});
+      };
+
+      // server http communication
+      function saveMarker(marker) {
+          $http({
+              url: '/saveMarker',
+              method: "POST",
+              data: {'markerName': marker.markerName, 'lng': marker.lng, 'lat': marker.lat}
+          })
+            .then(function (response) {
+                  window.alert("Marker saved!");
+              },
+              function (response) { // optional
+                  window.alert("Marker save Fehler!");
+              });
+      }
+
+      function getMarkers () {
+          $http({
+              method: 'GET',
+              url: '/getMarkers',
+          }).success(function(data){
+              console.log(data);
+              return data
+          }).error(function(){
+              window.alert("Marker GET Fehler!");
+          });
+      }
+
+      function deleteMarker (marker) {
+          $http({
+              url: '/deleteMarker',
+              method: "POST",
+              data: {'markerName': marker.markerName, 'lng': marker.lng, 'lat': marker.lat}
+          })
+            .then(function (response) {
+                  window.alert("Marker deleted!");
+              },
+              function (response) { // optional
+                  window.alert("Marker delete Fehler!");
+              });
+      }
   });
 
