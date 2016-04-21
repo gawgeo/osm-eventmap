@@ -45,7 +45,7 @@ angular.module('osmTestApp', [])
       function createLayer (markers) {
           markerGroup.clearLayers();
           markers.forEach(function(m) {
-              var linkFn = $compile('<button ng-click="deleteThis()">Delete!</button>');
+              var linkFn = $compile('<button ng-click="deleteThis()">Delete ' + m.markerName + '</button>');
               var content = linkFn($scope);
               var marker = L.marker({'lng': m.lng, 'lat': m.lat});
               marker.bindPopup(content[0]).on("popupopen", function () {
