@@ -62,6 +62,23 @@ server.post('/deleteMarker', function(req, res){
     });
 });
 
+// Delete All Marker
+server.post('/deleteAllMarker', function(req, res){
+    console.log("deleteAllMarker");
+    db.run("DELETE FROM markers", function(err){
+        if (err){
+            console.log(err);
+            res.status(500);
+
+        }
+        else {
+            console.log("ALL DELETED!");
+            res.status(202);
+        }
+        res.end();
+    });
+});
+
 // Get all Markers
 server.get('/getMarkers', function(req, res){
     db.all("SELECT * FROM markers", function(err, rows){
