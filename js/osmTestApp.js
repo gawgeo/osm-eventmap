@@ -1,6 +1,6 @@
-angular.module('osmTestApp', [])
+angular.module('osmTestApp', ['ui.bootstrap'])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $compile, $http, $q) {
+  .controller('osmTestAppCtrl', function ($scope, $compile, $http, $q, $uibModal) {
       console.log("OSM-Test App running!");
       // OSM imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -32,19 +32,27 @@ angular.module('osmTestApp', [])
 
       // add one marker by click
       map.on('click', function (event) {
+          var modalInstance = $uibModal.open({
+              animation: $scope.animationsEnabled,
+              templateUrl: 'html/newMarkerModal.html',
+              controller: 'newMarkerModalCtrl',
+              size: 'lg',
+              backdrop: false
+          });
+
           var m = {
-              'markerName' : "Marker" + $scope.markers.length,
-              'lng' : event.latlng.lng,
-              'lat' : event.latlng.lat
-            };
+              'markerName': "Marker" + $scope.markers.length,
+              'lng': event.latlng.lng,
+              'lat': event.latlng.lat
+          };
           saveMarker(m);
           updateView();
       });
 
 
-      function createLayer (markers) {
+      function createLayer(markers) {
           markerGroup.clearLayers();
-          markers.forEach(function(m) {
+          markers.forEach(function (m) {
               var linkFn = $compile('<button ng-click="deleteThis()">Delete ' + m.markerName + '</button>');
               var content = linkFn($scope);
               var marker = L.marker({'lng': m.lng, 'lat': m.lat});
@@ -64,7 +72,11 @@ angular.module('osmTestApp', [])
       // delete one marker by popup
       $scope.deleteMarker = function (thisMarker) {
           console.log("Delete Marker");
-          deleteMarker({'markerName': thisMarker.markerName, 'lng': thisMarker.getLatLng().lng, 'lat': thisMarker.getLatLng().lat});
+          deleteMarker({
+              'markerName': thisMarker.markerName,
+              'lng': thisMarker.getLatLng().lng,
+              'lat': thisMarker.getLatLng().lat
+          });
           updateView();
       };
 
@@ -86,7 +98,7 @@ angular.module('osmTestApp', [])
       // update view
       function updateView() {
           console.log("Update View!");
-          getMarkers().then(function(res) {
+          getMarkers().then(function (res) {
               $scope.markers = res.data;
               createLayer($scope.markers);
           });
@@ -107,21 +119,21 @@ angular.module('osmTestApp', [])
               });
       }
 
-      function getMarkers () {
+      function getMarkers() {
           var deferred = $q.defer();
           $http({
               method: 'GET',
               url: '/getMarkers'
-          }).success(function(data){
+          }).success(function (data) {
               console.log("GET", data);
               deferred.resolve({'data': data});
-          }).error(function(){
+          }).error(function () {
               window.alert("Marker GET Fehler!");
           });
           return deferred.promise;
       }
 
-      function deleteMarker (marker) {
+      function deleteMarker(marker) {
           $http({
               url: '/deleteMarker',
               method: "POST",
@@ -135,7 +147,7 @@ angular.module('osmTestApp', [])
               });
       }
 
-      function deleteAllMarker () {
+      function deleteAllMarker() {
           $http({
               url: '/deleteAllMarker',
               method: "POST",
@@ -150,9 +162,19 @@ angular.module('osmTestApp', [])
       }
 
       // INITIALIZE
-      getMarkers().then(function(res) {
+      getMarkers().then(function (res) {
           $scope.markers = res.data;
           createLayer($scope.markers);
       });
+  })
+
+  .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance) {
+      console.log("Modal Ctrl");
+      $scope.ok = function () {
+          $uibModalInstance.close("Geschlossen res!");
+      };
+      $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+      };
   });
 
