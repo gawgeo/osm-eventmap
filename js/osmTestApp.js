@@ -39,14 +39,17 @@ angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
               size: 'lg',
               backdrop: false
           });
-
-          var m = {
-              'markerName': "Marker" + $scope.markers.length,
-              'lng': event.latlng.lng,
-              'lat': event.latlng.lat
-          };
-          databaseService.saveMarker(m).then(function() {
-              updateView();
+          modalInstance.result.then(function (res) {
+              var m = {
+                  'markerName': res + $scope.markers.length,
+                  'lng': event.latlng.lng,
+                  'lat': event.latlng.lat
+              };
+              databaseService.saveMarker(m).then(function() {
+                  updateView();
+              });
+          }, function () {
+              console.log('Modal dismissed at: ' + new Date());
           });
       });
 
@@ -89,7 +92,6 @@ angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
           });
       };
 
-
       // Layer controls
       var overlay = {
           "polygon": polygon,
@@ -107,15 +109,15 @@ angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
           });
       }
 
-
       // INITIALIZE
       updateView();
   })
 
   .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance) {
       console.log("Modal Ctrl");
+      var res = "Marker";
       $scope.ok = function () {
-          $uibModalInstance.close("Geschlossen res!");
+          $uibModalInstance.close(res);
       };
       $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
