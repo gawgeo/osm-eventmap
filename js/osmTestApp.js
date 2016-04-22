@@ -1,6 +1,6 @@
-angular.module('osmTestApp', ['ui.bootstrap'])
+angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $compile, $http, $q, $uibModal) {
+  .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService) {
       console.log("OSM-Test App running!");
       // OSM imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -45,8 +45,9 @@ angular.module('osmTestApp', ['ui.bootstrap'])
               'lng': event.latlng.lng,
               'lat': event.latlng.lat
           };
-          saveMarker(m);
-          updateView();
+          databaseService.saveMarker(m).then(function() {
+              updateView();
+          });
       });
 
 
@@ -72,18 +73,20 @@ angular.module('osmTestApp', ['ui.bootstrap'])
       // delete one marker by popup
       $scope.deleteMarker = function (thisMarker) {
           console.log("Delete Marker");
-          deleteMarker({
+          databaseService.deleteMarker({
               'markerName': thisMarker.markerName,
               'lng': thisMarker.getLatLng().lng,
               'lat': thisMarker.getLatLng().lat
+          }).then(function() {
+              updateView();
           });
-          updateView();
       };
 
       // delete all marker
       $scope.deleteAllMarker = function () {
-          deleteAllMarker();
-          updateView();
+          databaseService.deleteAllMarker().then(function () {
+              updateView();
+          });
       };
 
 
@@ -98,74 +101,15 @@ angular.module('osmTestApp', ['ui.bootstrap'])
       // update view
       function updateView() {
           console.log("Update View!");
-          getMarkers().then(function (res) {
+          databaseService.getMarkers().then(function (res) {
               $scope.markers = res.data;
               createLayer($scope.markers);
           });
       }
 
-      // server http communication --> capsule into service
-      function saveMarker(marker) {
-          $http({
-              url: '/saveMarker',
-              method: "POST",
-              data: {'markerName': marker.markerName, 'lng': marker.lng, 'lat': marker.lat}
-          })
-            .then(function (response) {
-                  console.log("Marker saved!");
-              },
-              function (response) { // optional
-                  window.alert("Marker save Fehler!");
-              });
-      }
-
-      function getMarkers() {
-          var deferred = $q.defer();
-          $http({
-              method: 'GET',
-              url: '/getMarkers'
-          }).success(function (data) {
-              console.log("GET", data);
-              deferred.resolve({'data': data});
-          }).error(function () {
-              window.alert("Marker GET Fehler!");
-          });
-          return deferred.promise;
-      }
-
-      function deleteMarker(marker) {
-          $http({
-              url: '/deleteMarker',
-              method: "POST",
-              data: {'markerName': marker.markerName, 'lng': marker.lng, 'lat': marker.lat}
-          })
-            .then(function (response) {
-                  console.log("Marker deleted!");
-              },
-              function (response) { // optional
-                  window.alert("Marker delete Fehler!");
-              });
-      }
-
-      function deleteAllMarker() {
-          $http({
-              url: '/deleteAllMarker',
-              method: "POST",
-              data: {}
-          })
-            .then(function (response) {
-                  console.log("All Marker deleted!");
-              },
-              function (response) { // optional
-                  window.alert("All Marker delete Fehler!");
-              });
-      }
 
       // INITIALIZE
-      getMarkers().then(function (res) {
-          $scope.markers = res.data;
-          createLayer($scope.markers);
-      });
+      updateView();
   })
 
   .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance) {
@@ -177,4 +121,6 @@ angular.module('osmTestApp', ['ui.bootstrap'])
           $uibModalInstance.dismiss('cancel');
       };
   });
+
+
 
