@@ -32,20 +32,20 @@ angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
 
       // add one marker by click
       map.on('click', function (event) {
+          console.log(event);
           var modalInstance = $uibModal.open({
               animation: $scope.animationsEnabled,
               templateUrl: 'html/newMarkerModal.html',
               controller: 'newMarkerModalCtrl',
               size: 'lg',
-              backdrop: false
-          });
-          modalInstance.result.then(function (res) {
-              var m = {
-                  'markerName': res + $scope.markers.length,
+              backdrop: false,
+              resolve: {
                   'lng': event.latlng.lng,
                   'lat': event.latlng.lat
-              };
-              databaseService.saveMarker(m).then(function() {
+              }
+          });
+          modalInstance.result.then(function (res) {
+              databaseService.saveMarker(res).then(function() {
                   updateView();
               });
           }, function () {
@@ -113,10 +113,14 @@ angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
       updateView();
   })
 
-  .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance) {
+  .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance, lng, lat) {
       console.log("Modal Ctrl");
-      var res = "Marker";
-      $scope.ok = function () {
+      $scope.marker = {
+          markerName: 'Marker',
+          lng: lng,
+          lat: lat
+      };
+      $scope.ok = function (res) {
           $uibModalInstance.close(res);
       };
       $scope.cancel = function () {
