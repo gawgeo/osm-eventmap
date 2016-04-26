@@ -37,7 +37,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
               animation: $scope.animationsEnabled,
               templateUrl: 'html/newMarkerModal.html',
               controller: 'newMarkerModalCtrl',
-              size: 'lg',
+              size: 'sm',
               backdrop: false,
               resolve: {
                   'lng': event.latlng.lng,
@@ -98,7 +98,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
           "circle": circle,
           "marker": markerGroup
       };
-      L.control.layers([], overlay).addTo(map);
+      L.control.layers([], overlay, {position: 'topleft'}).addTo(map);
 
       // update view
       function updateView() {

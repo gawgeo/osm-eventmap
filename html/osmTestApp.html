@@ -1,8 +1,11 @@
 <div ng-controller="osmTestAppCtrl">
-    <div id="header">OSM-Test-App</div>
+    <div id="header">Nachhaltigkeitskarte Karlsruhe-Oststadt</div>
     <div id="wrap">
-        <button ng-click="deleteAllMarker()">Alle Marker löschen!</button>
+        <button class="deleteButton btn btn-danger" ng-click="deleteAllMarker()">Alle Marker löschen!</button>
+
+
         <div id="simpleMap"></div>
+
         <div class="markerDetails">
             <table class="table">
                 <tr>
@@ -14,12 +17,12 @@
                 <tr ng-repeat="m in markers">
                     <td>{{$index}}</td>
                     <td>{{m.markerName}}</td>
-                    <td>{{m.lng}}</td>
-                    <td>{{m.lat}}</td>
+                    <td>{{m.lng.toFixed(5)}}</td>
+                    <td>{{m.lat.toFixed(5)}}</td>
                 </tr>
             </table>
         </div>
 
     </div>
-    <div id="footer"></div>
+    <div id="footer">QuartierZukunft, ITAS, KIT</div>
 </div>

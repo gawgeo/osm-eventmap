@@ -3,6 +3,7 @@ module.exports = function(grunt) {
 
     // Load Grunt tasks declared in the package.json file
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     // Configure Grunt
     grunt.initConfig({
@@ -26,8 +27,8 @@ module.exports = function(grunt) {
         // grunt-watch will monitor the projects files
         watch: {
             src: {
-                files: ['js/*.js', 'css/*.css', 'html/*.html', '*.html'],
-                tasks: []
+                files: ['js/*.js', 'less/*.less', 'html/*.html', '*.html'],
+                tasks: ["less"]
             },
             options: {
                 livereload: true
@@ -39,6 +40,21 @@ module.exports = function(grunt) {
             all: {
                 // Gets the port from the connect configuration
                 path: 'http://localhost:<%= express.all.options.port%>'
+            }
+        },
+        // grunt less task
+        less: {
+            // production config is also available
+            development: {
+                options: {
+                    // Specifies directories to scan for @import directives when parsing.
+                    // Default value is the directory of the source, which is probably what you want.
+                    paths: ["less/"]
+                },
+                files: {
+                    // compilation.css  :  source.less
+                    "css/app.css": "css/app.less"
+                }
             }
         }
     });

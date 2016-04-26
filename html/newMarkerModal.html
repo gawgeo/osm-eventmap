@@ -1,16 +1,25 @@
 <div>
     <div class="modal-header">
-        <h3 class="modal-title">Neuen Marker anlegen!</h3>
+        <h3 class="modal-title">Neuen POI anlegen!</h3>
     </div>
-    <div class="modal-body">
-        <div>Neuer Marker wird angelegt:</div>
-        <div>Longitude: {{marker.lng}}</div>
-        <div>Latitude: {{marker.lat}}</div>
+    <div class="modal-body newMarker">
+        <h5>Der neue Point of Interest hat folgende Attribute:</h5>
+        <dl>
+            <dt>Longitude</dt>
+            <dd>{{marker.lng.toFixed(10)}}</dd>
+            <dt>Latitude</dt>
+            <dd>{{marker.lat.toFixed(10)}}</dd>
+        </dl>
 
-        <div>Hier können zusätzlich Marker-Daten eingegeben werden! Z.b. der Name:</div>
+        <h5>Hier können zusätzlich Marker-Daten eingegeben werden! Z.b. der Name:</h5>
         <div class="form-group">
-            <label for="usr">Name:</label>
-            <input ng-model="marker.markerName" type="text" class="form-control" id="usr">
+            <label for="name">Name:</label>
+            <input ng-model="marker.markerName" type="text" class="form-control" id="name">
+            <label for="attr2">Attribut 2:</label>
+            <input ng-model="marker.attr2" type="text" class="form-control" id="attr2">
+            <label for="attr3">Attribut 3:</label>
+            <input ng-model="marker.attr3" type="text" class="form-control" id="attr3">
+
         </div>
     </div>
     <div class="modal-footer">
