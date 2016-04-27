@@ -1,4 +1,4 @@
-angular.module('osmTestApp', ['osmTestApp.services', 'ui.bootstrap'])
+angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap'])
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService) {
       console.log("OSM-Test App running!");
