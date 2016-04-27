@@ -26,6 +26,16 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
       ]);
       map.addLayer(polygon);
 
+      // icon type
+      var qzIcon = L.icon({
+          iconUrl: './img/b.png',
+          iconSize:     [25, 40], // size of the icon
+          shadowSize:   [40, 60], // size of the shadow
+          iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+          shadowAnchor: [4, 62],  // the same for the shadow
+          popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+      });
+
       // => marker add und delete handling inside group <=
       var markerGroup = L.layerGroup();
       $scope.marker = [];
@@ -67,6 +77,11 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
                   }
               });
               marker["markerName"] = m.markerName;
+              // To be deleted
+              if (marker.markerName === "QZ") {
+                  console.log("QZ gefunden!");
+                  marker.setIcon(qzIcon);
+              }
               markerGroup.addLayer(marker);
           });
           map.addLayer(markerGroup);
