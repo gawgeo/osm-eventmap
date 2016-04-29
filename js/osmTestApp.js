@@ -13,7 +13,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
 
 
       // add circle
-      var circle = L.circle([49.0148731, 8.43000], 500, {
+      var circle = L.circle([49.0148731, 8.43000], 100, {
           color: 'red',
           fillColor: '#f03',
           fillOpacity: 0.5

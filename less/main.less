@@ -1,0 +1,61 @@
+@import (reference) "../bower_components/bootstrap/less/mixins.less";
+@import (reference) "../bower_components/bootstrap/less/variables.less";
+@import url(theme.less);
+@import url(mapArea.less);
+@import url(infoArea.less);
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  .make-md-column(12);
+  padding: 0;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+
+  .header {
+    position: absolute;
+    .make-md-column(12);
+    height: 4.5%;
+    z-index: 100;
+    text-align: center;
+    padding: 0.2em;
+    color: rgba(0, 0, 0, .8);
+    background-image: url(../img/redox_01.png);
+    font-size: 1.8em;
+    border-bottom: solid 1px #dedede;
+    overflow-x: auto;
+  }
+
+  .mapArea {
+    .make-md-column(10);
+    height: 92%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .infoArea {
+    .make-md-column(2);
+    height: 92%;
+    padding-left: 0;
+    padding-right: 0;
+    border-left: solid 2px #dedede;
+  }
+
+  .footer {
+    position: absolute;
+    .make-md-column(12);
+    height: 3.5%;
+    color: rgba(0, 0, 0, .8);
+    font-size: 1.2em;
+    background-image: url(../img/redox_01.png);
+    bottom: 0;
+    text-align: right;
+    border-top: solid 1px #dedede;
+    padding: 0.4em 1em 0.2em 1em;
+  }
+}
+

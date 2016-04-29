@@ -1,11 +1,14 @@
-<div ng-controller="osmTestAppCtrl">
-    <div id="header">Nachhaltigkeitskarte Karlsruhe-Oststadt</div>
-    <div id="wrap">
-        <button class="deleteButton btn btn-danger" ng-click="deleteAllMarker()">Alle Marker löschen!</button>
+<div ng-controller="osmTestAppCtrl" class="main">
 
+    <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt</div>
 
-        <div id="simpleMap"></div>
+    <div class="mapArea">
+            <button class="deleteButton btn btn-danger" ng-click="deleteAllMarker()">Alle Marker löschen!</button>
+            <div id="simpleMap"></div>
+    </div>
 
+    <div class="infoArea">
+        <h3>Points of Interest</h3>
         <div class="markerDetails">
             <table class="table">
                 <tr>
@@ -22,7 +25,8 @@
                 </tr>
             </table>
         </div>
-
     </div>
-    <div id="footer">QuartierZukunft, ITAS, KIT</div>
+
+    <div class="footer">QuartierZukunft, ITAS, KIT</div>
+
 </div>
