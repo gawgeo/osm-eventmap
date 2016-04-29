@@ -1,6 +1,16 @@
 angular.module('osmTestApp.services', [])
   .service('databaseService', function($http, $q) {
       // server http communication --> capsule into service
+      this.getConfig = function getConfig () {
+          var deferred = $q.defer();
+          $http.get('../config.json')
+            .then(function(res){
+                deferred.resolve(res.data);
+                return res.data;
+            });
+          return deferred.promise;
+      };
+      
       this.saveMarker = function(marker) {
           var deferred = $q.defer();
           $http({

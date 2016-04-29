@@ -15,10 +15,19 @@
         <div class="form-group">
             <label for="name">Name:</label>
             <input ng-model="marker.markerName" type="text" class="form-control" id="name">
-            <label for="attr2">Attribut 2:</label>
-            <input ng-model="marker.attr2" type="text" class="form-control" id="attr2">
-            <label for="attr3">Attribut 3:</label>
-            <input ng-model="marker.attr3" type="text" class="form-control" id="attr3">
+
+            <label for="category">Nachhaltigkeits-Kategorie:</label><br>
+            <select class="form-control dropdown-toggle" id="category" ng-model="marker.category">
+                <option ng-repeat="cat in config.categories" value="Choose category">{{cat}}</option>
+            </select><br>
+
+            <label for="rules">Nachhaltigkeitsregeln:</label>
+            <div class="input-group" id="rules">
+                <span class="input-group-addon">
+                    <input type="checkbox" aria-label="...">
+                </span>
+                <input type="text" class="form-control" aria-label="...">
+            </div>
 
         </div>
     </div>

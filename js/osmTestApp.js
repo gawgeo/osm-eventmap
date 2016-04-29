@@ -2,6 +2,10 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService) {
       console.log("OSM-Test App running!");
+      databaseService.getConfig().then(function(res) {
+          $scope.config = res;
+          console.log(res);
+      });
       // OSM imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -128,10 +132,15 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
       updateView();
   })
 
-  .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance, lng, lat) {
+  .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance, databaseService, lng, lat) {
       console.log("Modal Ctrl");
+      databaseService.getConfig().then(function(res) {
+          $scope.config = res;
+      });
+
       $scope.marker = {
           markerName: 'Marker',
+          category: '',
           lng: lng,
           lat: lat
       };

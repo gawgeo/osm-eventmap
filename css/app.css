@@ -114,8 +114,8 @@ html {
   }
 }
 .modal-sm {
-  margin-top: 200px;
-  margin-left: 15px;
+  margin-top: 150px;
+  margin-right: 400px;
 }
 .newMarker dl {
   border: 3px double #ccc;
