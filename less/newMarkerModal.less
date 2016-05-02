@@ -52,11 +52,48 @@
         padding: 0.5em;
         margin: 0;
         li {
-          white-space: nowrap;
+
+        }
+      }
+    }
+    .markerDate {
+      span {
+
+      }
+      .dateTimeWrapper {
+        padding-top: 0.5em;
+        datetimepicker {
+          display: block;
+        }
+      }
+    }
+    .markerLink {
+      width: 100%;
+    }
+    .markerImgLink {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .markerRules {
+    ul {
+      li {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+@media (max-width: @screen-md-min) {
+  .markerRules {
+    ul {
+      li {
+        span {
+          height: auto;
         }
       }
     }
   }
-
-
 }

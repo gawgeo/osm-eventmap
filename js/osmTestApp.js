@@ -1,4 +1,4 @@
-angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap'])
+angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker'])
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService) {
       console.log("OSM-Test App running!");
@@ -134,11 +134,22 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
 
   .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance, databaseService, lng, lat) {
       console.log("Modal Ctrl");
+      $scope.poiHasDate = false;
+      $scope.format = 'dd-MM-yyyy';
+      $scope.popup = { 'startDateOpen': false, 'endDateOpen': false };
+
       $scope.marker = {
           markerName: '',
           category: '',
           lng: lng,
-          lat: lat
+          lat: lat,
+          description: '',
+          link: '',
+          startDate: '',
+          endDate: '',
+          time: '',
+          isEvent: false,
+          imagePath: ''
       };
 
       databaseService.getConfig().then(function(res) {
