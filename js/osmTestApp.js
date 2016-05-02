@@ -134,17 +134,22 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
 
   .controller('newMarkerModalCtrl', function ($scope, $uibModalInstance, databaseService, lng, lat) {
       console.log("Modal Ctrl");
-      databaseService.getConfig().then(function(res) {
-          $scope.config = res;
-      });
-
       $scope.marker = {
-          markerName: 'Marker',
+          markerName: '',
           category: '',
           lng: lng,
           lat: lat
       };
+
+      databaseService.getConfig().then(function(res) {
+          $scope.config = res;
+          Object.keys(res.rules).forEach(function(shortRule) {
+              $scope.marker[shortRule] = false;
+          })
+      });
+
       $scope.ok = function (res) {
+          console.log("Save Marker", res);
           $uibModalInstance.close(res);
       };
       $scope.cancel = function () {

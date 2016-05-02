@@ -114,14 +114,35 @@ html {
   }
 }
 .modal-sm {
-  margin-top: 150px;
-  margin-right: 400px;
+  margin-top: 50px;
+  margin-right: 5px;
+  height: 500px;
 }
-.newMarker dl {
-  border: 3px double #ccc;
+.newMarker .form-group .attrRow {
+  margin-bottom: 1em;
+}
+.newMarker .form-group .markerName {
+  width: 80%;
+  display: inline-block;
+}
+.newMarker .form-group .markerPosition {
+  width: 15%;
+  float: right;
+}
+.newMarker .form-group .markerPosition button {
+  height: 34px;
+}
+.newMarker .form-group .markerPosition button img {
+  width: 12px;
+}
+.newMarker .form-group .markerPosition ul {
+  padding: 0;
+}
+.newMarker .form-group .markerPosition ul dl {
   padding: 0.5em;
+  margin-bottom: 0;
 }
-.newMarker dt {
+.newMarker .form-group .markerPosition ul dt {
   float: left;
   clear: left;
   width: 100px;
@@ -129,13 +150,17 @@ html {
   font-weight: bold;
   color: grey;
 }
-.newMarker dt:after {
+.newMarker .form-group .markerPosition ul dt:after {
   content: ":";
 }
-.newMarker dd {
+.newMarker .form-group .markerPosition ul dd {
   margin: 0 0 0 110px;
   padding: 0 0 0.5em 0;
 }
-.newMarker .form-group label {
-  padding-top: 1em;
+.newMarker .form-group .markerRules ul {
+  padding: 0.5em;
+  margin: 0;
+}
+.newMarker .form-group .markerRules ul li {
+  white-space: nowrap;
 }

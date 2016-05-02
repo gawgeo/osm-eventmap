@@ -1,35 +1,53 @@
 <div>
     <div class="modal-header">
-        <h3 class="modal-title">Neuen POI anlegen!</h3>
+        <h4 class="modal-title">Neuen POI anlegen!</h4>
     </div>
     <div class="modal-body newMarker">
-        <h5>Der neue Point of Interest hat folgende Attribute:</h5>
-        <dl>
-            <dt>Longitude</dt>
-            <dd>{{marker.lng.toFixed(10)}}</dd>
-            <dt>Latitude</dt>
-            <dd>{{marker.lat.toFixed(10)}}</dd>
-        </dl>
-
-        <h5>Hier können zusätzlich Marker-Daten eingegeben werden! Z.b. der Name:</h5>
         <div class="form-group">
-            <label for="name">Name:</label>
-            <input ng-model="marker.markerName" type="text" class="form-control" id="name">
-
-            <label for="category">Nachhaltigkeits-Kategorie:</label><br>
-            <select class="form-control dropdown-toggle" id="category" ng-model="marker.category">
-                <option ng-repeat="cat in config.categories" value="Choose category">{{cat}}</option>
-            </select><br>
-
-            <label for="rules">Nachhaltigkeitsregeln:</label>
-            <div class="input-group" id="rules">
-                <span class="input-group-addon">
-                    <input type="checkbox" aria-label="...">
-                </span>
-                <input type="text" class="form-control" aria-label="...">
+            <div class="attrRow">
+                <input class="form-control markerName" ng-model="marker.markerName" placeholder="Titel des POI eingeben" type="text">
+                <div class="markerPosition dropdown">
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img src="../bower_components/leaflet/dist/images/marker-icon.png">
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <dl>
+                                <dt>Longitude</dt>
+                                <dd>{{marker.lng.toFixed(10)}}</dd>
+                                <dt>Latitude</dt>
+                                <dd>{{marker.lat.toFixed(10)}}</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="attrRow">
+                <select class="form-control dropdown-toggle markerCategory" ng-model="marker.category">
+                    <option style="display:none" value="">Nachhaltigkeitskategorie wählen</option>
+                    <option ng-repeat="cat in config.categories">{{cat}}</option>
+                </select>
             </div>
 
+            <div class="attrRow">
+                <div class="markerRules dropdown">
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Nachhaltigkeitsregeln festlegen
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li ng-repeat="(short, rule) in config.rules">
+                            <div class="input-group">
+                                  <span class="input-group-addon">
+                                    <input type="checkbox" ng-model="marker[short]">
+                                  </span>
+                                  <span class="form-control">{{rule}}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="ok(marker)">OK</button>

@@ -7,21 +7,21 @@
     "Nachhaltige Raumentwicklung",
     "Umwelt & Energie"
   ],
-  "attributes": [
-    "Menschliche Gesundheit schützen",
-    "Grundversorgung sicherstellen",
-    "Existenz selbstständig sichern",
-    "Gleiche Möglichkeiten der Nutzung der Umwelt für alle Menschen",
-    "Übersteigerte Einkommens- und Vermögenssunterschiede ausgleichen",
-    "Erneuerbare Rohstoffe und Energiequellen nachhaltig nutzen",
-    "Nicht erneuerbare rohstoffe und Energiequellen nachhaltig nutzen",
-    "Umwelt nutzen, ohne ihrer Aufnahmefähigkeit für schädliche Stoffe und Abwärme zu schaden",
-    "Unvertretbare technische Risiken vermeiden",
-    "Sachwerte sowie Fähigkeiten und wissen nachhaltig entwickeln",
-    "Chancengleichheit bei Bildung, Beruf und Ämtern und Informationen ermöglichen",
-    "An gesellschaftlichen Entscheidungsvorgängen mitwirken können",
-    "Kulturelles Erbe und kulturelle Vielfalt erhalten",
-    "Natur und Landschaft als Kulturgüter erhalten",
-    "Sozialen Zusammenhalt in der Gesellschaft bewahren"
-  ]
+  "rules": {
+    "R1": "Menschliche Gesundheit schützen",
+    "R2": "Grundversorgung sicherstellen",
+    "R3": "Existenz selbstständig sichern",
+    "R4": "Gleiche Möglichkeiten der Nutzung der Umwelt für alle Menschen",
+    "R5": "Übersteigerte Einkommens- und Vermögenssunterschiede ausgleichen",
+    "R6": "Erneuerbare Rohstoffe und Energiequellen nachhaltig nutzen",
+    "R7": "Nicht erneuerbare rohstoffe und Energiequellen nachhaltig nutzen",
+    "R8": "Umwelt nutzen, ohne ihrer Aufnahmefähigkeit für schädliche Stoffe und Abwärme zu schaden",
+    "R9": "Unvertretbare technische Risiken vermeiden",
+    "R10": "Sachwerte sowie Fähigkeiten und wissen nachhaltig entwickeln",
+    "R11": "Chancengleichheit bei Bildung, Beruf und Ämtern und Informationen ermöglichen",
+    "R12": "An gesellschaftlichen Entscheidungsvorgängen mitwirken können",
+    "R13": "Kulturelles Erbe und kulturelle Vielfalt erhalten",
+    "R14": "Natur und Landschaft als Kulturgüter erhalten",
+    "R15": "Sozialen Zusammenhalt in der Gesellschaft bewahren"
+  }
 }
