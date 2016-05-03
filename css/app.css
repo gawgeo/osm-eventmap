@@ -18,6 +18,16 @@
   top: 1em;
   z-index: 20;
 }
+.markerPopup .markerPopupTitle {
+  font-weight: bold;
+  text-align: center;
+  display: block;
+}
+.markerPopup button {
+  padding: 0;
+  margin: 2px 2px 0 2px;
+  width: 25px;
+}
 body,
 html {
   height: 100%;

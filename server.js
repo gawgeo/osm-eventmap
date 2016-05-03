@@ -50,7 +50,7 @@ server.post('/savePointOfInterest', function(req, res){
 // Delete Point of Interest
 server.post('/deletePointOfInterest', function(req, res){
     console.log("deletePointOfInterest");
-    db.run("DELETE FROM PointsOfInterest WHERE title=? AND lng=? AND lat=?", [req.body['title'], req.body['lng'], req.body['lat']], function(err){
+    db.run("DELETE FROM PointsOfInterest WHERE lng=? AND lat=?", [req.body['lng'], req.body['lat']], function(err){
         if (err){
             console.log(err);
             res.status(500);

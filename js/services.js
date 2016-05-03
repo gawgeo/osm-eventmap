@@ -73,7 +73,7 @@ angular.module('osmTestApp.services', [])
           $http({
               url: '/deletePointOfInterest',
               method: "POST",
-              data: {'title': POI.title, 'lng': POI.lng, 'lat': POI.lat}
+              data: {'lng': POI.lng, 'lat': POI.lat}
           }).success(function () {
               console.log("Deleted", POI);
               deferred.resolve();
@@ -97,4 +97,18 @@ angular.module('osmTestApp.services', [])
           });
           return deferred.promise;
       };
+  })
+
+  .service('iconService', function() {
+      this.getIcon = function (color) {
+          return newIcon = L.icon({
+              iconUrl: './img/marker-icon-' + color + '.png',
+              iconAnchor:   [13, 41], // point of the icon which will correspond to marker's location
+              shadowAnchor: [20, 86],  // the same for the shadow
+              popupAnchor:  [-3, -76], // point from which the popup should open relative to the iconAnchor
+              shadowUrl: './img/marker-shadow.png',
+              shadowSize: [68, 95]
+          });
+      }
+
   });

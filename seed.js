@@ -12,7 +12,7 @@ db.serialize(function() {
     testData.forEach(function(poi) {
         db.run("INSERT OR IGNORE INTO PointsOfInterest (title, lng, lat, category, description, link, isEvent, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
           [
-              poi['markerName'],
+              poi['title'],
               poi['lng'],
               poi['lat'],
               poi['category'],
