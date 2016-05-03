@@ -1,9 +1,9 @@
 <div ng-controller="osmTestAppCtrl" class="main">
 
-    <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt</div>
+    <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt<button ng-click="admin = !admin" ng-class="{'active': admin}" class="btn btn-success">Admin</button></div>
 
     <div class="mapArea">
-            <button class="deleteButton btn btn-danger" ng-click="deleteAllMarker()">Alle Marker löschen!</button>
+            <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllMarker()">Alle Marker löschen!</button>
             <div id="simpleMap"></div>
     </div>
 

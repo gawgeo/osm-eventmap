@@ -62,6 +62,9 @@ html {
     width: 100%;
   }
 }
+.main .header button {
+  float: right;
+}
 .main .mapArea {
   position: relative;
   min-height: 1px;

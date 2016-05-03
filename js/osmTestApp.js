@@ -2,6 +2,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService) {
       console.log("OSM-Test App running!");
+      $scope.admin = false;
       $scope.selectedPOI = null;
       databaseService.getConfig().then(function(res) {
           $scope.config = res;
