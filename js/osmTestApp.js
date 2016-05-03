@@ -147,7 +147,6 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
           link: '',
           startDate: '',
           endDate: '',
-          time: '',
           isEvent: false,
           imagePath: ''
       };

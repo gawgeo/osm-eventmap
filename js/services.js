@@ -16,7 +16,33 @@ angular.module('osmTestApp.services', [])
           $http({
               url: '/saveMarker',
               method: "POST",
-              data: {'markerName': marker.markerName, 'lng': marker.lng, 'lat': marker.lat}
+              data: {
+                  'markerName': marker.markerName,
+                  'lng': marker.lng,
+                  'lat': marker.lat,
+                  'category': marker.category,
+                  'description': marker.description,
+                  'link': marker.link,
+                  'startDate': marker.startDate,
+                  'endDate': marker.endDate,
+                  'isEvent': marker.isEvent,
+                  'imagePath': marker.imagePath,
+                  'R1': marker.R1,
+                  'R2': marker.R2,
+                  'R3': marker.R3,
+                  'R4': marker.R4,
+                  'R5': marker.R5,
+                  'R6': marker.R6,
+                  'R7': marker.R7,
+                  'R8': marker.R8,
+                  'R9': marker.R9,
+                  'R10': marker.R10,
+                  'R11': marker.R11,
+                  'R12': marker.R12,
+                  'R13': marker.R13,
+                  'R14': marker.R14,
+                  'R15': marker.R15
+              }
           })
             .then(function (response) {
                   console.log("Marker saved!");
