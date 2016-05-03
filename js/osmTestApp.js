@@ -2,6 +2,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService) {
       console.log("OSM-Test App running!");
+      $scope.selectedPOI = null;
       databaseService.getConfig().then(function(res) {
           $scope.config = res;
           console.log(res);
@@ -15,7 +16,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
       map.addLayer(osm); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
 
-
+      // TEST-ZONE
       // add circle
       var circle = L.circle([49.0148731, 8.43000], 100, {
           color: 'red',
@@ -39,6 +40,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
           shadowAnchor: [4, 62],  // the same for the shadow
           popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
       });
+      // TEST-ZONE ENDE
 
       // => marker add und delete handling inside group <=
       var markerGroup = L.layerGroup();
@@ -80,12 +82,10 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
                       $scope.deleteMarker(currentMarker);
                   }
               });
-              marker["markerName"] = m.markerName;
-              // To be deleted
-              if (marker.markerName === "QZ") {
-                  console.log("QZ gefunden!");
-                  marker.setIcon(qzIcon);
-              }
+              marker.on('click', function() {
+                  $scope.selectedPOI = m;
+                  $scope.$apply();
+              });
               markerGroup.addLayer(marker);
           });
           map.addLayer(markerGroup);
@@ -165,7 +165,10 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
       $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
       };
-  });
+  })
+
+
+;
 
 
 
