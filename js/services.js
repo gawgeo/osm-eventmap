@@ -11,89 +11,89 @@ angular.module('osmTestApp.services', [])
           return deferred.promise;
       };
       
-      this.saveMarker = function(marker) {
+      this.savePOI = function(POI) {
           var deferred = $q.defer();
           $http({
-              url: '/saveMarker',
+              url: '/savePointOfInterest',
               method: "POST",
               data: {
-                  'markerName': marker.markerName,
-                  'lng': marker.lng,
-                  'lat': marker.lat,
-                  'category': marker.category,
-                  'description': marker.description,
-                  'link': marker.link,
-                  'startDate': marker.startDate,
-                  'endDate': marker.endDate,
-                  'isEvent': marker.isEvent,
-                  'imagePath': marker.imagePath,
-                  'R1': marker.R1,
-                  'R2': marker.R2,
-                  'R3': marker.R3,
-                  'R4': marker.R4,
-                  'R5': marker.R5,
-                  'R6': marker.R6,
-                  'R7': marker.R7,
-                  'R8': marker.R8,
-                  'R9': marker.R9,
-                  'R10': marker.R10,
-                  'R11': marker.R11,
-                  'R12': marker.R12,
-                  'R13': marker.R13,
-                  'R14': marker.R14,
-                  'R15': marker.R15
+                  'title': POI.title,
+                  'lng': POI.lng,
+                  'lat': POI.lat,
+                  'category': POI.category,
+                  'description': POI.description,
+                  'link': POI.link,
+                  'startDate': POI.startDate,
+                  'endDate': POI.endDate,
+                  'isEvent': POI.isEvent,
+                  'imagePath': POI.imagePath,
+                  'R1': POI.R1,
+                  'R2': POI.R2,
+                  'R3': POI.R3,
+                  'R4': POI.R4,
+                  'R5': POI.R5,
+                  'R6': POI.R6,
+                  'R7': POI.R7,
+                  'R8': POI.R8,
+                  'R9': POI.R9,
+                  'R10': POI.R10,
+                  'R11': POI.R11,
+                  'R12': POI.R12,
+                  'R13': POI.R13,
+                  'R14': POI.R14,
+                  'R15': POI.R15
               }
           })
             .then(function (response) {
-                  console.log("Marker saved!");
+                  console.log("PointOfInterest saved!");
                   deferred.resolve();
               },
               function (response) { // optional
-                  window.alert("Marker save Fehler!");
+                  window.alert("PointOfInterest save failure!");
               });
           return deferred.promise;
       };
 
-      this.getMarkers = function () {
+      this.getPOIs = function () {
           var deferred = $q.defer();
           $http({
               method: 'GET',
-              url: '/getMarkers'
+              url: '/getPointsOfInterest'
           }).success(function (data) {
               console.log("GET", data);
               deferred.resolve({'data': data});
           }).error(function () {
-              window.alert("Marker GET Fehler!");
+              window.alert("PointsOfInterest GET failure!");
           });
           return deferred.promise;
       };
 
-      this.deleteMarker = function(marker) {
+      this.deletePOI = function(POI) {
           var deferred = $q.defer();
           $http({
-              url: '/deleteMarker',
+              url: '/deletePointOfInterest',
               method: "POST",
-              data: {'markerName': marker.markerName, 'lng': marker.lng, 'lat': marker.lat}
+              data: {'title': POI.title, 'lng': POI.lng, 'lat': POI.lat}
           }).success(function () {
-              console.log("Deleted", marker);
+              console.log("Deleted", POI);
               deferred.resolve();
           }).error(function () {
-              window.alert("Marker Delete Fehler!");
+              window.alert("PointsOfInterest delete failure!");
           });
           return deferred.promise;
       };
 
-      this.deleteAllMarker = function () {
+      this.deleteAllPOIs = function () {
           var deferred = $q.defer();
           $http({
-              url: '/deleteAllMarker',
+              url: '/deleteAllPointsOfInterest',
               method: "POST",
               data: {}
           }).success(function () {
-              console.log("Deleted all Marker");
+              console.log("Deleted all PointsOfInterest");
               deferred.resolve();
           }).error(function () {
-              window.alert("Marker all delete Fehler!");
+              window.alert("PointsOfInterest all delete failure!");
           });
           return deferred.promise;
       };

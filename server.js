@@ -24,16 +24,16 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(file);
 
 db.serialize(function() {
-    db.run("CREATE TABLE IF NOT EXISTS markers (markerName TEXT, lng DOUBLE, lat DOUBLE, category TEXT, description TEXT, link TEXT, isEvent BOOLEAN, startDate DATETIME, endDate DATETIME, imagePath TEXT, " +
+    db.run("CREATE TABLE IF NOT EXISTS PointsOfInterest (title TEXT, lng DOUBLE, lat DOUBLE, category TEXT, description TEXT, link TEXT, isEvent BOOLEAN, startDate DATETIME, endDate DATETIME, imagePath TEXT, " +
       "R1 BOOLEAN, R2 BOOLEAN, R3 BOOLEAN, R4 BOOLEAN, R5 BOOLEAN, R6 BOOLEAN, R7 BOOLEAN, R8 BOOLEAN, R9 BOOLEAN, R10 BOOLEAN, R11 BOOLEAN, R12 BOOLEAN, R13 BOOLEAN, R14 BOOLEAN, R15 BOOLEAN)");
 });
 
 // Server Database communication
-// Save Marker to DB
-server.post('/saveMarker', function(req, res){
-    console.log("saveMarker");
-    db.run("INSERT OR IGNORE INTO markers (markerName, lng, lat, category, description, link, isEvent, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", 
-      [req.body['markerName'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['isEvent'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15']], function(err){
+// Save PointsOfInterest to DB
+server.post('/savePointOfInterest', function(req, res){
+    console.log("savePointOfInterest");
+    db.run("INSERT OR IGNORE INTO PointsOfInterest (title, lng, lat, category, description, link, isEvent, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", 
+      [req.body['title'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['isEvent'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15']], function(err){
         if (err){
             console.log(err);
             res.status(500);
@@ -47,10 +47,10 @@ server.post('/saveMarker', function(req, res){
     });
 });
 
-// Delete Marker
-server.post('/deleteMarker', function(req, res){
-    console.log("deleteMarker");
-    db.run("DELETE FROM markers WHERE markerName=? AND lng=? AND lat=?", [req.body['markerName'], req.body['lng'], req.body['lat']], function(err){
+// Delete Point of Interest
+server.post('/deletePointOfInterest', function(req, res){
+    console.log("deletePointOfInterest");
+    db.run("DELETE FROM PointsOfInterest WHERE title=? AND lng=? AND lat=?", [req.body['title'], req.body['lng'], req.body['lat']], function(err){
         if (err){
             console.log(err);
             res.status(500);
@@ -64,10 +64,10 @@ server.post('/deleteMarker', function(req, res){
     });
 });
 
-// Delete All Marker
-server.post('/deleteAllMarker', function(req, res){
-    console.log("deleteAllMarker");
-    db.run("DELETE FROM markers", function(err){
+// Delete All PointsOfInterest
+server.post('/deleteAllPointsOfInterest', function(req, res){
+    console.log("deleteAllPointsOfInterest");
+    db.run("DELETE FROM PointsOfInterest", function(err){
         if (err){
             console.log(err);
             res.status(500);
@@ -81,9 +81,9 @@ server.post('/deleteAllMarker', function(req, res){
     });
 });
 
-// Get all Markers
-server.get('/getMarkers', function(req, res){
-    db.all("SELECT * FROM markers", function(err, rows){
+// Get all PointsOfInterest
+server.get('/getPointsOfInterest', function(req, res){
+    db.all("SELECT * FROM PointsOfInterest", function(err, rows){
         if (err){
             console.log(err);
             res.status(400);

@@ -125,7 +125,7 @@ html {
 .newMarker .form-group .attrRow {
   margin-bottom: 1em;
 }
-.newMarker .form-group .markerName {
+.newMarker .form-group .title {
   width: 80%;
   display: inline-block;
 }
