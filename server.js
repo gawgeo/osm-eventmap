@@ -16,6 +16,9 @@ var fs = require("fs");
 var file = 'test.db';
 var exists = fs.existsSync(file);
 
+var sqliteJSON = require('sqlite-json');
+var exporter = sqliteJSON(file);
+
 if(!exists) {
     console.log("Creating DB file.");
     fs.openSync(file, "w");
@@ -94,6 +97,18 @@ server.get('/getPointsOfInterest', function(req, res){
     });
 });
 
+server.get('/getPOIJson', function(req, res){
+    exporter.json('select * FROM PointsOfInterest', function (err, json) {
+        if (err){
+            console.log(err);
+            res.status(400);
+        }
+        else {
+            console.log(json);
+            res.send(json);
+        }
+    });
+});
 
 //Lets start our server
 server.listen(PORT, function(){

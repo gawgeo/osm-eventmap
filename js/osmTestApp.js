@@ -1,10 +1,11 @@
-angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker'])
+angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv'])
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
       $scope.admin = true;
       $scope.selectedPOI = null;
       $scope.POIs = [];
+      $scope.csvExport = databaseService.getPOIJson();
       databaseService.getConfig().then(function(res) {
           $scope.config = res;
           console.log(res);

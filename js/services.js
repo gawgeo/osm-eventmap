@@ -68,6 +68,21 @@ angular.module('osmTestApp.services', [])
           return deferred.promise;
       };
 
+      // Deprecated
+      this.getPOIJson = function () {
+          var deferred = $q.defer();
+          $http({
+              method: 'GET',
+              url: '/getPOIJson'
+          }).success(function (data) {
+              console.log("GET", data);
+              deferred.resolve(data);
+          }).error(function () {
+              window.alert("POI-JSON GET failure!");
+          });
+          return deferred.promise;
+      };
+
       this.deletePOI = function(POI) {
           var deferred = $q.defer();
           $http({

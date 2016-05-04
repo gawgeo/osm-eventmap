@@ -74,6 +74,7 @@ html {
 }
 .main .header button {
   float: right;
+  margin-left: 5px;
 }
 .main .mapArea {
   position: relative;

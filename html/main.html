@@ -1,6 +1,15 @@
 <div ng-controller="osmTestAppCtrl" class="main">
 
-    <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt<button ng-click="admin = !admin" ng-class="{'active': admin}" class="btn btn-success">Admin</button></div>
+    <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt
+        <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}" >Admin</button>
+        <button ng-if="admin" class="btn btn-warning"
+                ng-csv="csvExport"
+                lazy-load="true"
+                filename="QZ-DB-export.csv"
+                field-separator=","
+                decimal-separator="."
+                csv-header="config.POIAttributes">CSV-Export</button>
+    </div>
 
     <div class="mapArea">
             <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!</button>
