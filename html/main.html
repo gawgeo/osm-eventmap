@@ -3,11 +3,12 @@
     <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt
         <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}" >Admin</button>
         <button ng-if="admin" class="btn btn-warning"
-                ng-csv="csvExport"
-                lazy-load="true"
+                ng-csv="csvExport()"
                 filename="QZ-DB-export.csv"
                 field-separator=","
                 decimal-separator="."
+                add-bom="true"
+                lazy-load="true"
                 csv-header="config.POIAttributes">CSV-Export</button>
     </div>
 

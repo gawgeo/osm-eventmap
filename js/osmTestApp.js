@@ -5,7 +5,6 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
       $scope.admin = true;
       $scope.selectedPOI = null;
       $scope.POIs = [];
-      $scope.csvExport = databaseService.getPOIJson();
       databaseService.getConfig().then(function(res) {
           $scope.config = res;
           console.log(res);
@@ -127,6 +126,11 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
               createLayer($scope.POIs);
           });
       }
+
+
+      $scope.csvExport = function () {
+          return databaseService.getPOIJson();
+      };
 
       // INITIALIZE
       updateView();
