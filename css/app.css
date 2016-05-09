@@ -51,16 +51,7 @@
   padding: 0 0 0.5em 0;
 }
 .infoArea img {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 992px) {
-  .infoArea img {
-    float: left;
-    width: 100%;
-  }
+  width: 100%;
 }
 .infoArea .activePOI {
   background-color: #f5eddd;
@@ -182,6 +173,15 @@ html {
 .main .header button {
   float: right;
   margin-left: 5px;
+}
+.main .header .csvImport {
+  float: right;
+  margin-left: 5px;
+  height: 28px;
+  border-radius: 10px;
+}
+.main .header .csvImport div input {
+  border-radius: 5px;
 }
 .main .mapArea {
   position: relative;

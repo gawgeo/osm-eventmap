@@ -25,6 +25,7 @@
     "R15": "Sozialen Zusammenhalt in der Gesellschaft bewahren"
   },
   "POIAttributes": [
+    "id",
     "title",
     "lng",
     "lat",

@@ -1,4 +1,4 @@
-angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv'])
+angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv', 'ngCsvImport'])
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $document, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
@@ -7,6 +7,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
       $scope.POIs = []; // list of all Pois
+      $scope.csvResult = null;
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
           console.log(res);
@@ -140,9 +141,32 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           return databaseService.getPOIJson();
       };
       
-      $scope.csvImport = function () {
-          
-      };
+      $scope.$watch("csvResult", function(res) {
+          var newPois = [];
+          if (res) {
+              res.pop();
+              var headers = res.shift();
+              var splittedHeaders = headers['0'].split(";");
+
+              res.forEach(function(poi) {
+                  var splittedPoi = poi['0'].split(";");
+                  var newPoi = {};
+                  for (var i = 0; i<splittedHeaders.length; i++) {
+                      newPoi[splittedHeaders[i]] = splittedPoi[i];
+                  }
+                  console.log(newPoi);
+                  newPois.push(newPoi);
+              })
+          }
+          newPois.forEach(function(poi) {
+              console.log("savePoi", poi);
+              databaseService.savePOI(poi).then(function () {
+                  updateView();
+              });
+          });
+      });
+
+
 
       // INITIALIZE
       updateView();

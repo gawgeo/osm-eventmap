@@ -11,6 +11,16 @@
                 lazy-load="true"
                 csv-header="config.POIAttributes">CSV-Export
         </button>
+        <ng-csv-import class="csvImport"
+                       content="null"
+                       header="false"
+                       headerVisible="false"
+                       separator=";"
+                       result="csvResult"
+                       accept="'.csv'"
+                       encoding="'ISO-8859-1'"
+                       encodingVisible="true">
+        </ng-csv-import>
     </div>
 
     <div class="mapArea">
@@ -28,7 +38,7 @@
                      update-poi="updatePOI"></new-poi>
         </div>
 
-        <div ng-if="!formToggle" class="markerDetails" >
+        <div ng-if="!formToggle" class="markerDetails">
             <h3>Points of Interest</h3>
             <uib-accordion close-others="true">
                 <uib-accordion-group
@@ -38,29 +48,29 @@
                         is-disabled="status.isFirstDisabled"
                         ng-click="selectPOI(POI)"
                         panel-class="{{POI.id === selectedPOI.id ? 'activePOI' : ''}}">
-                            <dl>
-                                <dt>Kategorie</dt>
-                                <dd>{{POI.category}}</dd>
-                                <dt>Beschreibung</dt>
-                                <dd>{{POI.description}}</dd>
-                                <div ng-if="POI.startDate">
-                                    <dt>Anfagsdatum</dt>
-                                    <dd>{{POI.startDate}}</dd>
-                                    <dt>Enddatum</dt>
-                                    <dd>{{POI.endDate}}</dd>
-                                </div>
-                                <div ng-if="POI.link">
-                                    <dt>Link</dt>
-                                    <dd>{{POI.link}}</dd>
-                                </div>
-                            </dl>
-                            <h4>Nachhaltigkeitsregeln:</h4>
-                            <ul>
-                                <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
-                                    {{rule}}
-                                </li>
-                            </ul>
-                            <img src="{{POI.imagePath}}">
+                    <dl>
+                        <dt>Kategorie</dt>
+                        <dd>{{POI.category}}</dd>
+                        <dt>Beschreibung</dt>
+                        <dd>{{POI.description}}</dd>
+                        <div ng-if="POI.startDate">
+                            <dt>Anfagsdatum</dt>
+                            <dd>{{POI.startDate}}</dd>
+                            <dt>Enddatum</dt>
+                            <dd>{{POI.endDate}}</dd>
+                        </div>
+                        <div ng-if="POI.link">
+                            <dt>Link</dt>
+                            <dd>{{POI.link}}</dd>
+                        </div>
+                    </dl>
+                    <h4>Nachhaltigkeitsregeln:</h4>
+                    <ul>
+                        <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
+                            {{rule}}
+                        </li>
+                    </ul>
+                    <img src="{{POI.imagePath}}">
                 </uib-accordion-group>
             </uib-accordion>
         </div>
