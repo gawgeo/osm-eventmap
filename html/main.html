@@ -30,20 +30,15 @@
 
         <div ng-if="!formToggle" class="markerDetails" >
             <h3>Points of Interest</h3>
-            <table class="table">
-                <tr>
-                    <th>Nr.</th>
-                    <th>Name</th>
-                    <th>Lng</th>
-                    <th>Lat</th>
-                </tr>
-                <tr ng-repeat="poi in POIs">
-                    <td>{{$index}}</td>
-                    <td>{{poi.title}}</td>
-                    <td>{{poi.lng.toFixed(5)}}</td>
-                    <td>{{poi.lat.toFixed(5)}}</td>
-                </tr>
-            </table>
+            <uib-accordion close-others="true">
+                <uib-accordion-group
+                        ng-repeat="POI in POIs"
+                        heading="{{POI.title}}"
+                        is-open="status.isFirstOpen"
+                        is-disabled="status.isFirstDisabled">
+                    This content is straight in the template.
+                </uib-accordion-group>
+            </uib-accordion>
         </div>
         SelectedPoi: {{selectedPOI.title}}
     </div>

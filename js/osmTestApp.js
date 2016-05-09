@@ -1,12 +1,12 @@
-angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv'])
+angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv'])
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $compile, $document, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
       $scope.admin = true;
-      $scope.formToggle = false;
-      $scope.oldPOI = {};
-      $scope.selectedPOI = null;
-      $scope.POIs = [];
+      $scope.formToggle = false; // show and hide new POI form
+      $scope.oldPOI = {}; // save old poi variable on update
+      $scope.selectedPOI = null; // currently selected Poi
+      $scope.POIs = []; // list of all Pois
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
           console.log(res);
@@ -19,22 +19,6 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
       map.addLayer(osm); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
-
-      // TEST-ZONE
-      // add circle
-      var circle = L.circle([49.0148731, 8.43000], 100, {
-          color: 'red',
-          fillColor: '#f03',
-          fillOpacity: 0.5
-      });
-      map.addLayer(circle);
-      // add polygon
-      var polygon = L.polygon([
-          [49.005, 8.41000],
-          [49.013, 8.42000]
-      ]);
-      map.addLayer(polygon);
-      // TEST-ZONE ENDE
 
       // => marker add und delete handling inside group <=
       var markerGroup = L.layerGroup();
@@ -96,18 +80,18 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
           map.addLayer(markerGroup);
       }
 
+      // save poi and delete temporary marker
       $scope.savePOI = function (newPOI) {
           map.removeLayer($scope.tempMarker);
-          console.log("Save newPoi", newPOI);
           databaseService.savePOI(newPOI).then(function () {
               $scope.formToggle = false;
               updateView();
           });
       };
 
+      // update poi and delete temporary marker
       $scope.updatePOI = function (updatePoi) {
           map.removeLayer($scope.tempMarker);
-          console.log("Update newPoi", updatePoi);
           databaseService.updatePOI(updatePoi).then(function () {
               $scope.formToggle = false;
               updateView();
@@ -115,9 +99,8 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
           $scope.oldPOI = {};
       };
 
-      // close formular
+      // close form
       $scope.cancel = function () {
-          console.log("CANCEL");
           map.removeLayer($scope.tempMarker);
           $scope.formToggle = false;
       };
@@ -131,8 +114,6 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
 
       // Layer controls
       var overlay = {
-          "polygon": polygon,
-          "circle": circle,
           "marker": markerGroup
       };
       L.control.layers([], overlay, {position: 'topleft'}).addTo(map);
@@ -148,6 +129,10 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
 
       $scope.csvExport = function () {
           return databaseService.getPOIJson();
+      };
+      
+      $scope.csvImport = function () {
+          
       };
 
       // INITIALIZE
