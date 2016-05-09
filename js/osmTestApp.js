@@ -72,18 +72,21 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
                   $scope.selectedPOI = POI;
                   console.log("selected: ", $scope.selectedPOI);
                   $scope.$apply();
-                  $scope.tempMarker.on('dragend', function () {
-                      console.log("dragged");
-                      $scope.$apply();
-                  });
+                  if ($scope.tempMarker) {
+                      $scope.tempMarker.on('dragend', function () {
+                          console.log("dragged");
+                          $scope.$apply();
+                      });
+                  }
               });
+              L.marker["POIid"] = POI.id;
               markerGroup.addLayer(marker);
           });
           map.addLayer(markerGroup);
       }
 
       $scope.selectPOI = function (POI) {
-          console.log("Selected: ", POI);
+          $scope.selectedPOI = POI;
       };
 
       // save poi and delete temporary marker
