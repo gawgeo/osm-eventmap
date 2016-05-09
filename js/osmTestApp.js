@@ -31,10 +31,12 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           $scope.formToggle = true;
           $scope.$apply();
           $scope.tempMarker = L.marker(event.latlng, {draggable: 'true', icon: iconService.getIcon('red')}).addTo(map);
-          $scope.tempMarker.on('dragend', function () {
-              console.log("dragged");
-              $scope.$apply();
-          });
+          if ($scope.tempMarker) {
+              $scope.tempMarker.on('dragend', function () {
+                  console.log("dragged");
+                  $scope.$apply();
+              });
+          }
       });
 
 
@@ -79,6 +81,10 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
           map.addLayer(markerGroup);
       }
+
+      $scope.selectPOI = function (POI) {
+          console.log("Selected: ", POI);
+      };
 
       // save poi and delete temporary marker
       $scope.savePOI = function (newPOI) {

@@ -1,97 +1,99 @@
-.modal-sm {
-  margin-top: 50px;
-  margin-right: 5px;
-  height: 500px;
-}
-.newPOI {
-  .form-group {
-    .attrRow {
-      margin-bottom: 1em;
-    }
-    .title {
-      width: 80%;
-      display: inline-block;
-    }
-    .POIPosition {
-      width: 15%;
-      float: right;
-      button {
-        height: 34px;
-        img {
-          width: 12px;
+.newPOIWrapper {
+  .newPOIHeadline {
+    padding-left: 0.3em;
+  }
+  .newPOI {
+    .form-group {
+      .attrRow {
+        margin-bottom: 1em;
+      }
+      .title {
+        width: 80%;
+        display: inline-block;
+      }
+      .POIPosition {
+        width: 15%;
+        float: right;
+        button {
+          padding: 3px;
+          height: 34px;
+          img {
+            height: 20px;
+            padding: 2px 8px 2px 8px;
+          }
+        }
+        ul {
+          padding: 0;
+          dl {
+            padding: 0.5em;
+            margin-bottom: 0;
+          }
+          dt {
+            float: left;
+            clear: left;
+            width: 100px;
+            text-align: right;
+            font-weight: bold;
+            color: grey;
+          }
+          dt:after {
+            content: ":";
+          }
+          dd {
+            margin: 0 0 0 110px;
+            padding: 0 0 0.5em 0;
+          }
         }
       }
-      ul {
-        padding: 0;
-        dl {
-          padding: 0.5em;
-          margin-bottom: 0;
-        }
-        dt {
-          float: left;
-          clear: left;
-          width: 100px;
-          text-align: right;
-          font-weight: bold;
-          color: grey;
-        }
-        dt:after {
-          content: ":";
-        }
-        dd {
-          margin: 0 0 0 110px;
-          padding: 0 0 0.5em 0;
-        }
-      }
-    }
-    .POICategory {
+      .POICategory {
 
+      }
+      .POIRules {
+        ul {
+          padding: 0.5em;
+          margin: 0;
+          li {
+
+          }
+        }
+      }
+      .POIDate {
+        span {
+
+        }
+        .dateTimeWrapper {
+          padding-top: 0.5em;
+          datetimepicker {
+            display: block;
+          }
+        }
+      }
+      .POILink {
+        width: 100%;
+      }
+      .POIImgLink {
+        width: 100%;
+      }
     }
+  }
+
+  @media (min-width: @screen-md-min) {
     .POIRules {
       ul {
-        padding: 0.5em;
-        margin: 0;
         li {
-
+          white-space: nowrap;
         }
       }
     }
-    .POIDate {
-      span {
-
-      }
-      .dateTimeWrapper {
-        padding-top: 0.5em;
-        datetimepicker {
-          display: block;
-        }
-      }
-    }
-    .POILink {
-      width: 100%;
-    }
-    .POIImgLink {
-      width: 100%;
-    }
   }
-}
 
-@media (min-width: @screen-md-min) {
-  .POIRules {
-    ul {
-      li {
-        white-space: nowrap;
-      }
-    }
-  }
-}
-
-@media (max-width: @screen-md-min) {
-  .POIRules {
-    ul {
-      li {
-        span {
-          height: auto;
+  @media (max-width: @screen-md-min) {
+    .POIRules {
+      ul {
+        li {
+          span {
+            height: auto;
+          }
         }
       }
     }

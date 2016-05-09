@@ -35,12 +35,36 @@
                         ng-repeat="POI in POIs"
                         heading="{{POI.title}}"
                         is-open="status.isFirstOpen"
-                        is-disabled="status.isFirstDisabled">
-                    This content is straight in the template.
+                        is-disabled="status.isFirstDisabled"
+                        ng-click="selectPOI(POI)"
+                        panel-class="{{POI.id === selectedPOI.id ? 'activePOI' : ''}}">
+                            <dl>
+                                <dt>Kategorie</dt>
+                                <dd>{{POI.category}}</dd>
+                                <dt>Beschreibung</dt>
+                                <dd>{{POI.description}}</dd>
+                                <div ng-if="POI.startDate">
+                                    <dt>Anfagsdatum</dt>
+                                    <dd>{{POI.startDate}}</dd>
+                                    <dt>Enddatum</dt>
+                                    <dd>{{POI.endDate}}</dd>
+                                </div>
+                                <div ng-if="POI.link">
+                                    <dt>Link</dt>
+                                    <dd>{{POI.link}}</dd>
+                                </div>
+                            </dl>
+                            <h4>Nachhaltigkeitsregeln:</h4>
+                            <ul>
+                                <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
+                                    {{rule}}
+                                </li>
+                            </ul>
+                            <img src="{{POI.imagePath}}">
                 </uib-accordion-group>
             </uib-accordion>
         </div>
-        SelectedPoi: {{selectedPOI.title}}
+        SelectedPoi: {{selectedPOI.id}}
     </div>
 
     <div class="footer">QuartierZukunft, ITAS, KIT</div>

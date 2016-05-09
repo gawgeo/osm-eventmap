@@ -1,5 +1,5 @@
-<div>
-    <h4 ng-bind="POI.id ? 'Marker updaten' : 'Neuen Marker anlegen'"></h4>
+<div class="newPOIWrapper">
+    <h3 class="newPOIHeadline" ng-bind="POI.id ? 'Marker updaten' : 'Neuen Marker anlegen'"></h3>
     <div class="modal-body newPOI">
         <div class="form-group">
             <div class="attrRow">
@@ -7,7 +7,7 @@
                 <input class="form-control title" ng-model="POI.title" id="title" placeholder="Titel des POI eingeben" type="text">
                 <div class="POIPosition dropdown">
                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <img src="../bower_components/leaflet/dist/images/marker-icon.png">
+                        <img src="../img/marker-icon-blue.png">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
