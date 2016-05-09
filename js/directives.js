@@ -7,4 +7,19 @@ angular.module('osmTestApp.directives', [])
               element.draggable();
           }
       }
+  })
+
+  .directive('newPoi', function(){
+      return {
+          restrict: 'EA',
+          controller: 'newPOICtrl',
+          templateUrl: 'html/poiModal.html',
+          scope: {
+              'tempMarker': '=',
+              'savePoi': '=',
+              'updatePoi': '=',
+              'cancel': '=',
+              'oldPoi': '='
+          }
+      }
   });

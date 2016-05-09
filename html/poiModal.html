@@ -1,7 +1,5 @@
 <div>
-    <div class="modal-header">
-        <h4 class="modal-title" ng-bind="POI.id ? 'Marker updaten' : 'Neuen Marker anlegen'"></h4>
-    </div>
+    <h4 ng-bind="POI.id ? 'Marker updaten' : 'Neuen Marker anlegen'"></h4>
     <div class="modal-body newPOI">
         <div class="form-group">
             <div class="attrRow">
@@ -15,9 +13,9 @@
                         <li>
                             <dl>
                                 <dt>Longitude</dt>
-                                <dd>{{POI.lng.toFixed(10)}}</dd>
+                                <dd>{{tempMarker.getLatLng().lng.toFixed(10)}}</dd>
                                 <dt>Latitude</dt>
-                                <dd>{{POI.lat.toFixed(10)}}</dd>
+                                <dd>{{tempMarker.getLatLng().lat.toFixed(10)}}</dd>
                             </dl>
                         </li>
                     </ul>
@@ -86,7 +84,7 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok(POI)">OK</button>
+        <button class="btn btn-primary" type="button" ng-click="save(POI)">OK</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
 </div>

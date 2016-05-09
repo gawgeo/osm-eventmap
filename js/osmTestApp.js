@@ -1,11 +1,13 @@
 angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv'])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $compile, $uibModal, databaseService, iconService) {
+  .controller('osmTestAppCtrl', function ($scope, $compile, $document, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
       $scope.admin = true;
+      $scope.formToggle = false;
+      $scope.oldPOI = {};
       $scope.selectedPOI = null;
       $scope.POIs = [];
-      databaseService.getConfig().then(function(res) {
+      databaseService.getConfig().then(function (res) {
           $scope.config = res;
           console.log(res);
       });
@@ -36,34 +38,22 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
 
       // => marker add und delete handling inside group <=
       var markerGroup = L.layerGroup();
-      
-      // add one marker by click
-      map.on('click', newPoi);
-      function newPoi (event) {
-          console.log(event);
-          var tempMarker = L.marker(event.latlng, {draggable: 'true', icon:iconService.getIcon('red')}).addTo(map);
-          var modalInstance = $uibModal.open({
-              animation: $scope.animationsEnabled,
-              templateUrl: 'html/poiModal.html',
-              controller: 'newPoiCtrl',
-              size: 'sm',
-              backdrop: false,
-              resolve: {
-                  'tempMarker': tempMarker
-              }
-          });
-          modalInstance.result.then(function (newPOI) {
-              map.removeLayer(tempMarker);
-              databaseService.savePOI(newPOI).then(function() {
-                  updateView();
-              });
-          }, function () {
-              map.removeLayer(tempMarker);
-              console.log('Modal dismissed at: ' + new Date());
-          });
-      }
 
-      
+      // add one marker by click
+      map.on('click', function newPoi(event) {
+          if ($scope.tempMarker) {
+              map.removeLayer($scope.tempMarker);
+          }
+          $scope.formToggle = true;
+          $scope.$apply();
+          $scope.tempMarker = L.marker(event.latlng, {draggable: 'true', icon: iconService.getIcon('red')}).addTo(map);
+          $scope.tempMarker.on('dragend', function () {
+              console.log("dragged");
+              $scope.$apply();
+          });
+      });
+
+
       // Create POIs
       function createLayer(POIs) {
           markerGroup.clearLayers();
@@ -75,47 +65,63 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
                 '</div>'
               );
               var content = linkFn($scope);
-              var marker = L.marker({'lng': POI.lng, 'lat': POI.lat});
+              var marker = L.marker({'lat': POI.lat, 'lng': POI.lng});
               marker.bindPopup(content[0]).on("popupopen", function () {
                   var currentMarker = this;
                   $scope.deleteThis = function () {
-                      databaseService.deletePOI(POI).then(function() {
+                      databaseService.deletePOI(POI).then(function () {
                           updateView();
                       });
                   };
                   $scope.updateThis = function () {
-                      var modalInstance = $uibModal.open({
-                          animation: $scope.animationsEnabled,
-                          templateUrl: 'html/poiModal.html',
-                          controller: 'updatePoiCtrl',
-                          size: 'sm',
-                          backdrop: false,
-                          resolve: {
-                              'oldPOI': POI
-                          }
-                      });
-                      modalInstance.result.then(function (newPOI) {
-                          console.log("Update POI. ", newPOI);
-                          databaseService.updatePOI(newPOI).then(function() {
-                              updateView();
-                          });
-                      }, function () {
-                          console.log('Modal dismissed at: ' + new Date());
-                      });
-
+                      $scope.oldPOI = POI;
+                      if ($scope.tempMarker) {
+                          map.removeLayer($scope.tempMarker);
+                      }
+                      $scope.formToggle = true;
+                      $scope.tempMarker = L.marker({'lng': POI.lng, 'lat': POI.lat}, {draggable: 'true', icon: iconService.getIcon('red')}).addTo(map);
                   };
               });
-              marker.on('click', function() {
+              marker.on('click', function () {
                   $scope.selectedPOI = POI;
                   console.log("selected: ", $scope.selectedPOI);
                   $scope.$apply();
+                  $scope.tempMarker.on('dragend', function () {
+                      console.log("dragged");
+                      $scope.$apply();
+                  });
               });
               markerGroup.addLayer(marker);
           });
           map.addLayer(markerGroup);
       }
-      
-      
+
+      $scope.savePOI = function (newPOI) {
+          map.removeLayer($scope.tempMarker);
+          console.log("Save newPoi", newPOI);
+          databaseService.savePOI(newPOI).then(function () {
+              $scope.formToggle = false;
+              updateView();
+          });
+      };
+
+      $scope.updatePOI = function (updatePoi) {
+          map.removeLayer($scope.tempMarker);
+          console.log("Update newPoi", updatePoi);
+          databaseService.updatePOI(updatePoi).then(function () {
+              $scope.formToggle = false;
+              updateView();
+          });
+          $scope.oldPOI = {};
+      };
+
+      // close formular
+      $scope.cancel = function () {
+          console.log("CANCEL");
+          map.removeLayer($scope.tempMarker);
+          $scope.formToggle = false;
+      };
+
       // delete all marker
       $scope.deleteAllPOIs = function () {
           databaseService.deleteAllPOIs().then(function () {
@@ -139,6 +145,7 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
               createLayer($scope.POIs);
           });
       }
+
       $scope.csvExport = function () {
           return databaseService.getPOIJson();
       };
@@ -148,58 +155,45 @@ angular.module('osmTestApp', ['osmTestApp.services', 'osmTestApp.directives', 'u
   })
 
 
-
-  .controller('newPoiCtrl', function ($scope, $uibModalInstance, databaseService, tempMarker) {
-      console.log("Modal Ctrl", tempMarker);
+  .controller('newPOICtrl', function ($scope, databaseService) {
+      console.log($scope.oldPoi);
       $scope.poiHasDate = false;
       $scope.format = 'dd-MM-yyyy';
-      $scope.popup = { 'startDateOpen': false, 'endDateOpen': false };
-      $scope.POI = {
-          title: '',
-          category: '',
-          lng: tempMarker.getLatLng().lng,
-          lat: tempMarker.getLatLng().lat,
-          description: '',
-          link: '',
-          startDate: '',
-          endDate: '',
-          isEvent: false,
-          imagePath: ''
-      };
-      databaseService.getConfig().then(function(res) {
+      $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
+      if (!$scope.oldPoi.id) {
+          $scope.POI = {
+              title: '',
+              category: '',
+              description: '',
+              link: '',
+              startDate: '',
+              endDate: '',
+              isEvent: false,
+              imagePath: ''
+          };
+      } else {
+          $scope.POI = $scope.oldPoi;
+      }
+      databaseService.getConfig().then(function (res) {
           $scope.config = res;
-          Object.keys(res.rules).forEach(function(shortRule) {
-              $scope.POI[shortRule] = false;
+          Object.keys(res.rules).forEach(function (shortRule) {
+              if (!$scope.POI[shortRule]) {
+                  $scope.POI[shortRule] = ($scope.POI[shortRule] === 1);
+              } else {
+                  $scope.POI[shortRule] = false;
+              }
           })
       });
-      $scope.ok = function (res) {
-          console.log("Save Marker", res);
-          $uibModalInstance.close(res);
+      $scope.save = function (POI) {
+          POI["lng"] = $scope.tempMarker.getLatLng().lng;
+          POI["lat"] = $scope.tempMarker.getLatLng().lat;
+          if (POI.id) {
+              $scope.updatePoi(POI);
+          } else {
+              $scope.savePoi(POI);
+          }
       };
-      $scope.cancel = function () {
-          $uibModalInstance.dismiss('cancel');
-      };
-  })
-
-
-  .controller('updatePoiCtrl', function ($scope, $uibModalInstance, databaseService, oldPOI) {
-    $scope.POI = oldPOI;
-    $scope.poiHasDate = oldPOI.isEvent;
-    $scope.format = 'dd-MM-yyyy';
-    $scope.popup = { 'startDateOpen': false, 'endDateOpen': false };
-    databaseService.getConfig().then(function(res) {
-        $scope.config = res;
-        Object.keys(res.rules).forEach(function(shortRule) {
-            $scope.POI[shortRule] = (oldPOI[shortRule] === 1);
-        })
-    });
-    $scope.ok = function (res) {
-        $uibModalInstance.close(res);
-    };
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-});
+  });
 
 
 

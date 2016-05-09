@@ -1,7 +1,7 @@
 <div ng-controller="osmTestAppCtrl" class="main">
 
     <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt
-        <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}" >Admin</button>
+        <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>
         <button ng-if="admin" class="btn btn-warning"
                 ng-csv="csvExport()"
                 filename="QZ-DB-export.csv"
@@ -9,17 +9,27 @@
                 decimal-separator="."
                 add-bom="true"
                 lazy-load="true"
-                csv-header="config.POIAttributes">CSV-Export</button>
+                csv-header="config.POIAttributes">CSV-Export
+        </button>
     </div>
 
     <div class="mapArea">
-            <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!</button>
-            <div id="simpleMap"></div>
+        <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!
+        </button>
+        <div id="simpleMap"></div>
     </div>
 
     <div class="infoArea">
-        <h3>Points of Interest</h3>
-        <div class="markerDetails">
+        <div ng-if="formToggle">
+            <new-poi temp-marker="tempMarker"
+                     save-poi="savePOI"
+                     cancel="cancel"
+                     old-poi="oldPOI"
+                     update-poi="updatePOI"></new-poi>
+        </div>
+
+        <div ng-if="!formToggle" class="markerDetails" >
+            <h3>Points of Interest</h3>
             <table class="table">
                 <tr>
                     <th>Nr.</th>
@@ -35,7 +45,7 @@
                 </tr>
             </table>
         </div>
-            SelectedPoi: {{selectedPOI.title}}
+        SelectedPoi: {{selectedPOI.title}}
     </div>
 
     <div class="footer">QuartierZukunft, ITAS, KIT</div>

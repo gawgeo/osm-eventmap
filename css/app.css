@@ -198,3 +198,9 @@ html {
     width: 100%;
   }
 }
+.aside-backdrop.am-fade {
+  display: none;
+}
+.windowTopClass {
+  width: 0;
+}
