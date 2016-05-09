@@ -28,6 +28,76 @@
   margin: 2px 2px 0 2px;
   width: 25px;
 }
+.modal-sm {
+  margin-top: 50px;
+  margin-right: 5px;
+  height: 500px;
+}
+.newPOI .form-group .attrRow {
+  margin-bottom: 1em;
+}
+.newPOI .form-group .title {
+  width: 80%;
+  display: inline-block;
+}
+.newPOI .form-group .POIPosition {
+  width: 15%;
+  float: right;
+}
+.newPOI .form-group .POIPosition button {
+  height: 34px;
+}
+.newPOI .form-group .POIPosition button img {
+  width: 12px;
+}
+.newPOI .form-group .POIPosition ul {
+  padding: 0;
+}
+.newPOI .form-group .POIPosition ul dl {
+  padding: 0.5em;
+  margin-bottom: 0;
+}
+.newPOI .form-group .POIPosition ul dt {
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: right;
+  font-weight: bold;
+  color: grey;
+}
+.newPOI .form-group .POIPosition ul dt:after {
+  content: ":";
+}
+.newPOI .form-group .POIPosition ul dd {
+  margin: 0 0 0 110px;
+  padding: 0 0 0.5em 0;
+}
+.newPOI .form-group .POIRules ul {
+  padding: 0.5em;
+  margin: 0;
+}
+.newPOI .form-group .POIDate .dateTimeWrapper {
+  padding-top: 0.5em;
+}
+.newPOI .form-group .POIDate .dateTimeWrapper datetimepicker {
+  display: block;
+}
+.newPOI .form-group .POILink {
+  width: 100%;
+}
+.newPOI .form-group .POIImgLink {
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .POIRules ul li {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 992px) {
+  .POIRules ul li span {
+    height: auto;
+  }
+}
 body,
 html {
   height: 100%;
@@ -126,75 +196,5 @@ html {
   .main .footer {
     float: left;
     width: 100%;
-  }
-}
-.modal-sm {
-  margin-top: 50px;
-  margin-right: 5px;
-  height: 500px;
-}
-.newMarker .form-group .attrRow {
-  margin-bottom: 1em;
-}
-.newMarker .form-group .title {
-  width: 80%;
-  display: inline-block;
-}
-.newMarker .form-group .markerPosition {
-  width: 15%;
-  float: right;
-}
-.newMarker .form-group .markerPosition button {
-  height: 34px;
-}
-.newMarker .form-group .markerPosition button img {
-  width: 12px;
-}
-.newMarker .form-group .markerPosition ul {
-  padding: 0;
-}
-.newMarker .form-group .markerPosition ul dl {
-  padding: 0.5em;
-  margin-bottom: 0;
-}
-.newMarker .form-group .markerPosition ul dt {
-  float: left;
-  clear: left;
-  width: 100px;
-  text-align: right;
-  font-weight: bold;
-  color: grey;
-}
-.newMarker .form-group .markerPosition ul dt:after {
-  content: ":";
-}
-.newMarker .form-group .markerPosition ul dd {
-  margin: 0 0 0 110px;
-  padding: 0 0 0.5em 0;
-}
-.newMarker .form-group .markerRules ul {
-  padding: 0.5em;
-  margin: 0;
-}
-.newMarker .form-group .markerDate .dateTimeWrapper {
-  padding-top: 0.5em;
-}
-.newMarker .form-group .markerDate .dateTimeWrapper datetimepicker {
-  display: block;
-}
-.newMarker .form-group .markerLink {
-  width: 100%;
-}
-.newMarker .form-group .markerImgLink {
-  width: 100%;
-}
-@media (min-width: 992px) {
-  .markerRules ul li {
-    white-space: nowrap;
-  }
-}
-@media (max-width: 992px) {
-  .markerRules ul li span {
-    height: auto;
   }
 }

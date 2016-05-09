@@ -35,12 +35,14 @@ db.serialize(function() {
 // Save PointsOfInterest to DB
 server.post('/savePointOfInterest', function(req, res){
     console.log("savePointOfInterest");
-    db.run("INSERT OR IGNORE INTO PointsOfInterest (title, lng, lat, category, description, link, isEvent, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+    db.run(
+      "INSERT OR IGNORE INTO PointsOfInterest " +
+      "(title, lng, lat, category, description, link, isEvent, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) " +
+      "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
       [req.body['title'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['isEvent'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15']], function(err){
         if (err){
             console.log(err);
             res.status(500);
-
         }
         else {
             console.log("SAVED!");
@@ -50,14 +52,32 @@ server.post('/savePointOfInterest', function(req, res){
     });
 });
 
-// Delete Point of Interest
-server.post('/deletePointOfInterest', function(req, res){
-    console.log("deletePointOfInterest");
-    db.run("DELETE FROM PointsOfInterest WHERE lng=? AND lat=?", [req.body['lng'], req.body['lat']], function(err){
+// Update Point of Interest
+server.post('/updatePointOfInterest', function(req, res) {
+    console.log("UpdatePointOfInterest");
+    db.run("UPDATE PointsOfInterest SET title=?, lng=?, lat=?, category=?, description=?, link=?, isEvent=?, startDate=?, endDate=?, imagePath=?, R1=?, R2=?, R3=?, R4=?, R5=?, R6=?, R7=?, R8=?, R9=?, R10=?, R11=?, R12=?, R13=?, R14=?, R15=?" + 
+      "WHERE id=?",
+      [req.body['title'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['isEvent'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15'], req.body['id']],
+      function(err){
         if (err){
             console.log(err);
             res.status(500);
+        }
+        else {
+            console.log("POI UPDATED!");
+            res.status(202);
+        }
+        res.end();
+    });
+});
 
+// Delete Point of Interest
+server.post('/deletePointOfInterest', function(req, res){
+    console.log("deletePointOfInterest");
+    db.run("DELETE FROM PointsOfInterest WHERE id=?", [req.body['id']], function(err){
+        if (err){
+            console.log(err);
+            res.status(500);
         }
         else {
             console.log("DELETED!");
@@ -97,6 +117,7 @@ server.get('/getPointsOfInterest', function(req, res){
     });
 });
 
+// Get POIs to JSON (for csv-Export)
 server.get('/getPOIJson', function(req, res){
     exporter.json('select * FROM PointsOfInterest', function (err, json) {
         if (err){
