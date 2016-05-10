@@ -52,26 +52,28 @@
                     <dl>
                         <dt>Kategorie</dt>
                         <dd>{{POI.category}}</dd>
-                        <dt>Beschreibung</dt>
-                        <dd>{{POI.description}}</dd>
+                        <div class="poiLink" ng-if="POI.link">
+                            <dt>Link</dt>
+                            <dd><a href="{{POI.link}}">hier</a></dd>
+                        </div>
                         <div ng-if="POI.startDate">
                             <dt>Anfagsdatum</dt>
                             <dd>{{POI.startDate}}</dd>
                             <dt>Enddatum</dt>
                             <dd>{{POI.endDate}}</dd>
                         </div>
-                        <div ng-if="POI.link">
-                            <dt>Link</dt>
-                            <dd>{{POI.link}}</dd>
+                        <div class="poiDescription" ng-if="POI.description">
+                            <dt>Beschreibung</dt><br>
+                            <span>{{POI.description}}</span>
                         </div>
                     </dl>
-                    <h4>Nachhaltigkeitsregeln:</h4>
-                    <ul>
+                    <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>
+                    <ul class="rules">
                         <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
                             {{rule}}
                         </li>
                     </ul>
-                    <img src="{{POI.imagePath}}">
+                    <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">
                 </uib-accordion-group>
             </uib-accordion>
         </div>
