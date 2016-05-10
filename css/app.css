@@ -140,7 +140,7 @@ html {
   padding: 0;
   position: fixed;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 @media (min-width: 992px) {
   .main {
@@ -207,6 +207,7 @@ html {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  overflow: auto;
   height: 92%;
   padding-left: 0;
   padding-right: 0;

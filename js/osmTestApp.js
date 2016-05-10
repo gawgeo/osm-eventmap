@@ -142,31 +142,39 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       };
       
       $scope.$watch("csvResult", function(res) {
+          console.log("new Upload", res);
           var newPois = [];
           if (res) {
               res.pop();
               var headers = res.shift();
               var splittedHeaders = headers['0'].split(";");
-
               res.forEach(function(poi) {
                   var splittedPoi = poi['0'].split(";");
                   var newPoi = {};
                   for (var i = 0; i<splittedHeaders.length; i++) {
                       newPoi[splittedHeaders[i]] = splittedPoi[i];
                   }
-                  console.log(newPoi);
                   newPois.push(newPoi);
               })
           }
           newPois.forEach(function(poi) {
+              if (poi.lng && poi.lat) {
+                  poi.lng = poi.lng.replace(/,/g, '.');
+                  poi.lat = poi.lat.replace(/,/g, '.');
+              }
               console.log("savePoi", poi);
-              databaseService.savePOI(poi).then(function () {
-                  updateView();
-              });
+              if (poi.id) {
+                  databaseService.updatePOI(poi).then(function () {
+                      updateView();
+                  });
+              } else {
+                  databaseService.savePOI(poi).then(function () {
+                      updateView();
+                  });
+              }
           });
+          $scope.csvResult = null;
       });
-
-
 
       // INITIALIZE
       updateView();
