@@ -48,7 +48,7 @@
                         is-open="status.isFirstOpen"
                         is-disabled="status.isFirstDisabled"
                         ng-click="selectPOI(POI)"
-                        panel-class="{{POI.id === selectedPOI.id ? 'activePOI' : ''}}">
+                        panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}">
                     <dl>
                         <dt>Kategorie</dt>
                         <dd>{{POI.category}}</dd>
