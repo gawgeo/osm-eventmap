@@ -11,7 +11,8 @@
                 lazy-load="true"
                 csv-header="config.POIAttributes">CSV-Export
         </button>
-        <ng-csv-import class="csvImport"
+        <ng-csv-import ng-if="admin"
+                       class="csvImport"
                        content="null"
                        header="false"
                        headerVisible="false"
