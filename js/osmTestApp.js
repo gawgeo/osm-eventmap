@@ -7,6 +7,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
       $scope.POIs = []; // list of all Pois
+      $scope.markers = [];
       $scope.csvResult = null;
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
@@ -21,8 +22,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       map.addLayer(osm); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
 
-      // => marker add und delete handling inside group <=
-      var markerGroup = L.layerGroup();
+
 
       // add one marker by click
       map.on('click', function newPoi(event) {
@@ -40,10 +40,12 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           }
       });
 
-
       // Create POIs
+      // => marker add und delete handling inside group <=
+      var markerGroup = L.layerGroup();
       function createLayer(POIs) {
           markerGroup.clearLayers();
+          $scope.markers = [];
           POIs.forEach(function (POI) {
               var linkFn = $compile(
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
@@ -80,7 +82,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
                       });
                   }
               });
-              L.marker["POIid"] = POI.id;
+              marker["POIid"] = POI.id;
+              $scope.markers.push(marker);
               markerGroup.addLayer(marker);
           });
           map.addLayer(markerGroup);
@@ -88,8 +91,12 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       $scope.selectPOI = function (POI) {
           $scope.selectedPOI = POI;
+          $scope.markers.filter(function(marker) {
+             return marker.POIid === POI.id;
+          })[0].openPopup();
       };
 
+      // CRUD-Handling
       // save poi and delete temporary marker
       $scope.savePOI = function (newPOI) {
           map.removeLayer($scope.tempMarker);
@@ -98,7 +105,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               updateView();
           });
       };
-
       // update poi and delete temporary marker
       $scope.updatePOI = function (updatePoi) {
           map.removeLayer($scope.tempMarker);
@@ -108,13 +114,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
           $scope.oldPOI = {};
       };
-
-      // close form
+      // close addPOI-form
       $scope.cancel = function () {
           map.removeLayer($scope.tempMarker);
           $scope.formToggle = false;
       };
-
       // delete all marker
       $scope.deleteAllPOIs = function () {
           databaseService.deleteAllPOIs().then(function () {
@@ -122,7 +126,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
       };
 
-      // Layer controls
+
+
+      // Layer controls - maybe delete later
       var overlay = {
           "marker": markerGroup
       };
@@ -137,6 +143,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
       }
 
+
+      // CSV-Import and Export
       $scope.csvExport = function () {
           return databaseService.getPOIJson();
       };
