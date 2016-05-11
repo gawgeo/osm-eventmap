@@ -1,7 +1,8 @@
 angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv', 'ngCsvImport'])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $compile, $document, $uibModal, databaseService, iconService) {
+  .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
+      $scope.condition = '';
       $scope.admin = true;
       $scope.formToggle = false; // show and hide new POI form
       $scope.oldPOI = {}; // save old poi variable on update
@@ -25,7 +26,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
 
       // add one marker by click
-      map.on('click', function newPoi(event) {
+      map.on('dblClick', function newPoi(event) {
           if ($scope.tempMarker) {
               map.removeLayer($scope.tempMarker);
           }
@@ -142,6 +143,13 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               createLayer($scope.POIs);
           });
       }
+      $scope.filter = function (condition) {
+          /*createLayer($scope.POIs.filter(function(POI) {
+              console.log("Filter View!", condition);
+              return POI.title === condition;
+          }));*/
+          createLayer($filter('filter')($scope.POIs, condition));
+      };
 
 
       // CSV-Import and Export

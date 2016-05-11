@@ -17,6 +17,21 @@
   top: 1em;
   z-index: 20;
 }
+.mapArea .filterArea {
+  top: 90%;
+  left: 40%;
+  width: 20%;
+  height: 4em;
+  position: relative;
+  z-index: 20;
+  border: solid grey 1px;
+  border-radius: 4px;
+  box-shadow: 10px 10px 5px grey;
+}
+.mapArea .filterArea input {
+  display: inline-block;
+  width: 15em;
+}
 .markerPopup .markerPopupTitle {
   font-weight: bold;
   text-align: center;

@@ -1,5 +1,5 @@
 angular.module('osmTestApp.directives', [])
-  .directive('uibModalWindow', function(){
+  .directive('draggable', function(){
       return {
           restrict: 'EA',
           link: function(scope, element) {
