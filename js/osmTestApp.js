@@ -26,7 +26,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
 
       // add one marker by click
-      map.on('dblClick', function newPoi(event) {
+      map.on('click', function newPoi(event) {
           if ($scope.tempMarker) {
               map.removeLayer($scope.tempMarker);
           }
@@ -144,10 +144,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
       }
       $scope.filter = function (condition) {
-          /*createLayer($scope.POIs.filter(function(POI) {
-              console.log("Filter View!", condition);
-              return POI.title === condition;
-          }));*/
           createLayer($filter('filter')($scope.POIs, condition));
       };
 
