@@ -1,13 +1,14 @@
-angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv', 'ngCsvImport'])
+angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'osmTestApp.filters','ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv', 'ngCsvImport'])
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
-      $scope.condition = '';
+      $scope.conditions = {};
       $scope.admin = true;
       $scope.formToggle = false; // show and hide new POI form
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
       $scope.POIs = []; // list of all Pois
+      $scope.redPOIs = $scope.POIs;
       $scope.markers = [];
       $scope.csvResult = null;
       databaseService.getConfig().then(function (res) {
@@ -143,10 +144,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               createLayer($scope.POIs);
           });
       }
-      $scope.filter = function (condition) {
-          createLayer($filter('filter')($scope.POIs, condition));
+      // filter view
+      $scope.filter = function (conditions) {
+          $scope.redPOIs = $filter('poiFilter')($scope.POIs, conditions);
+          createLayer($scope.redPOIs);
       };
-
 
       // CSV-Import and Export
       $scope.csvExport = function () {
@@ -195,7 +197,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
   .controller('newPOICtrl', function ($scope, databaseService) {
       console.log($scope.oldPoi);
-      $scope.poiHasDate = false;
       $scope.format = 'dd-MM-yyyy';
       $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
       if (!$scope.oldPoi.id) {

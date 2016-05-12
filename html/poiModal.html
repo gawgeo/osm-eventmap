@@ -24,7 +24,7 @@
             <div class="attrRow">
                 <label for="POICategory" class="control-label">Nachhaltigkeitskategorie:</label>
                 <select class="form-control dropdown-toggle POICategory" ng-model="POI.category" id="POICategory">
-                    <option style="display:none" value="">Nachhaltigkeitskategorie wählen</option>
+                    <option value="">Nachhaltigkeitskategorie wählen</option>
                     <option ng-repeat="cat in config.categories">{{cat}}</option>
                 </select>
             </div>
@@ -52,8 +52,8 @@
                 <textarea class="form-control" id="message-text" ng-model="POI.description" placeholder="Tragen Sie hier eine Beschreibung ein..."></textarea>
             </div>
             <div class="attrRow POIDate">
-                <label for="dateTime">Veranstaltung: <input type="checkbox" ng-model="poiHasDate"></label>
-                <div id="dateTime" class="dateTimeWrapper" ng-if="poiHasDate">
+                <label for="dateTime">Veranstaltung: <input type="checkbox" ng-model="POI.isEvent"></label>
+                <div id="dateTime" class="dateTimeWrapper" ng-if="POI.isEvent">
                     <label for="startDate" class="control-label">Anfangsdatum:</label>
                     <datetimepicker ng-model="POI.startDate"
                                     id="startDate"

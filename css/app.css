@@ -19,18 +19,37 @@
 }
 .mapArea .filterArea {
   top: 90%;
-  left: 40%;
-  width: 20%;
+  left: 20%;
+  width: 60%;
   height: 4em;
   position: relative;
   z-index: 20;
   border: solid grey 1px;
   border-radius: 4px;
   box-shadow: 10px 10px 5px grey;
+  padding-left: 5em;
 }
 .mapArea .filterArea input {
   display: inline-block;
-  width: 15em;
+  width: 25%;
+}
+.mapArea .filterArea select {
+  width: 25%;
+  display: inline-block;
+}
+.mapArea .filterArea .eventCheckbox {
+  width: 15%;
+  display: inline-block;
+}
+.mapArea .filterArea .eventCheckbox span {
+  padding-left: 1em;
+  padding-right: 1em;
+  display: inline-block;
+}
+.mapArea .filterArea .eventCheckbox input {
+  width: 10%;
+  padding-top: 0.1em;
+  display: inline-block;
 }
 .markerPopup .markerPopupTitle {
   font-weight: bold;
