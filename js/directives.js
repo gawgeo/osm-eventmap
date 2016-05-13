@@ -40,7 +40,6 @@ angular.module('osmTestApp.directives', [])
       return {
           restrict: 'A',
           link: function link(scope, element) {
-              console.log("SCROLL");
               scope.collapsing = false;
               var jqElement = $(element);
               scope.$watch(function () {
@@ -48,8 +47,8 @@ angular.module('osmTestApp.directives', [])
               }, function (status) {
                   if (scope.collapsing && !status) {
                       if (jqElement.hasClass('panel-open')) {
-                          $('html,body').animate({
-                              scrollTop: jqElement.offset().top - 20
+                          $('.pois').animate({
+                              scrollTop: jqElement.offset().top - 50
                           }, 500);
                       }
                   }
