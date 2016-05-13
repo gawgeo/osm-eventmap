@@ -34,4 +34,32 @@ angular.module('osmTestApp.directives', [])
               'oldPoi': '='
           }
       }
+  })
+
+  .directive('scrollTop', function scrollTop() {
+      return {
+          restrict: 'A',
+          link: function link(scope, element) {
+              console.log("SCROLL");
+              scope.collapsing = false;
+              var jqElement = $(element);
+              scope.$watch(function () {
+                  return jqElement.find('.panel-collapse').hasClass('collapsing');
+              }, function (status) {
+                  if (scope.collapsing && !status) {
+                      if (jqElement.hasClass('panel-open')) {
+                          $('html,body').animate({
+                              scrollTop: jqElement.offset().top - 20
+                          }, 500);
+                      }
+                  }
+                  scope.collapsing = status;
+              });
+
+          }
+      };
   });
+
+
+
+

@@ -51,5 +51,13 @@
     "R13",
     "R14",
     "R15"
-  ]
+  ],
+  "categoryColors": {
+    "Nachhaltige Mobilität": "blue",
+    "Nachhaltiges Wirtschaften": "orange",
+    "Bildung & Wissenschaft": "purple",
+    "Bürgerengagement & Aktionen": "grey",
+    "Nachhaltige Raumentwicklung": "yellow",
+    "Umwelt & Energie": "green"
+  }
 }

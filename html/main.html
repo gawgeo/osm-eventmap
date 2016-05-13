@@ -56,44 +56,44 @@
                      update-poi="updatePOI"></new-poi>
         </div>
 
-        <div ng-if="!formToggle" class="markerDetails">
+        <div ng-if="!formToggle" class="pois">
             <h3>Points of Interest</h3>
-            <uib-accordion close-others="true">
-                <uib-accordion-group
-                        ng-repeat="POI in POIs | poiFilter:conditions"
-                        heading="{{POI.title}}"
-                        is-open="status.isFirstOpen"
-                        is-disabled="status.isFirstDisabled"
-                        ng-click="selectPOI(POI)"
-                        panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}">
-                    <dl>
-                        <dt>Kategorie</dt>
-                        <dd>{{POI.category}}</dd>
-                        <div class="poiLink" ng-if="POI.link">
-                            <dt>Link</dt>
-                            <dd><a href="{{POI.link}}">hier</a></dd>
-                        </div>
-                        <div ng-if="POI.startDate">
-                            <dt>Anfagsdatum</dt>
-                            <dd>{{POI.startDate}}</dd>
-                            <dt>Enddatum</dt>
-                            <dd>{{POI.endDate}}</dd>
-                        </div>
-                        <div class="poiDescription" ng-if="POI.description">
-                            <dt>Beschreibung</dt>
-                            <br>
-                            <span>{{POI.description}}</span>
-                        </div>
-                    </dl>
-                    <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>
-                    <ul class="rules">
-                        <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
-                            {{rule}}
-                        </li>
-                    </ul>
-                    <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">
-                </uib-accordion-group>
-            </uib-accordion>
+                <uib-accordion close-others="true">
+                    <uib-accordion-group
+                            ng-repeat="POI in POIs | poiFilter:conditions"
+                            heading="{{POI.title}}"
+                            is-open="status[POI.id]"
+                            ng-click="selectPOI(POI)"
+                            panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}"
+                            scroll-top>
+                        <dl>
+                            <dt>Kategorie</dt>
+                            <dd>{{POI.category}}</dd>
+                            <div class="poiLink" ng-if="POI.link">
+                                <dt>Link</dt>
+                                <dd><a href="{{POI.link}}">hier</a></dd>
+                            </div>
+                            <div ng-if="POI.startDate">
+                                <dt>Anfagsdatum</dt>
+                                <dd>{{POI.startDate}}</dd>
+                                <dt>Enddatum</dt>
+                                <dd>{{POI.endDate}}</dd>
+                            </div>
+                            <div class="poiDescription" ng-if="POI.description">
+                                <dt>Beschreibung</dt>
+                                <br>
+                                <span>{{POI.description}}</span>
+                            </div>
+                        </dl>
+                        <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>
+                        <ul class="rules">
+                            <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
+                                {{rule}}
+                            </li>
+                        </ul>
+                        <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">
+                    </uib-accordion-group>
+                </uib-accordion>
         </div>
     </div>
 

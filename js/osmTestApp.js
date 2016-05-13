@@ -10,6 +10,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.POIs = []; // list of all Pois
       $scope.redPOIs = $scope.POIs;
       $scope.markers = [];
+      $scope.status = {};
       $scope.csvResult = null;
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
@@ -75,6 +76,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               });
               marker.on('click', function () {
                   $scope.selectedPOI = POI;
+                  $scope.status[POI.id] = true;
                   console.log("selected: ", $scope.selectedPOI);
                   $scope.$apply();
                   if ($scope.tempMarker) {
