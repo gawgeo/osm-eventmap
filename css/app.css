@@ -26,7 +26,7 @@
   z-index: 100;
   border: solid grey 1px;
   border-radius: 4px;
-  box-shadow: 10px 10px 5px grey;
+  box-shadow: 5px 5px 5px grey;
   padding-left: 5em;
 }
 .mapArea .filterArea input {
@@ -192,6 +192,7 @@ body,
 html {
   height: 100%;
   width: 100%;
+  font-family: 'Raleway', sans-serif;
 }
 .main {
   width: 100%;
@@ -224,6 +225,7 @@ html {
   background-image: url(../img/redox_01.png);
   font-size: 1.8em;
   border-bottom: solid 1px #dedede;
+  box-shadow: 0px 4px 5px 0px #828282;
   overflow-x: auto;
 }
 @media (min-width: 992px) {
@@ -269,6 +271,7 @@ html {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  box-shadow: -4px 0px 5px 0px #828282;
   overflow-x: visible;
   height: 92%;
   padding-left: 0;
@@ -287,6 +290,7 @@ html {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  box-shadow: 0px -2px 5px 0px #bdbdbd;
   height: 3.5%;
   color: rgba(0, 0, 0, 0.8);
   font-size: 1.2em;
