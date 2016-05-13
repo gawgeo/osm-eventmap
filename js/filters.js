@@ -5,7 +5,7 @@ angular.module('osmTestApp.filters', [])
           var reduced = [];
           reduced = poiArray.filter(function(POI) {
               var res = true;
-              if (conditions.condition && POI.title.toUpperCase()  !== conditions.condition.toUpperCase()) {
+              if (conditions.condition && !(POI.title.toUpperCase().indexOf(conditions.condition.toUpperCase())  > -1)) {
                   res = false;
               }
               if (conditions.category && POI.category !== conditions.category) {
