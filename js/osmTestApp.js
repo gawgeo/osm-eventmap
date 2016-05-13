@@ -57,7 +57,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
                 '</div>'
               );
               var content = linkFn($scope);
-              var marker = L.marker({'lat': POI.lat, 'lng': POI.lng});
+              var marker = L.marker({'lat': POI.lat, 'lng': POI.lng}, {icon: iconService.getIcon($scope.config.categoryColors[POI.category] || 'blue', POI.isEvent)});
               marker.bindPopup(content[0]).on("popupopen", function () {
                   var currentMarker = this;
                   $scope.deleteThis = function () {

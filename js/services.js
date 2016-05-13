@@ -162,9 +162,9 @@ angular.module('osmTestApp.services', [])
       this.getIcon = function (color) {
           return newIcon = L.icon({
               iconUrl: './img/marker-icon-' + color + '.png',
-              iconAnchor:   [13, 41], // point of the icon which will correspond to marker's location
-              shadowAnchor: [20, 86],  // the same for the shadow
-              popupAnchor:  [-3, -76], // point from which the popup should open relative to the iconAnchor
+              iconAnchor:   [12.5, 41], // point of the icon which will correspond to marker's location
+              shadowAnchor: [22, 93],  // the same for the shadow
+              popupAnchor:  [0, -41], // point from which the popup should open relative to the iconAnchor
               shadowUrl: './img/marker-shadow.png',
               shadowSize: [68, 95]
           });
