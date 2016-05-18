@@ -1,6 +1,8 @@
 <div ng-controller="osmTestAppCtrl" class="main">
 
-    <div class="header">Nachhaltigkeitskarte Karlsruhe-Oststadt
+    <div class="header">
+        <button class="bounceMarker btn btn-warning pull-left" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Aktuelle Events!</button>
+        Nachhaltigkeitskarte Karlsruhe-Oststadt
         <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>
         <button ng-if="admin" class="btn btn-warning"
                 ng-csv="csvExport()"

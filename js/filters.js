@@ -1,7 +1,7 @@
 angular.module('osmTestApp.filters', [])
   .filter('poiFilter', function(){
       return function(poiArray, conditions) {
-          console.log("filter by ", conditions);
+          //console.log("filter by ", conditions);
           var reduced = [];
           reduced = poiArray.filter(function(POI) {
               var res = true;
@@ -19,7 +19,7 @@ angular.module('osmTestApp.filters', [])
               }
               return res;
           });
-          console.log(reduced);
+          //console.log(reduced);
           return reduced;
       }
   });

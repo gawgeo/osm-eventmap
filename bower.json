@@ -25,6 +25,8 @@
     "angular-bootstrap": "^1.3.2",
     "angular-ui-bootstrap-datetimepicker": "^1.2.4",
     "ng-csv": "^0.3.6",
-    "angular-csv-import-tmp": "angular-csv-import#^0.0.29"
+    "angular-csv-import-tmp": "angular-csv-import#^0.0.29",
+    "Leaflet.SmoothMarkerBouncing": "^1.1.2",
+    "leaflet-bouncemarker": "leafelet-bouncemarker#*"
   }
 }

@@ -2,8 +2,6 @@
   background-color: white;
   .pois {
     height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
     .panel-body {
       padding: 0.2em 0.2em 0.2em 0.2em;
     }
@@ -28,7 +26,7 @@
       padding: 0 0 0.5em 0;
     }
     img {
-      width: 100%;
+
     }
     .poiLink {
       overflow: hidden;
@@ -50,6 +48,26 @@
     }
     .rules {
       padding-left: 30px;
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .pois {
+    overflow-y: auto;
+    overflow-x: hidden;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .pois {
+    overflow-y: auto;
+    overflow-x: hidden;
+    img {
+      width: 100%;
     }
   }
 }

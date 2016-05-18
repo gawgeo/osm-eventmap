@@ -63,7 +63,7 @@ body, html {
 
   .infoArea {
     .make-md-column(2);
-    box-shadow:  -4px 0px 5px 0px rgba(130,130,130,1);
+    box-shadow:  -4px 0 5px 0 rgba(130,130,130,1);
     overflow-x: visible;
     height: 92%;
     padding-left: 0;
@@ -86,10 +86,9 @@ body, html {
   }
 }
 
-.aside-backdrop.am-fade {
-  display: none;
-}
 
-.windowTopClass {
-  width:0;
+@media (max-width: @screen-md-min) {
+  .main {
+    overflow: auto;
+  }
 }

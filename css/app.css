@@ -66,8 +66,6 @@
 }
 .infoArea .pois {
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 .infoArea .pois .panel-body {
   padding: 0.2em 0.2em 0.2em 0.2em;
@@ -92,9 +90,6 @@
   margin: 0 0 0 110px;
   padding: 0 0 0.5em 0;
 }
-.infoArea .pois img {
-  width: 100%;
-}
 .infoArea .pois .poiLink {
   overflow: hidden;
 }
@@ -113,6 +108,24 @@
 }
 .infoArea .pois .rules {
   padding-left: 30px;
+}
+@media (min-width: 992px) {
+  .pois {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .pois img {
+    width: 100%;
+  }
+}
+@media (min-width: 992px) {
+  .pois {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .pois img {
+    width: 100%;
+  }
 }
 .newPOIWrapper {
   background-color: white;
@@ -271,7 +284,7 @@ html {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  box-shadow: -4px 0px 5px 0px #828282;
+  box-shadow: -4px 0 5px 0 #828282;
   overflow-x: visible;
   height: 92%;
   padding-left: 0;
@@ -306,9 +319,8 @@ html {
     width: 100%;
   }
 }
-.aside-backdrop.am-fade {
-  display: none;
-}
-.windowTopClass {
-  width: 0;
+@media (max-width: 992px) {
+  .main {
+    overflow: auto;
+  }
 }

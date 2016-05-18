@@ -10,11 +10,12 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.POIs = []; // list of all Pois
       $scope.redPOIs = $scope.POIs;
       $scope.markers = [];
+      $scope.bouncing = false;
       $scope.status = {};
       $scope.csvResult = null;
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
-          console.log(res);
+          console.log("Config:", res);
       });
       // OSM imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -71,8 +72,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       ], {fill: true, fillOpacity:0.1, color: "red", clickable: false, weight: 2});
       map.addLayer(polygon);
 
-
-
       // add one marker by click
       map.on('click', function newPoi(event) {
           if ($scope.tempMarker) {
@@ -96,6 +95,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           markerGroup.clearLayers();
           $scope.markers = [];
           POIs.forEach(function (POI) {
+              var customIcon = iconService.getIcon($scope.config.categoryColors[POI.category] || 'blue', POI.isEvent);
               var linkFn = $compile(
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
                 '<button class="btn btn-warning" ng-if="admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
@@ -103,7 +103,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
                 '</div>'
               );
               var content = linkFn($scope);
-              var marker = L.marker({'lat': POI.lat, 'lng': POI.lng}, {icon: iconService.getIcon($scope.config.categoryColors[POI.category] || 'blue', POI.isEvent)});
+              var marker = L.marker({'lat': POI.lat, 'lng': POI.lng}, {icon: customIcon});
               marker.bindPopup(content[0]).on("popupopen", function () {
                   var currentMarker = this;
                   $scope.deleteThis = function () {
@@ -132,12 +132,33 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
                       });
                   }
               });
+              marker.setBouncingOptions({
+                  bounceHeight : 5,    // height of the bouncing
+                  bounceSpeed  : 150    // bouncing speed coefficient
+              });
               marker["POIid"] = POI.id;
+              // Make current event bouncing
+              var today = Date.now();
+              marker["current"] = POI.isEvent && Date.parse(POI.startDate) <= today && Date.parse(POI.endDate) >= today;
               $scope.markers.push(marker);
               markerGroup.addLayer(marker);
           });
           map.addLayer(markerGroup);
       }
+
+      $scope.currentMarkerBouncingToggle = function () {
+          // Make current event bouncing
+          $scope.bouncing = !$scope.bouncing;
+          if ($scope.bouncing) {
+              markerGroup.getLayers().forEach(function(marker) {
+                  if (marker.current) {
+                      marker.bounce();
+                  }
+              })
+          } else {
+              L.Marker.stopAllBouncingMarkers();
+          }
+      };
 
       $scope.selectPOI = function (POI) {
           $scope.selectedPOI = POI;
@@ -176,9 +197,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
       };
 
-
-
-      // Layer controls - maybe delete later
+      
+      // Layer controls
       var overlay = {
           "Points of Interest": markerGroup,
           "Oststadt": polygon
