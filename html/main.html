@@ -72,19 +72,19 @@
                             <dt>Kategorie</dt>
                             <dd>{{POI.category}}</dd>
                             <div class="poiLink" ng-if="POI.link">
-                                <dt>Link</dt>
-                                <dd><a href="{{POI.link}}">hier</a></dd>
                             </div>
                             <div ng-if="POI.startDate">
-                                <dt>Anfagsdatum</dt>
+                                <dt>Beginn des Projekts</dt>
                                 <dd>{{POI.startDate}}</dd>
-                                <dt>Enddatum</dt>
+                                <dt>Ende des Projekts</dt>
                                 <dd>{{POI.endDate}}</dd>
+                                <dt>Status</dt>
+                                <dd>{{POI.status}}</dd>
                             </div>
                             <div class="poiDescription" ng-if="POI.description">
                                 <dt>Beschreibung</dt>
                                 <br>
-                                <span>{{POI.description}}</span>
+                                <span>{{POI.description}} <a href="{{POI.link}}">Weiter Informationen...</a></span>
                             </div>
                         </dl>
                         <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>

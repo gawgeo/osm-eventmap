@@ -52,9 +52,8 @@
                 <textarea class="form-control" id="message-text" ng-model="POI.description" placeholder="Tragen Sie hier eine Beschreibung ein..."></textarea>
             </div>
             <div class="attrRow POIDate">
-                <label for="dateTime">Veranstaltung: <input type="checkbox" ng-model="POI.isEvent"></label>
-                <div id="dateTime" class="dateTimeWrapper" ng-if="POI.isEvent">
-                    <label for="startDate" class="control-label">Anfangsdatum:</label>
+                <div id="dateTime" class="dateTimeWrapper">
+                    <label for="startDate" class="control-label">Beginn des Projekts (optional):</label>
                     <datetimepicker ng-model="POI.startDate"
                                     id="startDate"
                                     class="dateTimepicker"
@@ -62,7 +61,7 @@
                                     date-options="dateOptions"
                                     show-meridian="false">
                     </datetimepicker>
-                    <label for="endDate" class="control-label">Enddatum:</label>
+                    <label for="endDate" class="control-label">Ende des Projekts (optional):</label>
                     <datetimepicker ng-model="POI.endDate"
                                     id="endDate"
                                     class="dateTimepicker"
@@ -81,6 +80,8 @@
                 <input class="form-control POIImgLink" id="POIImgLink" type="text" ng-model="POI.imagePath">
             </div>
         </div>
+        <label for="dateTime">Termine hinzufügen: <input type="checkbox" ng-model="POI.isEvent"></label>
+
 
     </div>
     <div class="modal-footer">

@@ -1,17 +1,17 @@
 angular.module('osmTestApp.services', [])
-  .service('databaseService', function($http, $q) {
+  .service('databaseService', function ($http, $q) {
 
-      this.getConfig = function getConfig () {
+      this.getConfig = function getConfig() {
           var deferred = $q.defer();
           $http.get('../config.json')
-            .then(function(res){
+            .then(function (res) {
                 deferred.resolve(res.data);
                 return res.data;
             });
           return deferred.promise;
       };
-      
-      this.savePOI = function(POI) {
+
+      this.savePOI = function (POI) {
           var deferred = $q.defer();
           $http({
               url: '/savePointOfInterest',
@@ -54,7 +54,7 @@ angular.module('osmTestApp.services', [])
           return deferred.promise;
       };
 
-      this.updatePOI = function(POI) {
+      this.updatePOI = function (POI) {
           var deferred = $q.defer();
           $http({
               url: '/updatePointOfInterest',
@@ -105,6 +105,21 @@ angular.module('osmTestApp.services', [])
               url: '/getPointsOfInterest'
           }).success(function (data) {
               console.log("GET", data);
+              var today = Date.now();
+              data.forEach(function (POI) {
+                  var status = "kein Status";
+                  console.log(today, Date.parse(POI.startDate), Date.parse(POI.endDate));
+                  if (Date.parse(POI.startDate) <= today) {
+                      status = "in Planung";
+                  }
+                  if (Date.parse(POI.endDate) <= today) {
+                      status = "abgelaufen";
+                  }
+                  if (Date.parse(POI.startDate) <= today && Date.parse(POI.endDate) >= today) {
+                      status = "laufend";
+                  }
+                  POI["status"] = status;
+              });
               deferred.resolve({'data': data});
           }).error(function () {
               window.alert("PointsOfInterest GET failure!");
@@ -126,7 +141,7 @@ angular.module('osmTestApp.services', [])
           return deferred.promise;
       };
 
-      this.deletePOI = function(POI) {
+      this.deletePOI = function (POI) {
           var deferred = $q.defer();
           $http({
               url: '/deletePointOfInterest',
@@ -157,18 +172,18 @@ angular.module('osmTestApp.services', [])
       };
   })
 
-  .service('iconService', function() {
-      
+  .service('iconService', function () {
+
       this.getIcon = function (color) {
           return newIcon = L.icon({
               iconUrl: './img/marker-icon-' + color + '.png',
-              iconAnchor:   [12.5, 41], // point of the icon which will correspond to marker's location
+              iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
               shadowAnchor: [22, 93],  // the same for the shadow
-              popupAnchor:  [0, -41], // point from which the popup should open relative to the iconAnchor
+              popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
               iconSize: [25, 41],
               shadowUrl: './img/marker-shadow.png',
               shadowSize: [68, 95]
           });
       }
-      
+
   });
