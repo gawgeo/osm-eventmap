@@ -1,6 +1,6 @@
 angular.module('osmTestApp.services', [])
   .service('databaseService', function ($http, $q) {
-
+      // config json where categories, rules and POI attributes are mentioned
       this.getConfig = function getConfig() {
           var deferred = $q.defer();
           $http.get('../config.json')
@@ -10,39 +10,13 @@ angular.module('osmTestApp.services', [])
             });
           return deferred.promise;
       };
-
+      // POST-Request for new POI
       this.savePOI = function (POI) {
           var deferred = $q.defer();
           $http({
               url: '/savePointOfInterest',
               method: "POST",
-              data: {
-                  'title': POI.title,
-                  'lng': POI.lng,
-                  'lat': POI.lat,
-                  'category': POI.category,
-                  'description': POI.description,
-                  'link': POI.link,
-                  'startDate': POI.startDate,
-                  'endDate': POI.endDate,
-                  'isEvent': POI.isEvent,
-                  'imagePath': POI.imagePath,
-                  'R1': POI.R1,
-                  'R2': POI.R2,
-                  'R3': POI.R3,
-                  'R4': POI.R4,
-                  'R5': POI.R5,
-                  'R6': POI.R6,
-                  'R7': POI.R7,
-                  'R8': POI.R8,
-                  'R9': POI.R9,
-                  'R10': POI.R10,
-                  'R11': POI.R11,
-                  'R12': POI.R12,
-                  'R13': POI.R13,
-                  'R14': POI.R14,
-                  'R15': POI.R15
-              }
+              data: POI
           })
             .then(function (response) {
                   console.log("PointOfInterest saved!");
@@ -53,40 +27,13 @@ angular.module('osmTestApp.services', [])
               });
           return deferred.promise;
       };
-
+      // POST-Request for updating POI by ID
       this.updatePOI = function (POI) {
           var deferred = $q.defer();
           $http({
               url: '/updatePointOfInterest',
               method: "POST",
-              data: {
-                  'id': POI.id,
-                  'title': POI.title,
-                  'lng': POI.lng,
-                  'lat': POI.lat,
-                  'category': POI.category,
-                  'description': POI.description,
-                  'link': POI.link,
-                  'startDate': POI.startDate,
-                  'endDate': POI.endDate,
-                  'isEvent': POI.isEvent,
-                  'imagePath': POI.imagePath,
-                  'R1': POI.R1,
-                  'R2': POI.R2,
-                  'R3': POI.R3,
-                  'R4': POI.R4,
-                  'R5': POI.R5,
-                  'R6': POI.R6,
-                  'R7': POI.R7,
-                  'R8': POI.R8,
-                  'R9': POI.R9,
-                  'R10': POI.R10,
-                  'R11': POI.R11,
-                  'R12': POI.R12,
-                  'R13': POI.R13,
-                  'R14': POI.R14,
-                  'R15': POI.R15
-              }
+              data: POI
           })
             .then(function (response) {
                   console.log("PointOfInterest saved!");
@@ -97,7 +44,7 @@ angular.module('osmTestApp.services', [])
               });
           return deferred.promise;
       };
-
+      // GET-Request to get all POIs, status dynamically added
       this.getPOIs = function () {
           var deferred = $q.defer();
           $http({
@@ -126,7 +73,7 @@ angular.module('osmTestApp.services', [])
           });
           return deferred.promise;
       };
-
+      // GET-Request to get all POIs converted to JSON for better .csv-Export ability
       this.getPOIJson = function () {
           var deferred = $q.defer();
           $http({
@@ -140,7 +87,7 @@ angular.module('osmTestApp.services', [])
           });
           return deferred.promise;
       };
-
+      // POST-Request to delete POI by id
       this.deletePOI = function (POI) {
           var deferred = $q.defer();
           $http({
@@ -155,7 +102,7 @@ angular.module('osmTestApp.services', [])
           });
           return deferred.promise;
       };
-
+      // POST-Request to delete all POIs
       this.deleteAllPOIs = function () {
           var deferred = $q.defer();
           $http({
@@ -173,7 +120,7 @@ angular.module('osmTestApp.services', [])
   })
 
   .service('iconService', function () {
-
+      // icon service delivering customized Icons
       this.getIcon = function (color) {
           return newIcon = L.icon({
               iconUrl: './img/marker-icon-' + color + '.png',

@@ -54,21 +54,33 @@ body, html {
   }
 
   .mapArea {
-    .make-md-column(10);
     z-index: 0;
     height: 92%;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .infoArea {
-    .make-md-column(2);
     box-shadow:  -4px 0 5px 0 rgba(130,130,130,1);
     overflow-x: visible;
     height: 92%;
     padding-left: 0;
     padding-right: 0;
     border-left: solid 2px #dedede;
+  }
+  .smallMap {
+    .make-md-column(9);
+  }
+  .bigMap {
+    .make-md-column(11.9);
+  }
+  .showSidebar {
+    .make-md-column(3);
+  }
+  .hideSidebar {
+    .make-md-column(0.1);
+  }
+  .smallMap, .bigMap, .showSidebar, .hideSidebar {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .footer {

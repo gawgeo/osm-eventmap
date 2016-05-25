@@ -64,8 +64,33 @@
 .infoArea {
   background-color: white;
 }
+.infoArea .sidebarToggle {
+  background-color: white;
+  color: grey;
+  position: absolute;
+  z-index: 10;
+  height: 3em;
+  top: 48%;
+  margin-left: -1.9em;
+  border-left: 1px solid;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: lightgrey;
+  border-right: none;
+  box-shadow: -4px 0 5px 0 #828282;
+}
+.infoArea .sidebarToggle:focus {
+  outline: 0;
+}
 .infoArea .pois {
+  margin-left: 0.5em;
   height: 100%;
+}
+.infoArea .pois .panel-title > a:hover,
+.infoArea .pois a:visited,
+.infoArea .pois a:focus {
+  text-decoration: none;
+  outline: 0;
 }
 .infoArea .pois .panel-body {
   padding: 0.2em 0.2em 0.2em 0.2em;
@@ -94,7 +119,7 @@
   overflow: hidden;
 }
 .infoArea .pois .poiDescription span {
-  padding-top: 0.2em;
+  padding: 0.2em 0 1em 1em;
   display: block;
 }
 .infoArea .pois .activePOI {
@@ -115,10 +140,13 @@
     overflow-x: hidden;
   }
   .pois img {
-    width: 100%;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    max-height: 200px;
   }
 }
-@media (min-width: 992px) {
+@media (max-width: 992px) {
   .pois {
     overflow-y: auto;
     overflow-x: hidden;
@@ -264,26 +292,10 @@ html {
   padding-top: 4px;
 }
 .main .mapArea {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
   z-index: 0;
   height: 92%;
-  padding-left: 0;
-  padding-right: 0;
-}
-@media (min-width: 992px) {
-  .main .mapArea {
-    float: left;
-    width: 83.33333333%;
-  }
 }
 .main .infoArea {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
   box-shadow: -4px 0 5px 0 #828282;
   overflow-x: visible;
   height: 92%;
@@ -291,11 +303,60 @@ html {
   padding-right: 0;
   border-left: solid 2px #dedede;
 }
+.main .smallMap {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 @media (min-width: 992px) {
-  .main .infoArea {
+  .main .smallMap {
     float: left;
-    width: 16.66666667%;
+    width: 75%;
   }
+}
+.main .bigMap {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .main .bigMap {
+    float: left;
+    width: 99.16666667%;
+  }
+}
+.main .showSidebar {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .main .showSidebar {
+    float: left;
+    width: 25%;
+  }
+}
+.main .hideSidebar {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .main .hideSidebar {
+    float: left;
+    width: 0.83333333%;
+  }
+}
+.main .smallMap,
+.main .bigMap,
+.main .showSidebar,
+.main .hideSidebar {
+  padding-left: 0;
+  padding-right: 0;
 }
 .main .footer {
   position: absolute;

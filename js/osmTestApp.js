@@ -25,8 +25,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
       map.addLayer(osm); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
-
-      var polygon = new L.Polygon([
+      var oststadtPolygon = new L.Polygon([
         [49.032341, 8.410995],
         [49.030878, 8.409208],
         [49.031036, 8.406261],
@@ -70,7 +69,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
         [49.024893, 8.423720],
         [49.032331, 8.410987]
       ], {fill: true, fillOpacity:0.1, color: "red", clickable: false, weight: 2});
-      map.addLayer(polygon);
+      map.addLayer(oststadtPolygon);
 
       // add one marker by click
       map.on('click', function newPoi(event) {
@@ -88,8 +87,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           }
       });
 
-      // Create POIs
-      // => marker add und delete handling inside group <=
+      // Create Marker out of POIs
       var markerGroup = L.layerGroup();
       function createLayer(POIs) {
           markerGroup.clearLayers();
@@ -201,7 +199,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       // Layer controls
       var overlay = {
           "Points of Interest": markerGroup,
-          "Oststadt": polygon
+          "Oststadt": oststadtPolygon
       };
       L.control.layers([], overlay, {position: 'topleft'}).addTo(map);
 

@@ -1,7 +1,30 @@
 .infoArea {
   background-color: white;
+  .sidebarToggle {
+    background-color: white;
+    color: grey;
+    position: absolute;
+    z-index: 10;
+    height: 3em;
+    top: 48%;
+    margin-left: -1.9em;
+    border-left: 1px solid;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: lightgrey;
+    border-right: none;
+    box-shadow:  -4px 0 5px 0 rgba(130,130,130,1);
+  }
+  .sidebarToggle:focus {
+    outline:0;
+  }
   .pois {
+    margin-left: 0.5em;
     height: 100%;
+    .panel-title > a:hover, a:visited, a:focus {
+      text-decoration: none;
+      outline: 0;
+    }
     .panel-body {
       padding: 0.2em 0.2em 0.2em 0.2em;
     }
@@ -33,7 +56,7 @@
     }
     .poiDescription {
       span {
-        padding-top: 0.2em;
+        padding: 0.2em 0 1em 1em;
         display: block;
       }
     }
@@ -57,12 +80,15 @@
     overflow-y: auto;
     overflow-x: hidden;
     img {
-      width: 100%;
+      width: auto;
+      display: block;
+      margin: 0 auto;
+      max-height: 200px;
     }
   }
 }
 
-@media (min-width: @screen-md-min) {
+@media (max-width: @screen-md-min) {
   .pois {
     overflow-y: auto;
     overflow-x: hidden;

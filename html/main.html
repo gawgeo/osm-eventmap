@@ -25,10 +25,9 @@
                        encodingVisible="true">
         </ng-csv-import>
     </div>
-
-    <div class="mapArea">
-        <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!
-        </button>
+    <!-- MAP Area, displaying leaflet-map and filterArea -->
+    <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
+        <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!</button>
         <div class="filterArea well well-sm" draggable>
             <span>Filter: </span><input class="form-control" ng-model="conditions.condition"
                                         ng-change="filter(conditions)">
@@ -37,8 +36,7 @@
                 <option value="">kein Kategoriefilter</option>
                 <option ng-repeat="cat in config.categories" value="{{cat}}">{{cat}}</option>
             </select>
-            <select class="ruleSelect form-control" ng-model="conditions.rule"
-                    ng-change="filter(conditions)">
+            <select class="ruleSelect form-control" ng-model="conditions.rule" ng-change="filter(conditions)">
                 <option value="">kein Regelfilter</option>
                 <option ng-repeat="(short, rule) in config.rules" value="{{short}}">{{rule}}</option>
             </select>
@@ -49,7 +47,11 @@
         <div id="simpleMap"></div>
     </div>
 
-    <div class="infoArea">
+    <!-- INFO Area, displaying PointOfInterests, newPoi form -->
+    <div class="infoArea" ng-model="showSidebar" ng-init="showSidebar = true" ng-class="{'showSidebar': showSidebar, 'hideSidebar': !showSidebar}">
+        <button class="sidebarToggle" ng-click="showSidebar = !showSidebar">
+            <i ng-class="{'glyphicon glyphicon-chevron-right': showSidebar,  'glyphicon glyphicon-chevron-left': !showSidebar} "></i>
+        </button>
         <div ng-if="formToggle">
             <new-poi temp-marker="tempMarker"
                      save-poi="savePOI"
@@ -58,7 +60,7 @@
                      update-poi="updatePOI"></new-poi>
         </div>
 
-        <div ng-if="!formToggle" class="pois">
+        <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
             <h3>Points of Interest</h3>
                 <uib-accordion close-others="true">
                     <uib-accordion-group
@@ -69,24 +71,28 @@
                             panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}"
                             scroll-top>
                         <dl>
-                            <dt>Kategorie</dt>
-                            <dd>{{POI.category}}</dd>
-                            <div class="poiLink" ng-if="POI.link">
+                            <div ng-if="POI.category">
+                                <dt>Kategorie</dt>
+                                <dd>{{POI.category}}</dd>
                             </div>
                             <div ng-if="POI.startDate">
-                                <dt>Beginn des Projekts</dt>
-                                <dd>{{POI.startDate}}</dd>
-                                <dt>Ende des Projekts</dt>
-                                <dd>{{POI.endDate}}</dd>
+                                <dt>Beginn</dt>
+                                <dd>{{POI.startDate | date:'dd.MM.yyyy hh:mm'}}</dd>
+                            </div>
+                            <div ng-if="POI.endDate">
+                                <dt>Ende</dt>
+                                <dd>{{POI.endDate | date:'dd.MM.yyyy hh:mm'}}</dd>
+                            </div>
+                            <div ng-if="POI.status">
                                 <dt>Status</dt>
                                 <dd>{{POI.status}}</dd>
                             </div>
-                            <div class="poiDescription" ng-if="POI.description">
-                                <dt>Beschreibung</dt>
-                                <br>
-                                <span>{{POI.description}} <a href="{{POI.link}}">Weiter Informationen...</a></span>
-                            </div>
                         </dl>
+                        <div ng-if="POI.description" class="poiDescription">
+                            <dt>Beschreibung</dt>
+                            <br>
+                            <span>{{POI.description}} <a href="{{POI.link}}">Weitere Informationen...</a></span>
+                        </div>
                         <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>
                         <ul class="rules">
                             <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
