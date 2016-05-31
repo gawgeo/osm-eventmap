@@ -51,6 +51,27 @@
   padding-top: 0.1em;
   display: inline-block;
 }
+.mapArea .uiCalendarWrapper {
+  position: absolute;
+  background-color: lightgrey;
+  z-index: 200;
+  top: 10px;
+  left: 50px;
+  padding: 0;
+  border: solid #c1c1c1 1px;
+  border-radius: 4px;
+}
+.mapArea .uiCalendarWrapper .calendarToggle {
+  background-color: white;
+  padding: 0.3em 0.7em 0.3em 0.7em;
+  color: grey;
+}
+.mapArea .uiCalendarWrapper .calendarToggle:focus {
+  outline: 0;
+}
+.mapArea .uiCalendarWrapper .uiCalendar {
+  padding: 0.5em;
+}
 .markerPopup .markerPopupTitle {
   font-weight: bold;
   text-align: center;
