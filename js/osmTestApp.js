@@ -11,7 +11,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.markers = [];
       $scope.bouncing = false;
       $scope.csvResult = null;
-      $scope.eventSources = [];
+      $scope.eventSources = []; // calendar sources
       $scope.uiConfig = { //Calendar Config
           calendar:{
               height: 450,
