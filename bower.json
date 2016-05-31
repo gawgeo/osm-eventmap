@@ -27,6 +27,7 @@
     "ng-csv": "^0.3.6",
     "angular-csv-import-tmp": "angular-csv-import#^0.0.29",
     "Leaflet.SmoothMarkerBouncing": "^1.1.2",
-    "leaflet-bouncemarker": "leafelet-bouncemarker#*"
+    "leaflet-bouncemarker": "leafelet-bouncemarker#*",
+    "angular-ui-calendar": "^1.0.1"
   }
 }

@@ -1,18 +1,29 @@
-angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'osmTestApp.filters','ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ngCsv', 'ngCsvImport'])
+angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'osmTestApp.filters','ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.calendar', 'ngCsv', 'ngCsvImport'])
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
-      $scope.conditions = {};
       $scope.admin = true;
       $scope.formToggle = false; // show and hide new POI form
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
       $scope.POIs = []; // list of all Pois
-      $scope.redPOIs = $scope.POIs;
+      $scope.redPOIs = $scope.POIs; // reduced POI Array
       $scope.markers = [];
       $scope.bouncing = false;
-      $scope.status = {};
       $scope.csvResult = null;
+      $scope.eventSources = [];
+      $scope.uiConfig = { //Calendar Config
+          calendar:{
+              height: 450,
+              editable: true,
+              header:{
+                  left: 'month basicWeek basicDay',
+                  center: 'title',
+                  right: 'today prev,next'
+              }
+          }
+      };
+
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
           console.log("Config:", res);
@@ -201,7 +212,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           "Points of Interest": markerGroup,
           "Oststadt": oststadtPolygon
       };
-      L.control.layers([], overlay, {position: 'topleft'}).addTo(map);
+      L.control.layers([], overlay, {position: 'bottomleft'}).addTo(map);
 
       // update view
       function updateView() {

@@ -50,6 +50,27 @@
       }
     }
   }
+  .uiCalendarWrapper {
+    position: absolute;
+    background-color: lightgrey;
+    z-index: 200;
+    top: 10px;
+    left: 50px;
+    padding: 0;
+    border: solid #c1c1c1 1px;
+    border-radius: 4px;
+    .calendarToggle {
+      background-color: white;
+      padding: 0.3em 0.7em 0.3em 0.7em;
+      color: grey;
+    }
+    .calendarToggle:focus {
+      outline: 0;
+    }
+    .uiCalendar {
+      padding: 0.5em;
+    }
+  }
 }
 
 .markerPopup {
@@ -62,8 +83,5 @@
     padding: 0;
     margin: 2px 2px 0 2px;
     width: 25px;
-    span {
-
-    }
   }
 }
