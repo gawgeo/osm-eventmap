@@ -8,6 +8,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.selectedPOI = null; // currently selected Poi
       $scope.POIs = []; // list of all Pois
       $scope.redPOIs = $scope.POIs; // reduced POI Array
+      $scope.status = {}; // active Marker status
       $scope.markers = [];
       $scope.bouncing = false;
       $scope.csvResult = null;
@@ -23,9 +24,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               }
           }
       };
-
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
+          $scope.eventSources.push({events: res.testEvents});
           console.log("Config:", res);
       });
       // OSM imports and settings
