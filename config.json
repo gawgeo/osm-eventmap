@@ -32,7 +32,7 @@
     "category",
     "description",
     "link",
-    "isEvent",
+    "hasEvents",
     "startDate",
     "endDate",
     "imagePath",

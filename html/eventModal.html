@@ -1,0 +1,40 @@
+<div class="eventModal">
+    <div class="modal-header">
+        <h3 class="modal-title">Neuen Termin anlegen!</h3>
+    </div>
+    <div class="modal-body">
+        <div class="eventAttr">
+            <label for="title" class="control-label">Name des Termins:</label>
+            <input class="form-control title" ng-model="newEvent.title" id="title"
+                   placeholder="Titel des Events eingeben" type="text">
+        </div>
+        <div class="eventAttr">
+            <label for="startDate" class="control-label">Beginn des Termins:</label>
+            <datetimepicker ng-model="newEvent.start"
+                            id="startDate"
+                            class="dateTimepicker"
+                            date-format="{{format}}"
+                            date-options="dateOptions"
+                            show-meridian="false">
+            </datetimepicker>
+        </div>
+        <div class="eventAttr">
+            <label for="endDate" class="control-label">Ende des Termins (optional):</label>
+            <datetimepicker ng-model="newEvent.end"
+                            id="endDate"
+                            class="dateTimepicker"
+                            date-format="{{format}}"
+                            date-options="dateOptions"
+                            show-meridian="false">
+            </datetimepicker>
+        </div>
+        <div class="eventAttr">
+            <label for="EventLink" class="control-label">Link:</label>
+            <input class="form-control POILink" id="EventLink" type="text" ng-model="newEvent.url">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

@@ -80,7 +80,11 @@
                 <input class="form-control POIImgLink" id="POIImgLink" type="text" ng-model="POI.imagePath">
             </div>
         </div>
-        <label for="dateTime">Termine hinzufügen: <input type="checkbox" ng-model="POI.isEvent"></label>
+        <label for="dateTime">Termine hinzufügen: <input type="checkbox" ng-model="POI.hasEvents">
+            <button ng-if="POI.hasEvents" ng-click="addEvent()" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+            <span ng-repeat="e in events">{{e.title}}</span>
+
+        </label>
 
 
     </div>

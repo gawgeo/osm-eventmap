@@ -250,6 +250,10 @@
     height: auto;
   }
 }
+.eventModal .eventAttr {
+  display: block;
+  padding: 1em 1em 1em 1em;
+}
 body,
 html {
   height: 100%;

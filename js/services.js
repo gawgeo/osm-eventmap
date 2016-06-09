@@ -117,6 +117,80 @@ angular.module('osmTestApp.services', [])
           });
           return deferred.promise;
       };
+
+
+      // Server Communication for EVENTS-Table
+      this.saveEvent = function (Event) {
+          var deferred = $q.defer();
+          $http({
+              url: '/saveEvent',
+              method: "POST",
+              data: Event
+          })
+            .then(function (response) {
+                  console.log("Event saved!");
+                  deferred.resolve();
+              },
+              function (response) { // optional
+                  window.alert("PointOfInterest save failure!");
+              });
+          return deferred.promise;
+      };
+      this.getEventsByKey = function (pointsOfInterest_id) {
+          var deferred = $q.defer();
+          $http({
+              method: 'GET',
+              url: '/getEventsByKey',
+              params: {pointsOfInterest_id: pointsOfInterest_id}
+          }).success(function (data) {
+              console.log("GET", data);
+              deferred.resolve(data);
+          }).error(function () {
+              window.alert("Events GET failure!");
+          });
+          return deferred.promise;
+      };
+      this.getEvents = function () {
+          var deferred = $q.defer();
+          $http({
+              method: 'GET',
+              url: '/getAllEvents'
+          }).success(function (data) {
+              console.log("GET", data);
+              deferred.resolve(data);
+          }).error(function () {
+              window.alert("Events GET failure!");
+          });
+          return deferred.promise;
+      };
+      this.deleteEvent = function (Event) {
+          var deferred = $q.defer();
+          $http({
+              url: '/deleteEvent',
+              method: "POST",
+              data: {'id': Event.id}
+          }).success(function () {
+              console.log("Deleted", Event);
+              deferred.resolve();
+          }).error(function () {
+              window.alert("Event delete failure!");
+          });
+          return deferred.promise;
+      };
+      this.deleteAllEvents = function () {
+          var deferred = $q.defer();
+          $http({
+              url: '/deleteAllEvents',
+              method: "POST",
+              data: {}
+          }).success(function () {
+              console.log("Deleted all Events");
+              deferred.resolve();
+          }).error(function () {
+              window.alert("Events all delete failure!");
+          });
+          return deferred.promise;
+      };
   })
 
   .service('iconService', function () {

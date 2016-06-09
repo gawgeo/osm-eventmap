@@ -13,17 +13,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.bouncing = false;
       $scope.csvResult = null;
       $scope.eventSources = []; // calendar sources
-      $scope.uiConfig = { //Calendar Config
-          calendar:{
-              height: 450,
-              editable: true,
-              header:{
-                  left: 'month basicWeek basicDay',
-                  center: 'title',
-                  right: 'today prev,next'
-              }
-          }
-      };
+      $scope.uiConfig = { calendar:{height: 450, editable: true, header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
+
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
           $scope.eventSources.push({events: res.testEvents});
@@ -223,6 +214,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               createLayer($scope.POIs);
           });
       }
+      function updateCalendar () {
+          databaseService.getEvents().then(function (res) {
+              $scope.eventSources = res.data;
+          });
+      }
       // filter view
       $scope.filter = function (conditions) {
           $scope.redPOIs = $filter('poiFilter')($scope.POIs, conditions);
@@ -274,8 +270,15 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
   })
 
 
-  .controller('newPOICtrl', function ($scope, databaseService) {
+  .controller('newPOICtrl', function ($scope, $uibModal, databaseService) {
       console.log($scope.oldPoi);
+      $scope.events = [];
+      databaseService.getEventsByKey($scope.oldPoi.id).then(function (res) {
+          if (res.data) {
+              console.log("Bisherige Events: ", res.data);
+              $scope.events = res.data;
+          }
+      });
       $scope.format = 'dd-MM-yyyy';
       $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
       if (!$scope.oldPoi.id) {
@@ -286,7 +289,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               link: '',
               startDate: '',
               endDate: '',
-              isEvent: false,
+              hasEvents: false,
               imagePath: ''
           };
       } else {
@@ -302,6 +305,40 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               }
           })
       });
+      
+      $scope.addEvent = function () {
+          var modalInstance = $uibModal.open({
+              animation: $scope.animationsEnabled,
+              templateUrl: 'html/eventModal.html',
+              size: "small",
+              controller: function ($scope, $uibModalInstance) {
+                  $scope.newEvent = event;
+                  $scope.ok = function () {
+                      $uibModalInstance.close($scope.newEvent);
+                  };
+                  $scope.cancel = function () {
+                      $uibModalInstance.dismiss();
+                  };
+              },
+              resolve: {
+                  newEvent: function() {
+                      return {
+                          "title": "",
+                          "start": "",
+                          "end": "",
+                          "editable": false,
+                          "url": ""
+                      }
+                  }
+              }
+          });
+          modalInstance.result.then(function (newEvent) {
+              $scope.events.push(newEvent);
+          }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+          });
+      };
+      
       $scope.save = function (POI) {
           POI["lng"] = $scope.tempMarker.getLatLng().lng;
           POI["lat"] = $scope.tempMarker.getLatLng().lat;
