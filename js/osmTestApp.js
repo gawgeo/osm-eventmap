@@ -333,7 +333,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               templateUrl: 'html/eventModal.html',
               size: "small",
               controller: function ($scope, $uibModalInstance) {
-                  $scope.newEvent = event;
                   $scope.ok = function () {
                       $uibModalInstance.close($scope.newEvent);
                   };
