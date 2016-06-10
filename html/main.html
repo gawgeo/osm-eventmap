@@ -47,7 +47,7 @@
         <div id="simpleMap"></div>
         <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false" ng-style="showCalendar && {'width': '60%'}">
             <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i class="glyphicon glyphicon-calendar"></i></button>
-            <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="qzCalendar"></div>
+            <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
     </div>
 
@@ -61,7 +61,9 @@
                      save-poi="savePOI"
                      cancel="cancel"
                      old-poi="oldPOI"
-                     update-poi="updatePOI"></new-poi>
+                     update-poi="updatePOI"
+                     save-event="saveEvent"
+                     delete-event="deleteEvent"></new-poi>
         </div>
 
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
@@ -101,6 +103,12 @@
                         <ul class="rules">
                             <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
                                 {{rule}}
+                            </li>
+                        </ul>
+                        <span class="rulesHeadline">Termine:</span>
+                        <ul class="rules">
+                            <li class="rule" ng-repeat="event in eventSources[0].events | filter:{pointsOfInterest_id: POI.id}">
+                                <span>{{event.title}}</span>
                             </li>
                         </ul>
                         <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">

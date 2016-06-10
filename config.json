@@ -73,13 +73,13 @@
   "testEvents": [
     {
       "title": "event1",
-      "start": "2016-06-06",
+      "start": "2016-06-08",
       "editable": false,
       "url": "www.itas.kit.edu"
     },
     {
       "title": "2event2",
-      "start": "2016-06-02",
+      "start": "2016-06-14",
       "end": "2010-01-07",
       "editable": false
     },

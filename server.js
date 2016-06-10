@@ -43,9 +43,10 @@ server.post('/savePointOfInterest', function(req, res){
             res.status(500);
         }
         else {
-            console.log("SAVED!");
+            console.log("SAVED! mit ID: " + this.lastID);
             res.status(202);
         }
+          res.json({"id": this.lastID});
         res.end();
     });
 });
@@ -149,7 +150,7 @@ server.post('/saveEvent', function(req, res){
 
 // Get Events by ForeignKey
 server.get('/getEventsByKey', function(req, res){
-    db.all("SELECT * FROM Events WHERE id=?", [req.body['pointsOfInterest_id']], function(err, rows){
+    db.all("SELECT * FROM Events WHERE pointsOfInterest_id=?", [req.query.key], function(err, rows){
         if (err){
             console.log(err);
             res.status(400);
@@ -190,7 +191,7 @@ server.post('/deleteAllEvents', function(req, res){
 });
 
 server.post('/deleteEvent', function(req, res){
-    console.log("deleteAllEvents");
+    console.log("deleteEvent");
     db.run("DELETE FROM Events WHERE id=?", [req.body['id']], function(err){
         if (err){
             console.log(err);

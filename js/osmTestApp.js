@@ -17,7 +17,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
-          $scope.eventSources.push({events: res.testEvents});
           console.log("Config:", res);
       });
       // OSM imports and settings
@@ -170,18 +169,25 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       // CRUD-Handling
       // save poi and delete temporary marker
-      $scope.savePOI = function (newPOI) {
+      $scope.savePOI = function (newPOI, events) {
           map.removeLayer($scope.tempMarker);
-          databaseService.savePOI(newPOI).then(function () {
+          databaseService.savePOI(newPOI).then(function (res) {
               $scope.formToggle = false;
+              events.forEach(function(event) {
+                  $scope.saveEvent(event, res.data.id);
+              });
+              updateCalendar();
               updateView();
           });
       };
       // update poi and delete temporary marker
-      $scope.updatePOI = function (updatePoi) {
+      $scope.updatePOI = function (updatePoi, events) {
           map.removeLayer($scope.tempMarker);
           databaseService.updatePOI(updatePoi).then(function () {
               $scope.formToggle = false;
+              events.forEach(function(event) {
+                  $scope.saveEvent(event, updatePoi.id);
+              });
               updateView();
           });
           $scope.oldPOI = {};
@@ -195,10 +201,24 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.deleteAllPOIs = function () {
           databaseService.deleteAllPOIs().then(function () {
               updateView();
+              updateCalendar();
+          });
+      };
+      // Neuen Termin anlegen
+      $scope.saveEvent = function (event, poiID) {
+          if (!event.id) {
+              databaseService.saveEvent(event, poiID).then(function () {
+                  updateCalendar();
+              });
+          }
+      };
+      // Termin löschen
+      $scope.deleteEvent = function (event) {
+          databaseService.deleteEvent(event).then(function () {
+              updateCalendar();
           });
       };
 
-      
       // Layer controls
       var overlay = {
           "Points of Interest": markerGroup,
@@ -216,7 +236,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       }
       function updateCalendar () {
           databaseService.getEvents().then(function (res) {
-              $scope.eventSources = res.data;
+              $scope.eventSources[0] = {"events": res};
           });
       }
       // filter view
@@ -267,16 +287,17 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       // INITIALIZE
       updateView();
+      updateCalendar();
   })
 
 
   .controller('newPOICtrl', function ($scope, $uibModal, databaseService) {
-      console.log($scope.oldPoi);
+      console.log("Update ", $scope.oldPoi);
       $scope.events = [];
-      databaseService.getEventsByKey($scope.oldPoi.id).then(function (res) {
-          if (res.data) {
-              console.log("Bisherige Events: ", res.data);
-              $scope.events = res.data;
+      databaseService.getEventsByKey($scope.oldPoi).then(function (res) {
+          if (res) {
+              console.log("Bisherige Events: ", res);
+              $scope.events = res;
           }
       });
       $scope.format = 'dd-MM-yyyy';
@@ -338,14 +359,18 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               console.log('Modal dismissed at: ' + new Date());
           });
       };
+      $scope.delete = function (event) {
+          $scope.events.splice($scope.events.indexOf(event),1);
+          $scope.deleteEvent(event);
+      };
       
       $scope.save = function (POI) {
           POI["lng"] = $scope.tempMarker.getLatLng().lng;
           POI["lat"] = $scope.tempMarker.getLatLng().lat;
           if (POI.id) {
-              $scope.updatePoi(POI);
+              $scope.updatePoi(POI, $scope.events);
           } else {
-              $scope.savePoi(POI);
+              $scope.savePoi(POI, $scope.events);
           }
       };
   });

@@ -31,7 +31,9 @@ angular.module('osmTestApp.directives', [])
               'savePoi': '=',
               'updatePoi': '=',
               'cancel': '=',
-              'oldPoi': '='
+              'oldPoi': '=',
+              'saveEvent': '=',
+              'deleteEvent': '='
           }
       }
   })

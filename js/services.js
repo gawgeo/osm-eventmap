@@ -20,7 +20,7 @@ angular.module('osmTestApp.services', [])
           })
             .then(function (response) {
                   console.log("PointOfInterest saved!");
-                  deferred.resolve();
+                  deferred.resolve(response);
               },
               function (response) { // optional
                   window.alert("PointOfInterest save failure!");
@@ -120,7 +120,8 @@ angular.module('osmTestApp.services', [])
 
 
       // Server Communication for EVENTS-Table
-      this.saveEvent = function (Event) {
+      this.saveEvent = function (Event, foreignKey) {
+          Event["pointsOfInterest_id"] = foreignKey;
           var deferred = $q.defer();
           $http({
               url: '/saveEvent',
@@ -136,12 +137,13 @@ angular.module('osmTestApp.services', [])
               });
           return deferred.promise;
       };
-      this.getEventsByKey = function (pointsOfInterest_id) {
+      this.getEventsByKey = function (POI) {
+          console.log("getEventsByKey", POI.id);
           var deferred = $q.defer();
           $http({
               method: 'GET',
               url: '/getEventsByKey',
-              params: {pointsOfInterest_id: pointsOfInterest_id}
+              params: {'key': POI.id}
           }).success(function (data) {
               console.log("GET", data);
               deferred.resolve(data);
