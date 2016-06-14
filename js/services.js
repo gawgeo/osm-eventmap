@@ -52,17 +52,16 @@ angular.module('osmTestApp.services', [])
               url: '/getPointsOfInterest'
           }).success(function (data) {
               console.log("GET", data);
-              var today = Date.now();
+              var now = Date.now();
               data.forEach(function (POI) {
-                  var status = "kein Status";
-                  console.log(today, Date.parse(POI.startDate), Date.parse(POI.endDate));
-                  if (Date.parse(POI.startDate) <= today) {
+                  var status = "laufend";
+                  if (Date.parse(POI.startDate) >= now) {
                       status = "in Planung";
                   }
-                  if (Date.parse(POI.endDate) <= today) {
+                  if (Date.parse(POI.endDate) <= now) {
                       status = "abgelaufen";
                   }
-                  if (Date.parse(POI.startDate) <= today && Date.parse(POI.endDate) >= today) {
+                  if (Date.parse(POI.startDate) <= now && Date.parse(POI.endDate) >= now) {
                       status = "laufend";
                   }
                   POI["status"] = status;

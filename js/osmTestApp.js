@@ -2,7 +2,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
   //use strict
   .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
-      $scope.admin = true;
+      $scope.admin = false;
       $scope.formToggle = false; // show and hide new POI form
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
@@ -138,8 +138,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               });
               marker["POIid"] = POI.id;
               // Make current event bouncing
-              var today = Date.now();
-              marker["current"] = POI.isEvent && Date.parse(POI.startDate) <= today && Date.parse(POI.endDate) >= today;
+              marker["current"] = POI.status === "laufend" || POI.status === "";
               $scope.markers.push(marker);
               markerGroup.addLayer(marker);
           });

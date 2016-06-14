@@ -1,7 +1,6 @@
 <div ng-controller="osmTestAppCtrl" class="main">
 
     <div class="header">
-        <button class="bounceMarker btn btn-warning pull-left" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Aktuelle Events!</button>
         Nachhaltigkeitskarte Karlsruhe-Oststadt
         <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>
         <button ng-if="admin" class="btn btn-warning"
@@ -40,9 +39,13 @@
                 <option value="">kein Regelfilter</option>
                 <option ng-repeat="(short, rule) in config.rules" value="{{short}}">{{rule}}</option>
             </select>
-            <div class="eventCheckbox">
-                <span>Event:</span><input type="checkbox" ng-model="conditions.event" value="" ng-change="filter(conditions)">
-            </div>
+            <select class="ruleSelect form-control" ng-model="conditions.status" ng-change="filter(conditions)">
+                <option value="">kein Statusfilter</option>
+                <option value="in Planung">In Planung</option>
+                <option value="laufend">Laufend</option>
+                <option value="abgelaufen">Abgelaufen</option>
+            </select>
+            <button class="bounceMarkerButton btn btn-warning" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Laufende Projekte!</button>
         </div>
         <div id="simpleMap"></div>
         <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false" ng-style="showCalendar && {'width': '60%'}">
