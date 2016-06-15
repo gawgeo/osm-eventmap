@@ -3,7 +3,7 @@ angular.module('osmTestApp.directives', [])
       return {
           restrict: 'EA',
           link: function(scope, element) {
-              console.log("draggable!", element);
+              //console.log("draggable!", element);
               element.draggable();
           }
       }

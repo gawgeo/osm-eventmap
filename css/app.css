@@ -257,6 +257,9 @@
   display: block;
   padding: 1em 1em 1em 1em;
 }
+.popover {
+  background: white;
+}
 body,
 html {
   height: 100%;

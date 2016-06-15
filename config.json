@@ -59,35 +59,5 @@
     "Bürgerengagement & Aktionen": "grey",
     "Nachhaltige Raumentwicklung": "yellow",
     "Umwelt & Energie": "green"
-  },
-  "testEvent": [
-    {
-      "id": 1,
-      "title": "Deutschlandspiel",
-      "allDay": false,
-      "start": 1464780570880,
-      "end": 1464811200000,
-      "editable": false
-    }
-  ],
-  "testEvents": [
-    {
-      "title": "event1",
-      "start": "2016-06-08",
-      "editable": false,
-      "url": "www.itas.kit.edu"
-    },
-    {
-      "title": "2event2",
-      "start": "2016-06-14",
-      "end": "2010-01-07",
-      "editable": false
-    },
-    {
-      "title": "event3",
-      "start": "2016-06-01T12:30:00",
-      "allDay": false,
-      "editable": false
-    }
-  ]
+  }
 }

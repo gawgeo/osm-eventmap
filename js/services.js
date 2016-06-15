@@ -51,7 +51,7 @@ angular.module('osmTestApp.services', [])
               method: 'GET',
               url: '/getPointsOfInterest'
           }).success(function (data) {
-              console.log("GET", data);
+              console.log("GET POIs", data);
               var now = Date.now();
               data.forEach(function (POI) {
                   var status = "laufend";
@@ -79,7 +79,7 @@ angular.module('osmTestApp.services', [])
               method: 'GET',
               url: '/getPOIJson'
           }).success(function (data) {
-              console.log("GET", data);
+              console.log("GET POIs JSON", data);
               deferred.resolve(data);
           }).error(function () {
               window.alert("POI-JSON GET failure!");
@@ -157,7 +157,7 @@ angular.module('osmTestApp.services', [])
               method: 'GET',
               url: '/getAllEvents'
           }).success(function (data) {
-              console.log("GET", data);
+              console.log("GET EVENTs", data);
               deferred.resolve(data);
           }).error(function () {
               window.alert("Events GET failure!");

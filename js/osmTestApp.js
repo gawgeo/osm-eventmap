@@ -1,6 +1,6 @@
 angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'osmTestApp.filters','ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.calendar', 'ngCsv', 'ngCsvImport'])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $uibModal, databaseService, iconService) {
+  .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $timeout, $uibModal, databaseService, iconService) {
       console.log("OSM-Test App running!");
       $scope.admin = false;
       $scope.formToggle = false; // show and hide new POI form
@@ -12,13 +12,34 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.markers = [];
       $scope.bouncing = false;
       $scope.csvResult = null;
-      $scope.eventSources = []; // calendar sources
-      $scope.uiConfig = { calendar:{height: 450, editable: true, header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
 
+      // Config Loading
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
           console.log("Config:", res);
       });
+      // Calendar Options
+      $scope.eventSources = []; // calendar sources
+      $scope.eventClick = function (date, event, view) {
+          $scope.selectedPOI = $scope.POIs.find(function (POI) {
+              return POI.id === date.pointsOfInterest_id;
+          });
+          $scope.status[$scope.selectedPOI.id] = true;
+      };
+      $scope.eventRender = function(date, element, view ) {
+          var msgText = $scope.POIs.find(function (POI) {
+              return POI.id === date.pointsOfInterest_id;
+          }).title;
+          element.tooltip({ //oder Popover?
+              title: date.title + " von: " + msgText,
+              placement: 'top'
+              //content: "von:" + msgText
+          });
+      };
+      $scope.uiConfig = { calendar:{height: 450, editable: false, theme:false, eventClick: $scope.eventClick, eventRender:$scope.eventRender, header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
+
+
+
       // OSM imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -238,6 +259,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               $scope.eventSources[0] = {"events": res};
           });
       }
+
       // filter view
       $scope.filter = function (conditions) {
           $scope.redPOIs = $filter('poiFilter')($scope.POIs, conditions);
@@ -345,7 +367,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
                           "title": "",
                           "start": "",
                           "end": "",
-                          "editable": false,
+                          "allDay": false,
                           "url": ""
                       }
                   }
