@@ -27,7 +27,7 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(file);
 
 db.serialize(function() {
-    db.run("CREATE TABLE IF NOT EXISTS PointsOfInterest (id INTEGER PRIMARY KEY, title TEXT, lng DOUBLE, lat DOUBLE, category TEXT, description TEXT, link TEXT, isEvent BOOLEAN, startDate DATETIME, endDate DATETIME, imagePath TEXT, R1 BOOLEAN, R2 BOOLEAN, R3 BOOLEAN, R4 BOOLEAN, R5 BOOLEAN, R6 BOOLEAN, R7 BOOLEAN, R8 BOOLEAN, R9 BOOLEAN, R10 BOOLEAN, R11 BOOLEAN, R12 BOOLEAN, R13 BOOLEAN, R14 BOOLEAN, R15 BOOLEAN)");
+    db.run("CREATE TABLE IF NOT EXISTS PointsOfInterest (id INTEGER PRIMARY KEY, title TEXT, lng DOUBLE, lat DOUBLE, category TEXT, description TEXT, link TEXT, hasEvents BOOLEAN, startDate DATETIME, endDate DATETIME, imagePath TEXT, R1 BOOLEAN, R2 BOOLEAN, R3 BOOLEAN, R4 BOOLEAN, R5 BOOLEAN, R6 BOOLEAN, R7 BOOLEAN, R8 BOOLEAN, R9 BOOLEAN, R10 BOOLEAN, R11 BOOLEAN, R12 BOOLEAN, R13 BOOLEAN, R14 BOOLEAN, R15 BOOLEAN)");
     db.run("CREATE TABLE IF NOT EXISTS Events (id INTEGER PRIMARY KEY, title TEXT, start DATETIME, end DATETIME, allDay BOOLEAN, pointsOfInterest_id INTEGER, FOREIGN KEY(pointsOfInterest_id) REFERENCES PointsOfInterest(id))");
 });
 
@@ -36,8 +36,8 @@ db.serialize(function() {
 server.post('/savePointOfInterest', function(req, res){
     console.log("savePointOfInterest");
     db.run(
-      "INSERT OR IGNORE INTO PointsOfInterest(title, lng, lat, category, description, link, isEvent, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-      [req.body['title'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['isEvent'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15']], function(err){
+      "INSERT OR IGNORE INTO PointsOfInterest(title, lng, lat, category, description, link, hasEvents, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+      [req.body['title'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['hasEvents'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15']], function(err){
         if (err){
             console.log(err);
             res.status(500);
@@ -54,9 +54,9 @@ server.post('/savePointOfInterest', function(req, res){
 // Update Point of Interest
 server.post('/updatePointOfInterest', function(req, res) {
     console.log("UpdatePointOfInterest");
-    db.run("UPDATE PointsOfInterest SET title=?, lng=?, lat=?, category=?, description=?, link=?, isEvent=?, startDate=?, endDate=?, imagePath=?, R1=?, R2=?, R3=?, R4=?, R5=?, R6=?, R7=?, R8=?, R9=?, R10=?, R11=?, R12=?, R13=?, R14=?, R15=?" +
+    db.run("UPDATE PointsOfInterest SET title=?, lng=?, lat=?, category=?, description=?, link=?, hasEvents=?, startDate=?, endDate=?, imagePath=?, R1=?, R2=?, R3=?, R4=?, R5=?, R6=?, R7=?, R8=?, R9=?, R10=?, R11=?, R12=?, R13=?, R14=?, R15=?" +
       "WHERE id=?",
-      [req.body['title'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['isEvent'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15'], req.body['id']],
+      [req.body['title'], req.body['lng'], req.body['lat'], req.body['category'], req.body['description'], req.body['link'], req.body['hasEvents'], req.body['startDate'], req.body['endDate'],  req.body['imagePath'], req.body['R1'], req.body['R2'], req.body['R3'], req.body['R4'], req.body['R5'], req.body['R6'], req.body['R7'], req.body['R8'], req.body['R9'], req.body['R10'], req.body['R11'], req.body['R12'], req.body['R13'], req.body['R14'], req.body['R15'], req.body['id']],
       function(err){
         if (err){
             console.log(err);

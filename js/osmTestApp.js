@@ -116,7 +116,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           markerGroup.clearLayers();
           $scope.markers = [];
           POIs.forEach(function (POI) {
-              var customIcon = iconService.getIcon($scope.config.categoryColors[POI.category] || 'blue', POI.isEvent);
+              var customIcon = iconService.getIcon($scope.config.categoryColors[POI.category] || 'blue', POI.hasEvents);
               var linkFn = $compile(
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
                 '<button class="btn btn-warning" ng-if="admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
