@@ -24,6 +24,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           $scope.selectedPOI = $scope.POIs.find(function (POI) {
               return POI.id === date.pointsOfInterest_id;
           });
+          $scope.markers.filter(function(marker) {
+              return marker.POIid === $scope.selectedPOI.id;
+          })[0].openPopup();
           $scope.status[$scope.selectedPOI.id] = true;
       };
       $scope.eventRender = function(date, element, view ) {
