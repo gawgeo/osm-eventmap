@@ -173,7 +173,7 @@ server.get('/getAllEvents', function(req, res){
         }
     });
 });
-
+// /deleteAllEvents
 server.post('/deleteAllEvents', function(req, res){
     console.log("deleteAllEvents");
     db.run("DELETE FROM Events", function(err){
@@ -189,7 +189,22 @@ server.post('/deleteAllEvents', function(req, res){
         res.end();
     });
 });
-
+// delete Elevents by Foreing Key
+server.post('/deleteEventsByKey', function(req, res){
+    console.log("deleteEventsByKey");
+    db.run("DELETE FROM Events WHERE pointsOfInterest_id=?", [req.body['key']], function(err){
+        if (err){
+            console.log(err);
+            res.status(500);
+        }
+        else {
+            console.log("DELETED!");
+            res.status(202);
+        }
+        res.end();
+    });
+});
+// delete Event
 server.post('/deleteEvent', function(req, res){
     console.log("deleteEvent");
     db.run("DELETE FROM Events WHERE id=?", [req.body['id']], function(err){

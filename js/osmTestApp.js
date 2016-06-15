@@ -128,8 +128,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               marker.bindPopup(content[0]).on("popupopen", function () {
                   var currentMarker = this;
                   $scope.deleteThis = function () {
-                      databaseService.deletePOI(POI).then(function () {
-                          updateView();
+                      databaseService.deleteEventsByKey(POI.id).then(function() {
+                          databaseService.deletePOI(POI).then(function () {
+                              updateView();
+                              updateCalendar();
+                          });
                       });
                   };
                   $scope.updateThis = function () {
@@ -219,9 +222,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       };
       // delete all marker
       $scope.deleteAllPOIs = function () {
-          databaseService.deleteAllPOIs().then(function () {
-              updateView();
-              updateCalendar();
+          databaseService.deleteAllEvents().then(function() {
+              databaseService.deleteAllPOIs().then(function () {
+                  updateView();
+                  updateCalendar();
+              });
           });
       };
       // Neuen Termin anlegen

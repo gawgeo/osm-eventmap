@@ -178,6 +178,20 @@ angular.module('osmTestApp.services', [])
           });
           return deferred.promise;
       };
+      this.deleteEventsByKey = function (ForeignKey) {
+          var deferred = $q.defer();
+          $http({
+              url: '/deleteEventsByKey',
+              method: "POST",
+              data: {'key': ForeignKey}
+          }).success(function () {
+              console.log("Deleted", Event);
+              deferred.resolve();
+          }).error(function () {
+              window.alert("Event delete failure!");
+          });
+          return deferred.promise;
+      };
       this.deleteAllEvents = function () {
           var deferred = $q.defer();
           $http({
