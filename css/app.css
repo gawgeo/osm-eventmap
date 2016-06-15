@@ -231,6 +231,18 @@
 .newPOIWrapper .newPOI .form-group .POIImgLink {
   width: 100%;
 }
+.newPOIWrapper .eventList li {
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+.newPOIWrapper .eventAddButton {
+  margin-left: 0.5em;
+  padding: 0.1em 0.3em 0.1em 0.3em;
+}
+.newPOIWrapper .eventDeleteButton {
+  margin-left: 0.5em;
+  padding: 0.1em 0.3em 0.1em 0.3em;
+}
 @media (min-width: 992px) {
   .newPOIWrapper .POIRules ul li {
     white-space: nowrap;
