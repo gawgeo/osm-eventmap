@@ -22,9 +22,8 @@ Eine globale Installation von Node ist notwendig.(https://nodejs.org/en/download
 
 Ins Projekt-Verzeichnis welchseln und in die Konsole eingeben:
 
-* npm install bower express grunt-cli -g grunt-contrib-watch grunt-express grunt-open matchdep
-* bower install angular bootstrap angular-bootstrap jquery leaflet sqlite3
-
+* npm install
+* bower install
 
 ### Start des Projekts ###
 
