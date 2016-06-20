@@ -110,7 +110,7 @@
                         </ul>
                         <span class="rulesHeadline">Termine:</span>
                         <ul class="rules">
-                            <li class="rule" ng-repeat="event in eventSources[0].events | filter:{pointsOfInterest_id: POI.id}">
+                            <li class="rule" ng-repeat="event in eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true">
                                 <span>{{event.title}}</span>
                             </li>
                         </ul>
