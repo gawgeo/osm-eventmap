@@ -294,9 +294,10 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
   })
 
 
-  .controller('newPOICtrl', function ($scope, $uibModal, databaseService) {
+  .controller('newPOICtrl', function ($scope, $timeout, $uibModal, databaseService) {
       $scope.events = [];
-      $scope.format = 'dd-MM-yyyy';
+      $scope.POI = {};
+      $scope.format = 'dd.MM.yyyy';
       $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
       databaseService.getEventsByKey($scope.oldPoi).then(function (res) {
           if (res) {
@@ -318,8 +319,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           };
       } else {
           $scope.POI = $scope.oldPoi;
-          $scope.POI["startDate"] = Date.parse($scope.oldPoi["startDate"]);
-          $scope.POI["endDate"] = Date.parse($scope.oldPoi["endDate"]);
       }
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
@@ -329,7 +328,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               } else {
                   $scope.POI[shortRule] = false;
               }
-          })
+          });
       });
       
       $scope.addEvent = function () {

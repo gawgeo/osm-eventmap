@@ -54,21 +54,21 @@
             <div class="attrRow POIDate">
                 <div id="dateTime" class="dateTimeWrapper">
                     <label for="startDate" class="control-label">Beginn des Projekts (optional):</label>
-                    <datetimepicker ng-model="POI.startDate"
+                    <div datetimepicker ng-model="POI.startDate"
                                     id="startDate"
                                     class="dateTimepicker"
                                     date-format="{{format}}"
-                                    date-options="dateOptions"
+                                    date-options="{}"
                                     show-meridian="false">
-                    </datetimepicker>
+                    </div>
                     <label for="endDate" class="control-label">Ende des Projekts (optional):</label>
-                    <datetimepicker ng-model="POI.endDate"
+                    <div datetimepicker ng-model="POI.endDate"
                                     id="endDate"
                                     class="dateTimepicker"
                                     date-format="{{format}}"
-                                    date-options="dateOptions"
+                                    date-options="{}"
                                     show-meridian="false">
-                    </datetimepicker>
+                    </div>
                 </div>
             </div>
             <div class="attrRow POIDate">
