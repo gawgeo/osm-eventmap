@@ -1,7 +1,6 @@
 @import (reference) "../bower_components/bootstrap/less/mixins.less";
 @import (reference) "../bower_components/bootstrap/less/variables.less";
 @import (reference) "../bower_components/bootstrap/less/glyphicons.less";
-@import url(theme.less);
 @import url(mapArea.less);
 @import url(infoArea.less);
 @import url(poiModal.less);
@@ -13,6 +12,7 @@ body, html {
   font-family: 'Raleway', sans-serif;
 }
 
+// General adjustments
 .main {
   width: 100%;
   .make-md-column(12);
@@ -21,6 +21,7 @@ body, html {
   height: 100%;
   overflow: hidden;
 
+  // header css
   .header {
     position: absolute;
     .make-md-column(12);
@@ -54,11 +55,13 @@ body, html {
     }
   }
 
+  // General --> see mapArea.less for more
   .mapArea {
     z-index: 0;
     height: 92%;
   }
 
+  // General --> see infoArea.less for more
   .infoArea {
     box-shadow:  -4px 0 5px 0 rgba(130,130,130,1);
     overflow-x: visible;
@@ -84,6 +87,7 @@ body, html {
     padding-right: 0;
   }
 
+  // footer css
   .footer {
     position: absolute;
     .make-md-column(12);
@@ -99,7 +103,7 @@ body, html {
   }
 }
 
-
+// rudimentary adjustment for responsive design
 @media (max-width: @screen-md-min) {
   .main {
     overflow: auto;

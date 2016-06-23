@@ -1,16 +1,19 @@
 <div ng-controller="osmTestAppCtrl" class="main">
 
+    <!-- Header, including csv-Up/Download -->
     <div class="header">
         Nachhaltigkeitskarte Karlsruhe-Oststadt
         <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>
-        <button ng-if="admin" class="btn btn-warning"
+        <button ng-if="admin"
+                class="btn btn-warning"
                 ng-csv="csvExport()"
                 filename="QZ-DB-export.csv"
                 field-separator=";"
                 decimal-separator=","
                 add-bom="true"
                 lazy-load="true"
-                csv-header="config.POIAttributes">CSV-Export
+                csv-header="config.POIAttributes">
+            CSV-Export
         </button>
         <ng-csv-import ng-show="admin"
                        class="csvImport"
@@ -24,7 +27,8 @@
                        encodingVisible="true">
         </ng-csv-import>
     </div>
-    <!-- MAP Area, displaying leaflet-map and filterArea -->
+
+    <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!</button>
         <div class="filterArea well well-sm" draggable>
@@ -66,9 +70,9 @@
                      old-poi="oldPOI"
                      update-poi="updatePOI"
                      save-event="saveEvent"
-                     delete-event="deleteEvent"></new-poi>
+                     delete-event="deleteEvent">
+            </new-poi>
         </div>
-
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
             <h3>Points of Interest</h3>
                 <uib-accordion close-others="true">
@@ -120,6 +124,6 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">QuartierZukunft, ITAS, KIT</div>
-
 </div>

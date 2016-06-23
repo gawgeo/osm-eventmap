@@ -1,7 +1,8 @@
 angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'osmTestApp.filters','ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.calendar', 'ngCsv', 'ngCsvImport'])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $timeout, $uibModal, databaseService, iconService) {
+  .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $timeout, $uibModal, databaseService, iconService, csvService) {
       console.log("OSM-Test App running!");
+      // Variabels
       $scope.admin = false;
       $scope.formToggle = false; // show and hide new POI form
       $scope.oldPOI = {}; // save old poi variable on update
@@ -18,6 +19,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           $scope.config = res;
           console.log("Config:", res);
       });
+
+
       // Calendar Options
       $scope.eventSources = []; // calendar sources
       $scope.eventClick = function (date, event, view) {
@@ -40,9 +43,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
       };
       $scope.uiConfig = { calendar:{height: 450, editable: false, theme:false, eventClick: $scope.eventClick, eventRender:$scope.eventRender, header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
-
-
-
+      
       // OSM imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -276,42 +277,14 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       // CSV-Import and Export
       $scope.csvExport = function () {
-          return databaseService.getPOIJson();
+          return csvService.csvExport();
       };
       
       $scope.$watch("csvResult", function(res) {
-          console.log("new Upload", res);
-          var newPois = [];
-          if (res) {
-              res.pop();
-              var headers = res.shift();
-              var splittedHeaders = headers['0'].split(";");
-              res.forEach(function(poi) {
-                  var splittedPoi = poi['0'].split(";");
-                  var newPoi = {};
-                  for (var i = 0; i<splittedHeaders.length; i++) {
-                      newPoi[splittedHeaders[i]] = splittedPoi[i];
-                  }
-                  newPois.push(newPoi);
-              })
-          }
-          newPois.forEach(function(poi) {
-              if (poi.lng && poi.lat) {
-                  poi.lng = poi.lng.replace(/,/g, '.');
-                  poi.lat = poi.lat.replace(/,/g, '.');
-              }
-              console.log("savePoi", poi);
-              if (poi.id) {
-                  databaseService.updatePOI(poi).then(function () {
-                      updateView();
-                  });
-              } else {
-                  databaseService.savePOI(poi).then(function () {
-                      updateView();
-                  });
-              }
+          csvService.importCsv(res).then(function() {
+              $scope.csvResult = null;
+              updateView();
           });
-          $scope.csvResult = null;
       });
 
       // INITIALIZE
