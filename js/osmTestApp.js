@@ -3,25 +3,24 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
   .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $timeout, $uibModal, databaseService, iconService, csvService) {
       console.log("OSM-Test App running!");
       // Variabels
-      $scope.admin = false;
-      $scope.formToggle = false; // show and hide new POI form
+      $scope.admin = false; // Admin-Boolean toggle
+      $scope.formToggle = false; // show and hide newPOI-Form
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
       $scope.POIs = []; // list of all Pois
       $scope.redPOIs = $scope.POIs; // reduced POI Array
       $scope.status = {}; // active Marker status
-      $scope.markers = [];
-      $scope.bouncing = false;
-      $scope.csvResult = null;
+      $scope.markers = []; // Markers-Array
+      $scope.bouncing = false; // Bouncing-Boolean
+      $scope.csvResult = null; // csv-Import Variable
 
-      // Config Loading
+      // CONFIG loading
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
           console.log("Config:", res);
       });
 
-
-      // Calendar Options
+      // CALENDAR settings
       $scope.eventSources = []; // calendar sources
       $scope.eventClick = function (date, event, view) {
           $scope.selectedPOI = $scope.POIs.find(function (POI) {
@@ -44,7 +43,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       };
       $scope.uiConfig = { calendar:{height: 450, editable: false, theme:false, eventClick: $scope.eventClick, eventRender:$scope.eventRender, header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
       
-      // OSM imports and settings
+      // OPEN STREET MAPS imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
       var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
@@ -52,6 +51,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
       map.addLayer(osm); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
+      // Marker-Gruppen
+      var markerGroup = L.layerGroup();
       var oststadtPolygon = new L.Polygon([
         [49.032341, 8.410995],
         [49.030878, 8.409208],
@@ -97,7 +98,15 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
         [49.032331, 8.410987]
       ], {fill: true, fillOpacity:0.1, color: "red", clickable: false, weight: 2});
       map.addLayer(oststadtPolygon);
+      // Layer controls
+      var overlay = {
+          "Points of Interest": markerGroup,
+          "Oststadt": oststadtPolygon
+      };
+      L.control.layers([], overlay, {position: 'bottomleft'}).addTo(map);
 
+
+      // Map-Funktionalität
       // add one marker by click
       map.on('click', function newPoi(event) {
           if ($scope.tempMarker) {
@@ -113,9 +122,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               });
           }
       });
-
       // Create Marker out of POIs
-      var markerGroup = L.layerGroup();
       function createLayer(POIs) {
           markerGroup.clearLayers();
           $scope.markers = [];
@@ -172,7 +179,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
           map.addLayer(markerGroup);
       }
-
+      // Make current POI-Marker bouncing
       $scope.currentMarkerBouncingToggle = function () {
           // Make current event bouncing
           $scope.bouncing = !$scope.bouncing;
@@ -186,7 +193,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               L.Marker.stopAllBouncingMarkers();
           }
       };
-
+      // Cross-Select POI (in Calendar, Marker, Accordion)
       $scope.selectPOI = function (POI) {
           $scope.selectedPOI = POI;
           $scope.markers.filter(function(marker) {
@@ -194,7 +201,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           })[0].openPopup();
       };
 
-      // CRUD-Handling
+
+      // CRUD-Handling with Database
       // save poi and delete temporary marker
       $scope.savePOI = function (newPOI, events) {
           map.removeLayer($scope.tempMarker);
@@ -248,16 +256,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
       };
 
-      // Layer controls
-      var overlay = {
-          "Points of Interest": markerGroup,
-          "Oststadt": oststadtPolygon
-      };
-      L.control.layers([], overlay, {position: 'bottomleft'}).addTo(map);
 
       // update view
       function updateView() {
-          console.log("Update View!");
           databaseService.getPOIs().then(function (res) {
               $scope.POIs = res.data;
               createLayer($scope.POIs);
@@ -275,11 +276,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           createLayer($scope.redPOIs);
       };
 
-      // CSV-Import and Export
+      // CSV-Export
       $scope.csvExport = function () {
           return csvService.csvExport();
       };
-      
+      // CSV-Import
       $scope.$watch("csvResult", function(res) {
           csvService.importCsv(res).then(function() {
               $scope.csvResult = null;
@@ -294,16 +295,16 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
 
   .controller('newPOICtrl', function ($scope, $uibModal, databaseService) {
-      console.log("Update ", $scope.oldPoi);
       $scope.events = [];
+      $scope.format = 'dd-MM-yyyy';
+      $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
       databaseService.getEventsByKey($scope.oldPoi).then(function (res) {
           if (res) {
               console.log("Bisherige Events: ", res);
               $scope.events = res;
           }
       });
-      $scope.format = 'dd-MM-yyyy';
-      $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
+      // Falls POI noch nicht existiert, lege neu an, sonst update von POI
       if (!$scope.oldPoi.id) {
           $scope.POI = {
               title: '',
@@ -321,7 +322,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
           Object.keys(res.rules).forEach(function (shortRule) {
-              if (!$scope.POI[shortRule]) {
+              if ($scope.POI[shortRule]) {
                   $scope.POI[shortRule] = ($scope.POI[shortRule] === 1);
               } else {
                   $scope.POI[shortRule] = false;
