@@ -318,6 +318,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           };
       } else {
           $scope.POI = $scope.oldPoi;
+          $scope.POI["startDate"] = Date.parse($scope.oldPoi["startDate"]);
+          $scope.POI["endDate"] = Date.parse($scope.oldPoi["endDate"]);
       }
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
