@@ -1,8 +1,8 @@
-<div ng-controller="osmTestAppCtrl" class="main">
+<div ng-controller="osmTestAppCtrl" class="main" xmlns:openNewWindow>
 
     <!-- Header, including csv-Up/Download -->
     <div class="header">
-        Nachhaltigkeitskarte Karlsruhe
+
         <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>
         <button ng-if="admin"
                 class="btn btn-warning"
@@ -36,15 +36,15 @@
                                         ng-change="filter(conditions)">
             <select class="categorySelect form-control" ng-model="conditions.category"
                     ng-change="filter(conditions)">
-                <option value="">kein Kategoriefilter</option>
+                <option value="">Kategoriefilter auswählen</option>
                 <option ng-repeat="cat in config.categories" value="{{cat}}">{{cat}}</option>
             </select>
             <select class="ruleSelect form-control" ng-model="conditions.rule" ng-change="filter(conditions)">
-                <option value="">kein Regelfilter</option>
+                <option value="">Regelfilter auswählen</option>
                 <option ng-repeat="(short, rule) in config.rules" value="{{short}}">{{rule}}</option>
             </select>
             <select class="ruleSelect form-control" ng-model="conditions.status" ng-change="filter(conditions)">
-                <option value="">kein Statusfilter</option>
+                <option value="">Statusfilter auswählen</option>
                 <option value="in Planung">In Planung</option>
                 <option value="laufend">Laufend</option>
                 <option value="abgelaufen">Abgelaufen</option>
@@ -74,8 +74,9 @@
             </new-poi>
         </div>
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
-            <h3>Points of Interest</h3>
-                <uib-accordion close-others="true">
+            <img ng-src="http://quartierzukunft.de/wp-content/themes/quartier/assets/images/logos/QZ_Logo-B@x2.png" ng-click="openNewWindow(http://www.quartierzukunft.de)"/>
+            <h3>Nachhaltigkeits-Karte Karlsruhe Oststadt</h3>
+            <uib-accordion close-others="true">
                     <uib-accordion-group
                             ng-repeat="POI in POIs | poiFilter:conditions"
                             heading="{{POI.title}}"
