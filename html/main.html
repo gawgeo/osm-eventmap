@@ -74,7 +74,9 @@
             </new-poi>
         </div>
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
-            <img ng-src="http://quartierzukunft.de/wp-content/themes/quartier/assets/images/logos/QZ_Logo-B@x2.png" ng-click="openNewWindow(http://www.quartierzukunft.de)"/>
+            <a title="Auf zur QZ Homepage!" target="_blank" href="http://quartierzukunft.de">
+                <img src="http://www.quartierzukunft.de/wp-content/themes/quartier/assets/images/logos/QZ_Logo-B@x2.png">
+            </a>
             <h3>Nachhaltigkeits-Karte Karlsruhe Oststadt</h3>
             <uib-accordion close-others="true">
                     <uib-accordion-group
