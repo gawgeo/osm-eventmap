@@ -31,6 +31,7 @@
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!</button>
+        <!-- Hier geht der Filter los
         <div class="filterArea well well-sm" draggable>
             <span>Filter: </span><input class="form-control" ng-init="conditions = {}" ng-model="conditions.condition"
                                         ng-change="filter(conditions)">
@@ -50,7 +51,7 @@
                 <option value="abgelaufen">Abgelaufen</option>
             </select>
             <button class="bounceMarkerButton btn btn-warning" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Laufende Projekte!</button>
-        </div>
+        </div> -->
         <div id="simpleMap"></div>
         <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false" ng-style="showCalendar && {'width': '60%'}">
             <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -78,7 +79,30 @@
                 <img src="http://www.quartierzukunft.de/wp-content/themes/quartier/assets/images/logos/QZ_Logo-B@x2.png">
             </a>
             <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
-            <a type="button" target="_blank" href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-sl btn-default">Info</a>
+            <div class="filterArea well well-sm">
+                <span>SUCHEN NACH... </span>
+                <input class="form-control" ng-init="conditions = {}" ng-model="conditions.condition"
+                                            ng-change="filter(conditions)">
+                <select class="categorySelect form-control" ng-model="conditions.category"
+                        ng-change="filter(conditions)">
+                    <option value="">Kategoriefilter auswählen</option>
+                    <option ng-repeat="cat in config.categories" value="{{cat}}">{{cat}}</option>
+                </select>
+                <select class="ruleSelect form-control" ng-model="conditions.rule" ng-change="filter(conditions)">
+                    <option value="">Regelfilter auswählen</option>
+                    <option ng-repeat="(short, rule) in config.rules" value="{{short}}">{{rule}}</option>
+                </select>
+                <select class="ruleSelect form-control" ng-model="conditions.status" ng-change="filter(conditions)">
+                    <option value="">Statusfilter auswählen</option>
+                    <option value="in Planung">In Planung</option>
+                    <option value="laufend">Laufend</option>
+                    <option value="abgelaufen">Abgelaufen</option>
+                </select>
+                <button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Laufende Projekte!
+                </button>
+            </div>
+
             <uib-accordion close-others="true">
                     <uib-accordion-group
                             ng-repeat="POI in POIs | poiFilter:conditions"
@@ -129,6 +153,13 @@
     </div>
 
     <!-- Footer -->
-    <div class="footer">QuartierZukunft, ITAS, KIT
-        <a type="button" target="_blank" href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-sl btn-default">Info</a></div>
+    <div class="footer">QuartierZukunft, ITAS, KIT.
+        <a href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-default" role="button" target="_blank">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        </a>
+        <a href="mailto:info@quartierzukunft.de" target="_blank" class="btn btn-danger">
+        <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+        </a>
+
+    </div>
 </div>
