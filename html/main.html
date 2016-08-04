@@ -3,7 +3,7 @@
     <!-- Header, including csv-Up/Download -->
     <div class="header">
 
-        <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>
+       <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
         <button ng-if="admin"
                 class="btn btn-warning"
                 ng-csv="csvExport()"
@@ -26,6 +26,7 @@
                        encoding="'ISO-8859-1'"
                        encodingVisible="true">
         </ng-csv-import>
+
     </div>
 
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
@@ -79,6 +80,19 @@
                 <img src="http://www.quartierzukunft.de/wp-content/themes/quartier/assets/images/logos/QZ_Logo-B@x2.png">
             </a>
             <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
+            <br></br>
+            <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
+            <div class="btn-group btn-group-justified">
+                <a href="#" class="btn btn-default">Nachhaltige <br> Mobilität<br></a>
+                <a href="#" class="btn btn-default">Nachhaltiges <br>Wirtschaften<br></a>
+                <a href="#" class="btn btn-default">Bildung<br> & <br> Wissenschaft</a>
+            </div>
+            <div class="btn-group btn-group-justified">
+                <a href="#" class="btn btn-default">Bürger-<br>engagement und <br>Aktionen</a>
+                <a href="#" class="btn btn-default">Nachhaltige <br>Raumentwicklung<br></a>
+                <a href="#" class="btn btn-default">Umwelt <br>&<br>Energie</a>
+            </div>
+            <br>
             <div class="filterArea well well-sm">
                 <span>SUCHEN NACH... </span>
                 <input class="form-control" ng-init="conditions = {}" ng-model="conditions.condition"
@@ -160,6 +174,32 @@
         <a href="mailto:info@quartierzukunft.de" target="_blank" class="btn btn-danger">
         <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
         </a>
+        <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        </button>
+        <button ng-if="admin"
+                class="btn btn-warning"
+                ng-csv="csvExport()"
+                filename="QZ-DB-export.csv"
+                field-separator=";"
+                decimal-separator=","
+                add-bom="true"
+                lazy-load="true"
+                csv-header="config.POIAttributes">
+            CSV-Export
+        </button>
+        <ng-csv-import ng-show="admin"
+                       class="csvImport"
+                       content="null"
+                       header="false"
+                       headerVisible="false"
+                       separator=";"
+                       result="csvResult"
+                       accept="'.csv'"
+                       encoding="'ISO-8859-1'"
+                       encodingVisible="true">
+        </ng-csv-import>
+
 
     </div>
 </div>
