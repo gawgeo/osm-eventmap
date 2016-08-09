@@ -13,6 +13,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.markers = []; // Markers-Array
       $scope.bouncing = false; // Bouncing-Boolean
       $scope.csvResult = null; // csv-Import Variable
+      $scope.conditions = {};
 
       // CONFIG loading
       databaseService.getConfig().then(function (res) {
@@ -272,7 +273,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       // filter view
       $scope.filter = function (conditions) {
+          console.log(conditions);
           $scope.redPOIs = $filter('poiFilter')($scope.POIs, conditions);
+          console.log($scope.redPOIs);
           createLayer($scope.redPOIs);
       };
 

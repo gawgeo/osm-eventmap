@@ -80,11 +80,16 @@
                 <img src="http://www.quartierzukunft.de/wp-content/themes/quartier/assets/images/logos/QZ_Logo-B@x2.png">
             </a>
             <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
-            <br></br>
+            <br>
             <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
             <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-default">NACHHALTIGE<br>MOBILITÄT</a>
-                <a href="#" class="btn btn-default">NACHHALTIGES<br>WIRTSCHAFTEN<br></a>
+                <a href="#" class="btn btn-default categoryChooser"
+                   ng-model="conditions.category"
+                   ng-click="conditions.category = config.categories[0]; filter(conditions)"><div>{{config.categories[0].toUpperCase()}}</div>
+                </a>
+                <a href="#" class="btn btn-default"
+                   ng-model="conditions.category"
+                   ng-click="conditions.category = 'Nachhaltiges Wirtschaften'; filter(conditions)">NACHHALTIGES<br>WIRTSCHAFTEN<br></a>
                 <a href="#" class="btn btn-default">BILDUNG UND<br>WISSENSCHAFT</a>
             </div>
             <div class="btn-group btn-group-justified">
@@ -95,7 +100,7 @@
             <br>
             <div class="filterArea well well-sm">
                 <span>SUCHEN NACH... </span>
-                <input class="form-control" ng-init="conditions = {}" ng-model="conditions.condition"
+                <input class="form-control" ng-model="conditions.condition"
                                             ng-change="filter(conditions)">
                 <select class="categorySelect form-control" ng-model="conditions.category"
                         ng-change="filter(conditions)">
@@ -199,7 +204,5 @@
                        encoding="'ISO-8859-1'"
                        encodingVisible="true">
         </ng-csv-import>
-
-
     </div>
 </div>

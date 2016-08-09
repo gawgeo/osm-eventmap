@@ -266,6 +266,9 @@ html {
   width: 100%;
   font-family: 'Raleway', sans-serif;
 }
+.adminButton {
+  background-color: #3635b8;
+}
 .main {
   width: 100%;
   position: relative;
