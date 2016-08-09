@@ -83,26 +83,50 @@
             <br>
             <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
             <div class="btn-group btn-group-justified">
+                <a href="#" class="btn btn-info categoryChooser"
+                   ng-model="conditions.category"
+                   ng-click="conditions.category = config.categories[0]; filter(conditions)">
+                    <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
+                    NACHHALTIGE <br>MOBILITÄT
+                </a>
                 <a href="#" class="btn btn-default categoryChooser"
                    ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[0]; filter(conditions)"><div>{{config.categories[0].toUpperCase()}}</div>
+                   ng-click="conditions.category = config.categories[1]; filter(conditions)">
+                    <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
+                    NACHHALTIGES<br>WIRTSCHAFTEN
                 </a>
-                <a href="#" class="btn btn-default"
+                <a href="#" class="btn btn-success"
                    ng-model="conditions.category"
-                   ng-click="conditions.category = 'Nachhaltiges Wirtschaften'; filter(conditions)">NACHHALTIGES<br>WIRTSCHAFTEN<br></a>
-                <a href="#" class="btn btn-default">BILDUNG UND<br>WISSENSCHAFT</a>
+                   ng-click="conditions.category = config.categories[2]; filter(conditions)">
+                    <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
+                    BILDUNG UND<br>WISSENSCHAFT
+                </a>
             </div>
             <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-default">GEMEINSCHAFT<br>UND SOZIALES</a>
-                <a href="#" class="btn btn-default">UMWELT UND <br>RAUMENTWICKLUNG</a>
-                <a href="#" class="btn btn-default">ENERGIE UND <br>VERSORGUNG</a>
+                <a href="#" class="btn btn-warning categoryChooser" ng-model="conditions.category"
+                   ng-click="conditions.category = config.categories[3]; filter(conditions)">
+                    <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
+                    GEMEINSCHAFT<br>UND SOZIALES
+                </a>
+                <a href="#" class="btn btn-default categoryChooser" ng-model="conditions.category"
+                   ng-click="conditions.category = config.categories[4]; filter(conditions)">
+                    <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
+                    UMWELT UND<br>RAUMENTWICKLUNG
+                </a>
+                <a href="#" class="btn btn-danger"ng-model="conditions.category"
+                   ng-click="conditions.category = config.categories[5]; filter(conditions)">
+                    <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
+                    ENERGIE UND<br>VERSORGUNG
+
+                </a>
             </div>
             <br>
             <div class="filterArea well well-sm">
                 <span>SUCHEN NACH... </span>
                 <input class="form-control" ng-model="conditions.condition"
                                             ng-change="filter(conditions)">
-                <select class="categorySelect form-control" ng-model="conditions.category"
+
+                <!--<select class="categorySelect form-control" ng-model="conditions.category"
                         ng-change="filter(conditions)">
                     <option value="">Kategoriefilter auswählen</option>
                     <option ng-repeat="cat in config.categories" value="{{cat}}">{{cat}}</option>
@@ -116,7 +140,7 @@
                     <option value="in Planung">In Planung</option>
                     <option value="laufend">Laufend</option>
                     <option value="abgelaufen">Abgelaufen</option>
-                </select>
+                </select>-->
                 <button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Laufende Projekte!
                 </button>
