@@ -2,10 +2,10 @@
   "categories": [
     "Nachhaltige Mobilität",
     "Nachhaltiges Wirtschaften",
-    "Bildung & Wissenschaft",
-    "Bürgerengagement & Aktionen",
-    "Nachhaltige Raumentwicklung",
-    "Umwelt & Energie"
+    "Bildung und Wissenschaft",
+    "Gemeischaft und Soziales",
+    "Umwelt und Raumentwicklung",
+    "Energie und Versorgung"
   ],
   "rules": {
     "R1": "Menschliche Gesundheit schützen",
@@ -14,10 +14,10 @@
     "R4": "Gleiche Möglichkeiten der Nutzung der Umwelt für alle Menschen",
     "R5": "Übersteigerte Einkommens- und Vermögenssunterschiede ausgleichen",
     "R6": "Erneuerbare Rohstoffe und Energiequellen nachhaltig nutzen",
-    "R7": "Nicht erneuerbare rohstoffe und Energiequellen nachhaltig nutzen",
+    "R7": "Nicht erneuerbare Rohstoffe und Energiequellen nachhaltig nutzen",
     "R8": "Umwelt nutzen, ohne ihrer Aufnahmefähigkeit für schädliche Stoffe und Abwärme zu schaden",
     "R9": "Unvertretbare technische Risiken vermeiden",
-    "R10": "Sachwerte sowie Fähigkeiten und wissen nachhaltig entwickeln",
+    "R10": "Sachwerte sowie Fähigkeiten und Wissen nachhaltig entwickeln",
     "R11": "Chancengleichheit bei Bildung, Beruf und Ämtern und Informationen ermöglichen",
     "R12": "An gesellschaftlichen Entscheidungsvorgängen mitwirken können",
     "R13": "Kulturelles Erbe und kulturelle Vielfalt erhalten",
@@ -55,9 +55,9 @@
   "categoryColors": {
     "Nachhaltige Mobilität": "blue",
     "Nachhaltiges Wirtschaften": "orange",
-    "Bildung & Wissenschaft": "purple",
-    "Bürgerengagement & Aktionen": "grey",
-    "Nachhaltige Raumentwicklung": "yellow",
-    "Umwelt & Energie": "green"
+    "Bildung und Wissenschaft": "purple",
+    "Gemeischaft und Soziales": "grey",
+    "Umwelt und Raumentwicklung": "yellow",
+    "Energie und Versorgung": "green"
   }
 }

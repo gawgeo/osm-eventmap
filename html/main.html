@@ -1,7 +1,7 @@
 <div ng-controller="osmTestAppCtrl" class="main" xmlns:openNewWindow>
 
     <!-- Header, including csv-Up/Download -->
-    <div class="header">
+    <div class="header"><button class="btn btn-default btn-qz-blue">Test</button>
 
        <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
         <button ng-if="admin"
@@ -83,19 +83,19 @@
             <br>
             <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
             <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-info categoryChooser"
+                <a class="btn btn-default btn-qz-blue"
                    ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[0]; filter(conditions)">
                     <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
                     NACHHALTIGE <br>MOBILITÄT
                 </a>
-                <a href="#" class="btn btn-default categoryChooser"
+                <a href="#" class="btn btn-default btn-qz-orange"
                    ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[1]; filter(conditions)">
                     <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
                     NACHHALTIGES<br>WIRTSCHAFTEN
                 </a>
-                <a href="#" class="btn btn-success"
+                <a href="#" class="btn btn-default btn-qz-purple"
                    ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[2]; filter(conditions)">
                     <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
@@ -103,17 +103,17 @@
                 </a>
             </div>
             <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-warning categoryChooser" ng-model="conditions.category"
+                <a href="#" class="btn btn-default btn-qz-grey" ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[3]; filter(conditions)">
                     <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
                     GEMEINSCHAFT<br>UND SOZIALES
                 </a>
-                <a href="#" class="btn btn-default categoryChooser" ng-model="conditions.category"
+                <a href="#" class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[4]; filter(conditions)">
                     <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
                     UMWELT UND<br>RAUMENTWICKLUNG
                 </a>
-                <a href="#" class="btn btn-danger"ng-model="conditions.category"
+                <a href="#" class="btn btn-default btn-qz-green"ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[5]; filter(conditions)">
                     <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
                     ENERGIE UND<br>VERSORGUNG
@@ -197,7 +197,7 @@
 
     <!-- Footer -->
     <div class="footer">QuartierZukunft, ITAS, KIT.
-        <a href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-default" role="button" target="_blank">
+        <a href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-default" role="button" target="_blank" data-toggle="tooltip" title="Beispieltext QZ.">
             <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
         </a>
         <a href="mailto:info@quartierzukunft.de" target="_blank" class="btn btn-danger">
