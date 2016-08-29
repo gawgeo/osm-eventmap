@@ -14,6 +14,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.bouncing = false; // Bouncing-Boolean
       $scope.csvResult = null; // csv-Import Variable
       $scope.conditions = {};
+      $scope.backLinkClick = function () {
+          window.location.reload(false);
+      };
 
       // CONFIG loading
       databaseService.getConfig().then(function (res) {

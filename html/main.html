@@ -2,6 +2,7 @@
 
     <!-- Header, including csv-Up/Download -->
     <div class="header">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
        <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
         <button ng-if="admin"
                 class="btn btn-warning"
@@ -81,45 +82,59 @@
             <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
             <br>
             <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
+            <div class="filterArea well well-sm">
+                <span>KATEGORIE AUSWÄHLEN... </span>
             <div class="btn-group btn-group-justified">
-                <a class="btn btn-default btn-qz-blue"
+                <a class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
                    ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[0]; filter(conditions)">
                     <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
-                    NACHHALTIGE <br>MOBILITÄT
+                    <!--NACHHALTIGE <br>MOBILITÄT-->
+                    <i class="material-icons">directions_bike</i>
                 </a>
-                <a href="#" class="btn btn-default btn-qz-orange"
+                <a href="#" class="btn btn-default btn-qz-orange" title="Nachhaltiges Wirtschaften"
                    ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[1]; filter(conditions)">
                     <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
-                    NACHHALTIGES<br>WIRTSCHAFTEN
+                    <i class="material-icons">euro_symbol</i>
+                    <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
                 </a>
-                <a href="#" class="btn btn-default btn-qz-purple"
+                <a href="#" class="btn btn-default btn-qz-purple" title="Bildung und Wissenschaft"
                    ng-model="conditions.category"
                    ng-click="conditions.category = config.categories[2]; filter(conditions)">
                     <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
-                    BILDUNG UND<br>WISSENSCHAFT
+                    <i class="material-icons">school</i>
+                    <!--BILDUNG UND<br>WISSENSCHAFT-->
                 </a>
             </div>
             <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-default btn-qz-grey" ng-model="conditions.category"
+                <a href="#" class="btn btn-default btn-qz-grey" ng-model="conditions.category" title="Gemeinschaft und Soziales"
                    ng-click="conditions.category = config.categories[3]; filter(conditions)">
                     <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
-                    GEMEINSCHAFT<br>UND SOZIALES
+                    <i class="material-icons">people</i>
+                    <!--GEMEINSCHAFT<br>UND SOZIALES-->
                 </a>
                 <a href="#" class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[4]; filter(conditions)">
+                   ng-click="conditions.category = config.categories[4]; filter(conditions)" title="Umwelt und Raumentwicklung">
                     <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
-                    UMWELT UND<br>RAUMENTWICKLUNG
+                    <i class="material-icons">nature</i>
+                    <!--UMWELT UND<br>RAUMENTWICKLUNG-->
                 </a>
                 <a href="#" class="btn btn-default btn-qz-green"ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[5]; filter(conditions)">
+                   ng-click="conditions.category = config.categories[5]; filter(conditions)" title="Energie und Versorgung">
                     <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
-                    ENERGIE UND<br>VERSORGUNG
+                    <i class="material-icons">flash_on</i>
+                    <!--ENERGIE UND<br>VERSORGUNG-->
 
                 </a>
             </div>
-            <br>
+                <br>
+                <button class="btn btn-default center-block" title="Filter zurücksetzen">
+                    <i class="material-icons">refresh</i>
+
+                    <!--Filter zurücksetzen-->
+                </button>
+                </div>
             <div class="filterArea well well-sm">
                 <span>SUCHEN NACH... </span>
                 <input class="form-control" ng-model="conditions.condition"
@@ -146,6 +161,9 @@
             </div>
 
             <uib-accordion close-others="true">
+                <span>
+                    <h4>Points of Interest</h4>
+                </span>
                     <uib-accordion-group
                             ng-repeat="POI in POIs | poiFilter:conditions"
                             heading="{{POI.title}}"
