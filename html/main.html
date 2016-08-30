@@ -3,7 +3,7 @@
     <!-- Header, including csv-Up/Download -->
     <div class="header">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-       <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
+        <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
         <button ng-if="admin"
                 class="btn btn-warning"
                 ng-csv="csvExport()"
@@ -14,9 +14,6 @@
                 lazy-load="true"
                 csv-header="config.POIAttributes">
             CSV-Export
-        </button>
-        <button class="btn btn-default" ng-model="addNew" ng-click="addNew = !addNew">
-            {{addNew}}
         </button>
 
         <ng-csv-import ng-show="admin"
@@ -30,12 +27,12 @@
                        encoding="'ISO-8859-1'"
                        encodingVisible="true">
         </ng-csv-import>
-
     </div>
 
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
-        <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!</button>
+        <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!
+        </button>
         <!-- Hier geht der Filter los
         <div class="filterArea well well-sm" draggable>
             <span>Filter: </span><input class="form-control" ng-init="conditions = {}" ng-model="conditions.condition"
@@ -58,17 +55,21 @@
             <button class="bounceMarkerButton btn btn-warning" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Laufende Projekte!</button>
         </div> -->
         <div id="simpleMap"></div>
-        <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false" ng-style="showCalendar && {'width': '60%'}">
-            <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i class="glyphicon glyphicon-calendar"></i></button>
+        <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false"
+             ng-style="showCalendar && {'width': '60%'}">
+            <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
             <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
     </div>
 
     <!-- INFO Area, displaying PointOfInterests, newPoi form -->
-    <div class="infoArea" ng-model="showSidebar" ng-init="showSidebar = true" ng-class="{'showSidebar': showSidebar, 'hideSidebar': !showSidebar}">
+    <div class="infoArea" ng-model="showSidebar" ng-init="showSidebar = true"
+         ng-class="{'showSidebar': showSidebar, 'hideSidebar': !showSidebar}">
         <button class="sidebarToggle" ng-click="showSidebar = !showSidebar">
             <i ng-class="{'glyphicon glyphicon-chevron-right': showSidebar,  'glyphicon glyphicon-chevron-left': !showSidebar} "></i>
         </button>
+
         <div ng-if="formToggle">
             <new-poi temp-marker="tempMarker"
                      save-poi="savePOI"
@@ -79,6 +80,8 @@
                      delete-event="deleteEvent">
             </new-poi>
         </div>
+
+
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
             <a title="Auf zur QZ Homepage!" target="_blank" href="http://quartierzukunft.de">
                 <img src="http://www.quartierzukunft.de/wp-content/themes/quartier/assets/images/logos/QZ_Logo-B@x2.png">
@@ -88,65 +91,70 @@
             <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
             <div class="filterArea well well-sm">
                 <span>KATEGORIE AUSWÄHLEN... </span>
-            <div class="btn-group btn-group-justified">
-                <a class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
-                   ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[0]; filter(conditions)">
-                    <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
-                    <!--NACHHALTIGE <br>MOBILITÄT-->
-                    <i class="material-icons">directions_bike</i>
-                </a>
-                <a href="#" class="btn btn-default btn-qz-orange" title="Nachhaltiges Wirtschaften"
-                   ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[1]; filter(conditions)">
-                    <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
-                    <i class="material-icons">euro_symbol</i>
-                    <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
-                </a>
-                <a href="#" class="btn btn-default btn-qz-purple" title="Bildung und Wissenschaft"
-                   ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[2]; filter(conditions)">
-                    <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
-                    <i class="material-icons">school</i>
-                    <!--BILDUNG UND<br>WISSENSCHAFT-->
-                </a>
-            </div>
-            <div class="btn-group btn-group-justified">
-                <a href="#" class="btn btn-default btn-qz-grey" ng-model="conditions.category" title="Gemeinschaft und Soziales"
-                   ng-click="conditions.category = config.categories[3]; filter(conditions)">
-                    <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
-                    <i class="material-icons">people</i>
-                    <!--GEMEINSCHAFT<br>UND SOZIALES-->
-                </a>
-                <a href="#" class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[4]; filter(conditions)" title="Umwelt und Raumentwicklung">
-                    <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
-                    <i class="material-icons">nature</i>
-                    <!--UMWELT UND<br>RAUMENTWICKLUNG-->
-                </a>
-                <a href="#" class="btn btn-default btn-qz-green"ng-model="conditions.category"
-                   ng-click="conditions.category = config.categories[5]; filter(conditions)" title="Energie und Versorgung">
-                    <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
-                    <i class="material-icons">flash_on</i>
-                    <!--ENERGIE UND<br>VERSORGUNG-->
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
+                       ng-model="conditions.category"
+                       ng-click="conditions.category = config.categories[0]; filter(conditions)">
+                        <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
+                        <!--NACHHALTIGE <br>MOBILITÄT-->
+                        <i class="material-icons">directions_bike</i>
+                    </a>
+                    <a href="#" class="btn btn-default btn-qz-orange" title="Nachhaltiges Wirtschaften"
+                       ng-model="conditions.category"
+                       ng-click="conditions.category = config.categories[1]; filter(conditions)">
+                        <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
+                        <i class="material-icons">euro_symbol</i>
+                        <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
+                    </a>
+                    <a href="#" class="btn btn-default btn-qz-purple" title="Bildung und Wissenschaft"
+                       ng-model="conditions.category"
+                       ng-click="conditions.category = config.categories[2]; filter(conditions)">
+                        <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
+                        <i class="material-icons">school</i>
+                        <!--BILDUNG UND<br>WISSENSCHAFT-->
+                    </a>
+                </div>
+                <div class="btn-group btn-group-justified">
+                    <a href="#" class="btn btn-default btn-qz-grey" ng-model="conditions.category"
+                       title="Gemeinschaft und Soziales"
+                       ng-click="conditions.category = config.categories[3]; filter(conditions)">
+                        <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
+                        <i class="material-icons">people</i>
+                        <!--GEMEINSCHAFT<br>UND SOZIALES-->
+                    </a>
+                    <a href="#" class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
+                       ng-click="conditions.category = config.categories[4]; filter(conditions)"
+                       title="Umwelt und Raumentwicklung">
+                        <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
+                        <i class="material-icons">nature</i>
+                        <!--UMWELT UND<br>RAUMENTWICKLUNG-->
+                    </a>
+                    <a href="#" class="btn btn-default btn-qz-green" ng-model="conditions.category"
+                       ng-click="conditions.category = config.categories[5]; filter(conditions)"
+                       title="Energie und Versorgung">
+                        <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
+                        <i class="material-icons">flash_on</i>
+                        <!--ENERGIE UND<br>VERSORGUNG-->
 
-                </a>
-            </div>
+                    </a>
+                </div>
                 <br>
-                <button class="btn btn-default center-block" title="Filter zurücksetzen" ng-click="conditions.category = null; filter(conditions)">
+                <button class="btn btn-default center-block" title="Filter zurücksetzen"
+                        ng-click="conditions.category = null; filter(conditions)">
                     <i class="material-icons">refresh</i>
                     <!--Filter zurücksetzen-->
                 </button>
                 <br>
-                <button class="btn btn-default center-block" ng-model="addNew" ng-click="addNew = !addNew">
+                <button class="btn btn-default center-block" ng-model="$parent.addNew" ng-click="$parent.addNew = !$parent.addNew">
                     <i class="material-icons">add_location</i>
                     {{addNew}}
                 </button>
-                </div>
+            </div>
+
             <div class="filterArea well well-sm">
                 <span>SUCHEN NACH... </span>
                 <input class="form-control" ng-model="conditions.condition"
-                                            ng-change="filter(conditions)">
+                       ng-change="filter(conditions)">
 
                 <!--<select class="categorySelect form-control" ng-model="conditions.category"
                         ng-change="filter(conditions)">
@@ -163,8 +171,9 @@
                     <option value="laufend">Laufend</option>
                     <option value="abgelaufen">Abgelaufen</option>
                 </select>-->
-                <button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Laufende Projekte!
+                <button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}"
+                        ng-click="currentMarkerBouncingToggle()">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Laufende Projekte!
                 </button>
             </div>
 
@@ -172,61 +181,63 @@
                 <span>
                     <h4>Points of Interest</h4>
                 </span>
-                    <uib-accordion-group
-                            ng-repeat="POI in POIs | poiFilter:conditions"
-                            heading="{{POI.title}}"
-                            is-open="status[POI.id]"
-                            ng-click="selectPOI(POI)"
-                            panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}"
-                            scroll-top>
-                        <dl>
-                            <div ng-if="POI.category">
-                                <dt>Kategorie</dt>
-                                <dd>{{POI.category}}</dd>
-                            </div>
-                            <div ng-if="POI.startDate">
-                                <dt>Beginn</dt>
-                                <dd>{{POI.startDate | date:'dd.MM.yyyy hh:mm'}}</dd>
-                            </div>
-                            <div ng-if="POI.endDate">
-                                <dt>Ende</dt>
-                                <dd>{{POI.endDate | date:'dd.MM.yyyy HH:mm'}}</dd>
-                            </div>
-                            <div ng-if="POI.status">
-                                <dt>Status</dt>
-                                <dd>{{POI.status}}</dd>
-                            </div>
-                        </dl>
-                        <div ng-if="POI.description" class="poiDescription">
-                            <dt>Beschreibung</dt>
-                            <br>
-                            <span>{{POI.description}} <a href="{{POI.link}}">Weitere Informationen...</a></span>
+                <uib-accordion-group
+                        ng-repeat="POI in POIs | poiFilter:conditions"
+                        heading="{{POI.title}}"
+                        is-open="status[POI.id]"
+                        ng-click="selectPOI(POI)"
+                        panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}"
+                        scroll-top>
+                    <dl>
+                        <div ng-if="POI.category">
+                            <dt>Kategorie</dt>
+                            <dd>{{POI.category}}</dd>
                         </div>
-                        <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>
-                        <ul class="rules">
-                            <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
-                                {{rule}}
-                            </li>
-                        </ul>
-                        <span class="rulesHeadline">Termine:</span>
-                        <ul class="rules">
-                            <li class="rule" ng-repeat="event in eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true">
-                                <span>{{event.title}}</span>
-                            </li>
-                        </ul>
-                        <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">
-                    </uib-accordion-group>
-                </uib-accordion>
+                        <div ng-if="POI.startDate">
+                            <dt>Beginn</dt>
+                            <dd>{{POI.startDate | date:'dd.MM.yyyy hh:mm'}}</dd>
+                        </div>
+                        <div ng-if="POI.endDate">
+                            <dt>Ende</dt>
+                            <dd>{{POI.endDate | date:'dd.MM.yyyy HH:mm'}}</dd>
+                        </div>
+                        <div ng-if="POI.status">
+                            <dt>Status</dt>
+                            <dd>{{POI.status}}</dd>
+                        </div>
+                    </dl>
+                    <div ng-if="POI.description" class="poiDescription">
+                        <dt>Beschreibung</dt>
+                        <br>
+                        <span>{{POI.description}} <a href="{{POI.link}}">Weitere Informationen...</a></span>
+                    </div>
+                    <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>
+                    <ul class="rules">
+                        <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
+                            {{rule}}
+                        </li>
+                    </ul>
+                    <span class="rulesHeadline">Termine:</span>
+                    <ul class="rules">
+                        <li class="rule"
+                            ng-repeat="event in eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true">
+                            <span>{{event.title}}</span>
+                        </li>
+                    </ul>
+                    <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">
+                </uib-accordion-group>
+            </uib-accordion>
         </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">QuartierZukunft, ITAS, KIT.
-        <a href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-default" role="button" target="_blank" data-toggle="tooltip" title="Beispieltext QZ.">
+        <a href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-default" role="button"
+           target="_blank" data-toggle="tooltip" title="Beispieltext QZ.">
             <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
         </a>
         <a href="mailto:info@quartierzukunft.de" target="_blank" class="btn btn-danger">
-        <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
         </a>
         <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>

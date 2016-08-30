@@ -275,15 +275,19 @@ html {
   background-color: orange;
 }
 .btn-qz-purple {
+  background-image: none;
   background-color: purple;
 }
 .btn-qz-grey {
+  background-image: none;
   background-color: grey;
 }
 .btn-qz-yellow {
+  background-image: none;
   background-color: yellow;
 }
 .btn-qz-green {
+  background-image: none;
   background-color: green;
 }
 .main {
