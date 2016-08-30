@@ -14,6 +14,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.bouncing = false; // Bouncing-Boolean
       $scope.csvResult = null; // csv-Import Variable
       $scope.conditions = {};
+      $scope.addNew = false;
       $scope.backLinkClick = function () {
           window.location.reload(false);
       };
@@ -113,6 +114,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       // Map-Funktionalität
       // add one marker by click
       map.on('click', function newPoi(event) {
+          if ($scope.addNew === false) {
+              return;
+          }
           if ($scope.tempMarker) {
               map.removeLayer($scope.tempMarker);
           }

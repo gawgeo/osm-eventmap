@@ -26,7 +26,9 @@
                        encoding="'ISO-8859-1'"
                        encodingVisible="true">
         </ng-csv-import>
-
+        <button class="btn btn-default" ng-model="addNew" ng-click="addNew = !addNew">
+            {{addNew}}
+        </button>
     </div>
 
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
@@ -129,9 +131,8 @@
                 </a>
             </div>
                 <br>
-                <button class="btn btn-default center-block" title="Filter zurücksetzen">
+                <button class="btn btn-default center-block" title="Filter zurücksetzen" ng-click="conditions.category = null; filter(conditions)">
                     <i class="material-icons">refresh</i>
-
                     <!--Filter zurücksetzen-->
                 </button>
                 </div>
