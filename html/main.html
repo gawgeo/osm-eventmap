@@ -15,6 +15,10 @@
                 csv-header="config.POIAttributes">
             CSV-Export
         </button>
+        <button class="btn btn-default" ng-model="addNew" ng-click="addNew = !addNew">
+            {{addNew}}
+        </button>
+
         <ng-csv-import ng-show="admin"
                        class="csvImport"
                        content="null"
@@ -26,9 +30,7 @@
                        encoding="'ISO-8859-1'"
                        encodingVisible="true">
         </ng-csv-import>
-        <button class="btn btn-default" ng-model="addNew" ng-click="addNew = !addNew">
-            {{addNew}}
-        </button>
+
     </div>
 
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
@@ -134,6 +136,11 @@
                 <button class="btn btn-default center-block" title="Filter zurücksetzen" ng-click="conditions.category = null; filter(conditions)">
                     <i class="material-icons">refresh</i>
                     <!--Filter zurücksetzen-->
+                </button>
+                <br>
+                <button class="btn btn-default center-block" ng-model="addNew" ng-click="addNew = !addNew">
+                    <i class="material-icons">add_location</i>
+                    {{addNew}}
                 </button>
                 </div>
             <div class="filterArea well well-sm">
