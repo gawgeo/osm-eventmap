@@ -61,6 +61,7 @@
                     class="glyphicon glyphicon-calendar"></i></button>
             <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
+
     </div>
 
     <!-- INFO Area, displaying PointOfInterests, newPoi form -->
@@ -160,7 +161,7 @@
                         ng-change="filter(conditions)">
                     <option value="">Kategoriefilter auswählen</option>
                     <option ng-repeat="cat in config.categories" value="{{cat}}">{{cat}}</option>
-                </select>
+                </select>-->
                 <select class="ruleSelect form-control" ng-model="conditions.rule" ng-change="filter(conditions)">
                     <option value="">Regelfilter auswählen</option>
                     <option ng-repeat="(short, rule) in config.rules" value="{{short}}">{{rule}}</option>
@@ -170,7 +171,7 @@
                     <option value="in Planung">In Planung</option>
                     <option value="laufend">Laufend</option>
                     <option value="abgelaufen">Abgelaufen</option>
-                </select>-->
+                </select>
                 <button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}"
                         ng-click="currentMarkerBouncingToggle()">
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Laufende Projekte!

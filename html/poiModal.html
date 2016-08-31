@@ -1,13 +1,15 @@
 <div class="newPOIWrapper">
-    <h3 class="newPOIHeadline" ng-bind="POI.id ? 'Marker updaten' : 'Neuen Marker anlegen'"></h3>
+    <h3 class="newPOIHeadline" ng-bind="POI.id ? 'Marker updaten' : 'Eintrag hinzufügen'"></h3>
     <div class="modal-body newPOI">
         <div class="form-group">
             <div class="attrRow">
-                <label for="title" class="control-label">Name des PoI:</label>
-                <input class="form-control title" ng-model="POI.title" id="title" placeholder="Titel des POI eingeben" type="text">
+                <!--<label for="title" class="control-label">Titel:</label>-->
+                <!--<br>-->
+                <input class="form-control title" ng-model="POI.title" id="title" placeholder="Titel" type="text">
                 <div class="POIPosition dropdown">
                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <img src="../img/marker-icon-blue.png">
+                        <i class="material-icons">my_location</i>
+                        <!--<img src="../img/marker-icon-blue.png">-->
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
@@ -22,7 +24,7 @@
                 </div>
             </div>
             <div class="attrRow">
-                <label for="POICategory" class="control-label">Nachhaltigkeitskategorie:</label>
+                <!--<label for="POICategory" class="control-label">Nachhaltigkeitskategorie:</label>-->
                 <select class="form-control dropdown-toggle POICategory" ng-model="POI.category" id="POICategory">
                     <option value="">Nachhaltigkeitskategorie wählen</option>
                     <option ng-repeat="cat in config.categories">{{cat}}</option>
@@ -30,7 +32,7 @@
             </div>
 
             <div class="attrRow">
-                <label for="POIRules" class="control-label">Nachhaltigkeitsregeln:</label>
+                <!--<label for="POIRules" class="control-label">Nachhaltigkeitsregeln:</label>-->
                 <div class="POIRules dropdown" id="POIRules">
                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         Nachhaltigkeitsregeln festlegen
@@ -48,12 +50,12 @@
                 </div>
             </div>
             <div class="attrRow">
-                <label for="message-text" class="control-label">Beschreibung:</label>
-                <textarea class="form-control" id="message-text" ng-model="POI.description" placeholder="Tragen Sie hier eine Beschreibung ein..."></textarea>
+                <!--<label for="message-text" class="control-label">Beschreibung:</label>-->
+                <textarea class="form-control" id="message-text" ng-model="POI.description" placeholder="Beschreibung"></textarea>
             </div>
             <div class="attrRow POIDate">
                 <div id="dateTime" class="dateTimeWrapper">
-                    <label for="startDate" class="control-label">Beginn des Projekts (optional):</label>
+                    <label for="startDate" class="control-label">Beginn:</label>
                     <div datetimepicker ng-model="POI.startDate"
                                     id="startDate"
                                     class="dateTimepicker"
@@ -61,7 +63,7 @@
                                     date-options="{}"
                                     show-meridian="false">
                     </div>
-                    <label for="endDate" class="control-label">Ende des Projekts (optional):</label>
+                    <label for="endDate" class="control-label">Ende:</label>
                     <div datetimepicker ng-model="POI.endDate"
                                     id="endDate"
                                     class="dateTimepicker"
@@ -72,16 +74,19 @@
                 </div>
             </div>
             <div class="attrRow POIDate">
-                <label for="POILink" class="control-label">Link:</label>
-                <input class="form-control POILink" id="POILink" type="text" ng-model="POI.link">
+                <!--<label for="POILink" class="control-label">Link:</label>-->
+                <input class="form-control POILink" id="POILink" placeholder="URL mit weiteren Informationen" type="text" ng-model="POI.link">
             </div>
             <div class="attrRow ">
-                <label for="POIImgLink" class="control-label">Bild-Link:</label>
-                <input class="form-control POIImgLink" id="POIImgLink" type="text" ng-model="POI.imagePath">
+                <!--<label for="POIImgLink" class="control-label">Bild-Link:</label>-->
+                <input class="form-control POIImgLink" id="POIImgLink" placeholder="Bild-Link" type="text" ng-model="POI.imagePath">
             </div>
         </div>
-        <label for="dateTime">Projekt-Termine hinzufügen:
-            <button ng-click="addEvent()" class="btn eventAddButton"><i class="glyphicon glyphicon-plus"></i></button>
+        <label for="dateTime">
+            <button ng-click="addEvent()" class="btn eventAddButton" title="Neuen Kalendereintrag hinzufügen.">
+                <i class="material-icons">add_alert</i>
+                <!--<i class="glyphicon glyphicon-plus"></i>-->
+            </button>
             <ul class="eventList">
                 <li ng-repeat="e in events">
                     <span>{{e.title}} - {{e.start | date:'dd.MM.yyyy hh:mm'}}</span><button class="btn eventDeleteButton" ng-click="delete(e)"><i class="glyphicon glyphicon-trash"></i></button>
@@ -92,8 +97,8 @@
 
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="save(POI)">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary" type="button" ng-click="save(POI)">Speichern</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Abbrechen</button>
     </div>
 </div>
 
