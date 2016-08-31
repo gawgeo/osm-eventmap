@@ -4,6 +4,12 @@
     <div class="header">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
+
+        <button class="btn btn-default btn-info"
+                ng-if="admin"
+                ng-click="seed()"> Seed
+        </button>
+
         <button ng-if="admin"
                 class="btn btn-warning"
                 ng-csv="csvExport()"

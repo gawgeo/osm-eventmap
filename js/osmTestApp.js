@@ -1,6 +1,6 @@
 angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.directives', 'osmTestApp.filters','ui.bootstrap', 'ui.bootstrap.datetimepicker', 'ui.calendar', 'ngCsv', 'ngCsvImport'])
   //use strict
-  .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $timeout, $uibModal, databaseService, iconService, csvService) {
+  .controller('osmTestAppCtrl', function ($scope, $filter, $compile, $document, $timeout, $uibModal, databaseService, iconService, csvService, seedService) {
       console.log("OSM-Test App running!");
       // Variabels
       $scope.admin = false; // Admin-Boolean toggle
@@ -278,12 +278,21 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           });
       }
 
+
       // filter view
       $scope.filter = function (conditions) {
           console.log(conditions);
           $scope.redPOIs = $filter('poiFilter')($scope.POIs, conditions);
           console.log($scope.redPOIs);
           createLayer($scope.redPOIs);
+      };
+
+      // Seed
+      $scope.seed = function () {
+          seedService.seed().then(function() {
+              updateView();
+              updateCalendar();
+          })
       };
 
       // CSV-Export

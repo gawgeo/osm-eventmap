@@ -238,10 +238,10 @@ angular.module('osmTestApp.services', [])
               csv.pop();
               var headers = csv.shift();
               var splittedHeaders = headers['0'].split("\t");
-              csv.forEach(function(poi) {
+              csv.forEach(function (poi) {
                   var splittedPoi = poi['0'].split("\t");
                   var newPoi = {};
-                  for (var i = 0; i<splittedHeaders.length; i++) {
+                  for (var i = 0; i < splittedHeaders.length; i++) {
                       newPoi[splittedHeaders[i]] = splittedPoi[i];
                   }
                   newPois.push(newPoi);
@@ -249,7 +249,7 @@ angular.module('osmTestApp.services', [])
           }
           // save POIs to Database
           var databasePromises = [];
-          newPois.forEach(function(poi) {
+          newPois.forEach(function (poi) {
               var deferred = $q.defer();
               if (poi.lng && poi.lat) {
                   poi.lng = poi.lng.replace(/,/g, '.');
@@ -268,9 +268,40 @@ angular.module('osmTestApp.services', [])
               }
               databasePromises.push(deferred);
           });
-          $q.all(databasePromises).then(function() {
+          $q.all(databasePromises).then(function () {
               importFinished.resolve();
           });
           return importFinished.promise;
       };
+  }])
+
+  .service('seedService', ['$http', '$q', 'databaseService', function ($http, $q, databaseService) {
+      this.seed = function () {
+          return $http.get('./TestSeed.json').then(function (response) {
+              var testData = response.data;
+              console.log("SEED DATABASE", testData);
+              var seedFinished = $q.defer();
+              var databasePromises = [];
+              testData.pois.forEach(function (poi) {
+                  var deferred = $q.defer();
+                  databaseService.savePOI(poi).then(function () {
+                      console.log("savedPoi", poi);
+                      deferred.resolve();
+                  });
+                  databasePromises.push(deferred);
+              });
+              testData.events.forEach(function (event) {
+                  var deferred = $q.defer();
+                  databaseService.saveEvent(event, event.pointsOfInterest_id).then(function () {
+                      console.log("savedEvent", event);
+                      deferred.resolve();
+                  });
+                  databasePromises.push(deferred);
+              });
+              $q.all(databasePromises).then(function () {
+                  seedFinished.resolve();
+              });
+              return seedFinished.promise;
+          });
+      }
   }]);
