@@ -9,7 +9,7 @@ var db = new sqlite3.Database(file);
 
 db.serialize(function() {
     console.log("SEED DATABASE");
-    testData.forEach(function(poi) {
+    testData.pois.forEach(function(poi) {
         db.run("INSERT OR IGNORE INTO PointsOfInterest (title, lng, lat, category, description, link, hasEvents, startDate, endDate, imagePath, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12, R13, R14, R15) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
           [
               poi['title'],
@@ -44,10 +44,29 @@ db.serialize(function() {
 
               }
               else {
-                  console.log("SAVED!");
+                  console.log("SAVED POI!");
               }
           });
 
+    });
+    testData.events.forEach(function(event) {
+        db.run("INSERT OR IGNORE INTO Events(title, start, end, allDay, pointsOfInterest_id) VALUES (?,?,?,?,?)",
+          [
+              event['title'],
+              event['start'],
+              event['end'],
+              event['allDay'],
+              event['pointsOfInterest_id']
+          ],
+          function(err){
+              if (err){
+                  console.log(err);
+
+              }
+              else {
+                  console.log("SAVED EVENT!");
+              }
+          });
     })
 });
 
