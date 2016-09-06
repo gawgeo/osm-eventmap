@@ -152,7 +152,10 @@
                     <!--Filter zurücksetzen-->
                 </button>
                 <br>
-                <button class="btn btn-default center-block" ng-model="$parent.addNew" ng-click="$parent.addNew = !$parent.addNew">
+                <button class="btn btn-default center-block"
+                        ng-model="$parent.addNew"
+                        ng-click="$parent.addNew = !$parent.addNew"
+                        ng-class="{addNewActive: addNew == true}">
                     <i class="material-icons">add_location</i>
                     {{addNew}}
                 </button>
