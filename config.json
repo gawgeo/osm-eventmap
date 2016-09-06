@@ -54,10 +54,10 @@
   ],
   "categoryColors": {
     "Nachhaltige Mobilität": "qz-blue",
-    "Nachhaltiges Wirtschaften": "orange",
-    "Bildung und Wissenschaft": "purple",
-    "Gemeinschaft und Soziales": "grey",
-    "Umwelt und Raumentwicklung": "yellow",
-    "Energie und Versorgung": "green"
+    "Nachhaltiges Wirtschaften": "qz-red",
+    "Bildung und Wissenschaft": "qz-purple",
+    "Gemeinschaft und Soziales": "qz-grey",
+    "Umwelt und Raumentwicklung": "qz-yellow",
+    "Energie und Versorgung": "qz-green"
   }
 }

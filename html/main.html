@@ -157,7 +157,7 @@
                         ng-click="$parent.addNew = !$parent.addNew"
                         ng-class="{addNewActive: addNew == true}">
                     <i class="material-icons">add_location</i>
-                    {{addNew}}
+                    <!--{{addNew}}-->
                 </button>
             </div>
 
@@ -189,7 +189,7 @@
 
             <uib-accordion close-others="true">
                 <span>
-                    <h4>Points of Interest - {{filteredPOIs.length}}</h4>
+                    <h4>Points of Interest - {{filteredPOIs.length}} Treffer</h4>
                 </span>
                 <uib-accordion-group
                         ng-repeat="POI in filteredPOIs = (POIs | poiFilter:conditions)"
