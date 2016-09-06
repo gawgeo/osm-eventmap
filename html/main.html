@@ -189,10 +189,10 @@
 
             <uib-accordion close-others="true">
                 <span>
-                    <h4>Points of Interest</h4>
+                    <h4>Points of Interest - {{filteredPOIs.length}}</h4>
                 </span>
                 <uib-accordion-group
-                        ng-repeat="POI in POIs | poiFilter:conditions"
+                        ng-repeat="POI in filteredPOIs = (POIs | poiFilter:conditions)"
                         heading="{{POI.title}}"
                         is-open="status[POI.id]"
                         ng-click="selectPOI(POI)"
@@ -227,10 +227,10 @@
                             {{rule}}
                         </li>
                     </ul>
-                    <span class="rulesHeadline">Termine:</span>
+                    <span class="rulesHeadline" ng-if="filteredEvents.length > 0">Termine:</span>
                     <ul class="rules">
                         <li class="rule"
-                            ng-repeat="event in eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true">
+                            ng-repeat="event in filteredEvents = (eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true)">
                             <span>{{event.title}}</span>
                         </li>
                     </ul>

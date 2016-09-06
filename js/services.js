@@ -222,7 +222,6 @@ angular.module('osmTestApp.services', [])
               shadowSize: [68, 95]
           });
       }
-
   })
 
   .service('csvService', ['databaseService', '$q', function (databaseService, $q) {
