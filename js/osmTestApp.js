@@ -101,7 +101,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
         [49.020961, 8.430853],
         [49.024893, 8.423720],
         [49.032331, 8.410987]
-      ], {fill: true, fillOpacity:0.1, color: "red", clickable: false, weight: 2});
+      ], {fill: false, color: "red", clickable: false, weight: 2});
       map.addLayer(oststadtPolygon);
       // Layer controls
       var overlay = {
