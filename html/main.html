@@ -282,27 +282,5 @@
         <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
         </button>
-        <button ng-if="admin"
-                class="btn btn-warning"
-                ng-csv="csvExport()"
-                filename="QZ-DB-export.csv"
-                field-separator=";"
-                decimal-separator=","
-                add-bom="true"
-                lazy-load="true"
-                csv-header="config.POIAttributes">
-            CSV-Export
-        </button>
-        <ng-csv-import ng-show="admin"
-                       class="csvImport"
-                       content="null"
-                       header="false"
-                       headerVisible="false"
-                       separator=";"
-                       result="csvResult"
-                       accept="'.csv'"
-                       encoding="Windows-1255"
-                       encodingVisible="true">
-        </ng-csv-import>
     </div>
 </div>
