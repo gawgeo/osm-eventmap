@@ -50,11 +50,28 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       
       // OPEN STREET MAPS imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-      var osm2Url = 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
       var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
       var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
-      var osm2 = new L.TileLayer(osm2Url, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
 
+      //zusäzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
+      var map2Url = 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
+      var map2Attrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+      var map2 = new L.TileLayer(map2Url, {minZoom: 5, maxZoom: 18, attribution: map2Attrib});
+
+      //zusätzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
+      var map3Url = 'http://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png';
+      var map3Attrib = 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+      var map3 = new L.TileLayer(map3Url, {minZoom: 5, maxZoom: 18, attribution: map3Attrib});
+
+      //zusätzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
+      var map4Url = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png';
+      var map4Attrib = 'Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+      var map4 = new L.TileLayer(map4Url, {minZoom: 5, maxZoom: 18, attribution: map4Attrib});
+
+      //zusätzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
+      var map5Url = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+      var map5Attrib = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+      var map5 = new L.TileLayer(map5Url, {minZoom: 5, maxZoom: 18, attribution: map5Attrib});
 
       // create map with center in Karlsruhe
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
@@ -123,11 +140,15 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
         [49.032331, 8.410987]
       ], {fill: false, color: "red", clickable: false, weight: 2});
       map.addLayer(oststadtPolygon);
+
       // Layer controls
 
       var baseMaps = {
-          "osm": osm,
-          "osm2": osm2
+          "Open Street Map": osm,
+          "Radfahrerkarte": map2,
+          "Hydda": map3,
+          "Stamen Toner": map4,
+          "ESRI World Imagery": map5
       };
       var overlay = {
           "Points of Interest": markerGroup,

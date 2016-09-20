@@ -340,10 +340,6 @@ html {
     width: 100%;
   }
 }
-.main .header .importBlock {
-  display: inline-block;
-  padding-right: 2em;
-}
 .main .header button {
   float: right;
   margin-left: 5px;
