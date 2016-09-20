@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     // Load Grunt tasks declared in the package.json file
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-node-auto-deploy');
 
     // Configure Grunt
     grunt.initConfig({
@@ -24,6 +25,26 @@ module.exports = function(grunt) {
             }
         },
 
+        // auto deploy
+        node_auto_deploy: {
+            options: {
+                url: '141.52.52.181',
+                alias: ['http://itas-intranet.itas.kit.edu/'],
+                conf: true,
+                command: 'npm install bower install node server.js',
+                port: '22',
+                path: '/var/www/projects/osm-test-app/',
+                git: 'git@bitbucket.org:tobias_domnik/osm-test-app.git',
+                branch: 'master',
+                ssh: 'tobias@141.52.52.181',
+                before: [
+                    'echo hello'
+                ],
+                then: [
+                    'grunt build'
+                ]
+            }
+        },
         // grunt-watch will monitor the projects files
         watch: {
             src: {

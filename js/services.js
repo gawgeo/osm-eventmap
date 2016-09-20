@@ -236,9 +236,9 @@ angular.module('osmTestApp.services', [])
           if (csv) {
               csv.pop();
               var headers = csv.shift();
-              var splittedHeaders = headers['0'].split("\t");
+              var splittedHeaders = headers['0'].split(";");
               csv.forEach(function (poi) {
-                  var splittedPoi = poi['0'].split("\t");
+                  var splittedPoi = poi['0'].split(";");
                   var newPoi = {};
                   for (var i = 0; i < splittedHeaders.length; i++) {
                       newPoi[splittedHeaders[i]] = splittedPoi[i];
