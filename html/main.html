@@ -12,30 +12,57 @@
                 ng-if="admin"
                 ng-click="seed()"> Seed
         </button>
+        <div class="importBlock" ng-if="admin">
+            <span>POIs: </span>
+            <ng-csv-import ng-show="admin"
+                           class="csvImport"
+                           content="null"
+                           header="false"
+                           headerVisible="false"
+                           separator=";"
+                           result="csvResult"
+                           accept="'.csv'"
+                           encoding="'ISO-8859-1'"
+                           encodingVisible="true">
+            </ng-csv-import>
+            <button ng-if="admin"
+                    class="btn btn-warning"
+                    ng-csv="csvPoiExport()"
+                    filename="QZ-POI-export.csv"
+                    field-separator=";"
+                    decimal-separator=","
+                    add-bom="true"
+                    lazy-load="true"
+                    csv-header="config.POIAttributes">
+                CSV-Export
+            </button>
+        </div>
+        <div class="importBlock" ng-if="admin">
+            <span>EVENTs: </span>
+            <ng-csv-import ng-show="admin"
+                           class="csvImport"
+                           content="null"
+                           header="false"
+                           headerVisible="false"
+                           separator=";"
+                           result="csvResult"
+                           accept="'.csv'"
+                           encoding="'ISO-8859-1'"
+                           encodingVisible="true">
+            </ng-csv-import>
+            <button ng-if="admin"
+                    class="btn btn-warning"
+                    ng-csv="csvEventExport()"
+                    filename="QZ-EVENT-export.csv"
+                    field-separator=";"
+                    decimal-separator=","
+                    add-bom="true"
+                    lazy-load="true"
+                    csv-header="config.EVENTAttributes">
+                CSV-Export
+            </button>
 
-        <button ng-if="admin"
-                class="btn btn-warning"
-                ng-csv="csvExport()"
-                filename="QZ-DB-export.csv"
-                field-separator=";"
-                decimal-separator=","
-                add-bom="true"
-                lazy-load="true"
-                csv-header="config.POIAttributes">
-            CSV-Export
-        </button>
-
-        <ng-csv-import ng-show="admin"
-                       class="csvImport"
-                       content="null"
-                       header="false"
-                       headerVisible="false"
-                       separator=";"
-                       result="csvResult"
-                       accept="'.csv'"
-                       encoding="'ISO-8859-1'"
-                       encodingVisible="true">
-        </ng-csv-import>
+        </div>
     </div>
 
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
@@ -274,7 +301,7 @@
                        separator=";"
                        result="csvResult"
                        accept="'.csv'"
-                       encoding="'ISO-8859-1'"
+                       encoding="Windows-1255"
                        encodingVisible="true">
         </ng-csv-import>
     </div>

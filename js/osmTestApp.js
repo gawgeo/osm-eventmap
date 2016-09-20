@@ -50,8 +50,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       
       // OPEN STREET MAPS imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+      var osm2Url = 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
       var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
       var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
+      var osm2 = new L.TileLayer(osm2Url, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
+
 
       // create map with center in Karlsruhe
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
@@ -121,11 +124,16 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       ], {fill: false, color: "red", clickable: false, weight: 2});
       map.addLayer(oststadtPolygon);
       // Layer controls
+
+      var baseMaps = {
+          "osm": osm,
+          "osm2": osm2
+      };
       var overlay = {
           "Points of Interest": markerGroup,
           "Oststadt": oststadtPolygon
       };
-      L.control.layers([], overlay, {position: 'bottomleft'}).addTo(map);
+      L.control.layers(baseMaps, overlay, {position: 'bottomleft'}).addTo(map);
 
 
       // Map-Funktionalität
@@ -313,8 +321,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       };
 
       // CSV-Export
-      $scope.csvExport = function () {
-          return csvService.csvExport();
+      $scope.csvPoiExport = function () {
+          return csvService.csvPoiExport();
+      };
+      $scope.csvEventExport = function () {
+          return csvService.csvEventExport();
       };
       // CSV-Import
       $scope.$watch("csvResult", function(res) {
