@@ -340,17 +340,14 @@ html {
     width: 100%;
   }
 }
-.main .header .importBlock {
-  display: inline-block;
-  padding-right: 2em;
-}
-.main .header button {
+.main .header button,
+.main .header .importBlock,
+.main .header .csvImport {
   float: right;
-  margin-left: 5px;
+  margin-left: 20px;
 }
 .main .header .csvImport {
   color: white;
-  float: right;
   margin-left: 5px;
   height: 34px;
   border: solid #46b8da 1px;

@@ -129,6 +129,19 @@ server.get('/getPOIJson', function(req, res){
         }
     });
 });
+// Get EVENTSs to JSON (for csv-Export)
+server.get('/getEventsJson', function(req, res){
+    exporter.json('select * FROM Events', function (err, json) {
+        if (err){
+            console.log(err);
+            res.status(400);
+        }
+        else {
+            console.log(json);
+            res.send(json);
+        }
+    });
+});
 
 // Server Event Communication
 // Add new Event
@@ -141,7 +154,7 @@ server.post('/saveEvent', function(req, res){
               res.status(500);
           }
           else {
-              console.log("SAVED NEW EVENT!");
+              console.log("SAVED NEW EVENT!", req.body['pointsOfInterest_id']);
               res.status(202);
           }
           res.end();

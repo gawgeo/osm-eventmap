@@ -52,6 +52,14 @@
     "R14",
     "R15"
   ],
+  "EVENTAttributes": [
+    "id",
+    "title",
+    "start",
+    "end",
+    "allDay",
+    "pointsOfInterest_id"
+  ],
   "categoryColors": {
     "Nachhaltige Mobilität": "qz-blue",
     "Nachhaltiges Wirtschaften": "qz-red",

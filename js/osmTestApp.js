@@ -12,7 +12,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.status = {}; // active Marker status
       $scope.markers = []; // Markers-Array
       $scope.bouncing = false; // Bouncing-Boolean
-      $scope.csvResult = null; // csv-Import Variable
+      $scope.csvPoiResult = null; // csv-Import Variable
+      $scope.csvEventResult = null; // csv-Import Variable
       $scope.conditions = {};
       $scope.addNew = false;
       $scope.backLinkClick = function () {
@@ -242,6 +243,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           databaseService.savePOI(newPOI).then(function (res) {
               $scope.formToggle = false;
               events.forEach(function(event) {
+                  console.log("type of ", typeof (res.data.id));
                   $scope.saveEvent(event, res.data.id);
               });
               updateCalendar();
@@ -328,10 +330,20 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           return csvService.csvEventExport();
       };
       // CSV-Import
-      $scope.$watch("csvResult", function(res) {
-          csvService.importCsv(res).then(function() {
+      $scope.$watch("csvPoiResult", function(res) {
+          csvService.importPoiCsv(res).then(function() {
               $scope.csvResult = null;
               updateView();
+          });
+      });
+
+      $scope.$watch("csvEventResult", function(res) {
+          databaseService.deleteAllEvents().then(function() {
+              csvService.importEventCsv(res).then(function() {
+                  $scope.csvResult = null;
+                  updateView();
+                  updateCalendar();
+              });
           });
       });
 
