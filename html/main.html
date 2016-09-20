@@ -3,6 +3,9 @@
     <!-- Header, including csv-Up/Download -->
     <div class="header">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--<link rel="stylesheet" href="http://k4r573n.github.io/leaflet-control-osm-geocoder/Control.OSMGeocoder.css" />-->
+        <!--<script src="http://k4r573n.github.io/leaflet-control-osm-geocoder/Control.OSMGeocoder.js"></script>-->
+
         <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
 
         <button class="btn btn-default btn-info"
@@ -197,7 +200,7 @@
                         is-open="status[POI.id]"
                         ng-click="selectPOI(POI)"
                         panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}"
-                        scroll-top>
+                        <!--scroll-top-->>
                     <dl>
                         <div ng-if="POI.category">
                             <dt>Kategorie</dt>

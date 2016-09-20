@@ -52,10 +52,27 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
       var osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
       var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
+
       // create map with center in Karlsruhe
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
       map.addLayer(osm); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
+      map.locate({setView: true, maxZoom: 16});
+      function onLocationFound(e) {
+          var radius = e.accuracy / 2;
+
+          L.marker(e.latlng).addTo(map)
+              .bindPopup("Sie befinden sich im Umkreis von " + radius + " Metern.").openPopup();
+
+          L.circle(e.latlng, radius).addTo(map);
+      }
+
+      map.on('locationfound', onLocationFound);
+      function onLocationError(e) {
+          alert(e.message);
+      }
+
+      map.on('locationerror', onLocationError);
       // Marker-Gruppen
       var markerGroup = L.layerGroup();
       var oststadtPolygon = new L.Polygon([
