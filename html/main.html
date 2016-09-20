@@ -196,11 +196,6 @@
                 <input class="form-control" ng-model="conditions.condition"
                        ng-change="filter(conditions)">
 
-                <!--<select class="categorySelect form-control" ng-model="conditions.category"
-                        ng-change="filter(conditions)">
-                    <option value="">Kategoriefilter auswählen</option>
-                    <option ng-repeat="cat in config.categories" value="{{cat}}">{{cat}}</option>
-                </select>-->
                 <select class="ruleSelect form-control" ng-model="conditions.rule" ng-change="filter(conditions)">
                     <option value="">Regelfilter auswählen</option>
                     <option ng-repeat="(short, rule) in config.rules" value="{{short}}">{{rule}}</option>
@@ -226,8 +221,8 @@
                         heading="{{POI.title}}"
                         is-open="status[POI.id]"
                         ng-click="selectPOI(POI)"
-                        panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}"
-                        <!--scroll-top-->>
+                        panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}">
+                        <!--scroll-top-->
                     <dl>
                         <div ng-if="POI.category">
                             <dt>Kategorie</dt>
