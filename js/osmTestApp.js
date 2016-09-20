@@ -81,10 +81,8 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       map.locate({setView: true, maxZoom: 16});
       function onLocationFound(e) {
           var radius = e.accuracy / 2;
-
           L.marker(e.latlng).addTo(map)
               .bindPopup("Sie befinden sich im Umkreis von " + radius + " Metern.").openPopup();
-
           L.circle(e.latlng, radius).addTo(map);
       }
 
@@ -143,7 +141,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       map.addLayer(oststadtPolygon);
 
       // Layer controls
-
       var baseMaps = {
           "Open Street Map": osm,
           "Radfahrerkarte": map2,
@@ -156,7 +153,6 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
           "Oststadt": oststadtPolygon
       };
       L.control.layers(baseMaps, overlay, {position: 'bottomleft'}).addTo(map);
-
 
       // Map-Funktionalität
       // add one marker by click
