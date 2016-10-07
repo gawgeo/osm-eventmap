@@ -76,7 +76,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       // create map with center in Karlsruhe
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
-      map.addLayer(osm); // Layer server hinzufügen
+      map.addLayer(map3); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
       map.locate({setView: true, maxZoom: 16});
       function onLocationFound(e) {
@@ -142,9 +142,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
       // Layer controls
       var baseMaps = {
+          "Hydda": map3,
           "Open Street Map": osm,
           "Radfahrerkarte": map2,
-          "Hydda": map3,
           "Stamen Toner": map4,
           "ESRI World Imagery": map5
       };

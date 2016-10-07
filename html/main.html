@@ -88,10 +88,22 @@
         </div> -->
         <div id="simpleMap"></div>
         <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false"
-             ng-style="showCalendar && {'width': '60%'}">
-            <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i
-                    class="glyphicon glyphicon-calendar"></i></button>
-            <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+                    ng-style="showCalendar && {'width': '60%'}">
+        <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i
+                class="glyphicon glyphicon-calendar"></i></button>
+        <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+        </div>
+        //Testbutton auf der Maparea. Hat keine Funktionalität!
+        <div class="well well-sm btnOnMap">
+            <button class="btn btn-default"
+                    title="Neuen Ort hinzufügen"
+                    ng-model="$parent.addNew"
+                    ng-click="$parent.addNew = !$parent.addNew"
+                    ng-class="{addNewActive: addNew == true}">
+                <i class="material-icons">add_location</i>
+                <!--{{addNew}}-->
+            </button>
+
         </div>
 
     </div>
@@ -117,7 +129,7 @@
 
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
             <a title="Auf zur QZ Homepage!" target="_blank" href="http://quartierzukunft.de">
-                <img src="img/qz.png">
+                <img src="img/qz.png" height="250" width="250">
             </a>
             <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
             <br>
@@ -172,23 +184,24 @@
                     </a>
                 </div>
                 <br>
-                <button class="btn btn-default center-block" title="Filter zurücksetzen"
+                <button class="btn btn-default center-block" title="Kategoriefilter zurücksetzen"
                         ng-click="conditions.category = null; filter(conditions)">
                     <i class="material-icons">refresh</i>
                     <!--Filter zurücksetzen-->
                 </button>
                 <br>
                 <button class="btn btn-default center-block"
+                        title="Neuen Ort hinzufügen"
                         ng-model="$parent.addNew"
                         ng-click="$parent.addNew = !$parent.addNew"
                         ng-class="{addNewActive: addNew == true}">
                     <i class="material-icons">add_location</i>
                     <!--{{addNew}}-->
                 </button>
-            </div>
+            <!--</div>
 
-            <div class="filterArea well well-sm">
-                <span>SUCHEN NACH... </span>
+            <div class="filterArea well well-sm">-->
+                <span>SUCHEN IM TITEL NACH... </span>
                 <input class="form-control" ng-model="conditions.condition"
                        ng-change="filter(conditions)">
 
@@ -200,12 +213,13 @@
                     <option value="">Statusfilter auswählen</option>
                     <option value="in Planung">In Planung</option>
                     <option value="laufend">Laufend</option>
-                    <option value="abgelaufen">Abgelaufen</option>
+                    <option value="abgelaufen">Abgeschlossen</option>
+                    //Hier habe ich nur den Text "Abgelaufen" in "Abgeschlossen" geändert. Der Value bleibt immernoch der selbe
                 </select>
-                <button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}"
+                <!--<button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}"
                         ng-click="currentMarkerBouncingToggle()">
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Laufende Projekte!
-                </button>
+                </button>-->
             </div>
 
             <uib-accordion close-others="true">
@@ -217,8 +231,9 @@
                         heading="{{POI.title}}"
                         is-open="status[POI.id]"
                         ng-click="selectPOI(POI)"
-                        panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}">
-                    <!--scroll-top-->
+                        panel-class="{{(POI.id === selectedPOI.id) ? 'panel-info' : 'panel-default'}}"
+                        scroll-top>
+
                     <dl>
                         <div ng-if="POI.category">
                             <dt>Kategorie</dt>
