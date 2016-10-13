@@ -65,27 +65,78 @@
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!
         </button>
-        <!-- Hier geht der Filter los
-        <div class="filterArea well well-sm" draggable>
-            <span>Filter: </span><input class="form-control" ng-init="conditions = {}" ng-model="conditions.condition"
-                                        ng-change="filter(conditions)">
-            <select class="categorySelect form-control" ng-model="conditions.category"
-                    ng-change="filter(conditions)">
-                <option value="">Kategoriefilter auswählen</option>
-                <option ng-repeat="cat in config.categories" value="{{cat}}">{{cat}}</option>
-            </select>
-            <select class="ruleSelect form-control" ng-model="conditions.rule" ng-change="filter(conditions)">
-                <option value="">Regelfilter auswählen</option>
-                <option ng-repeat="(short, rule) in config.rules" value="{{short}}">{{rule}}</option>
-            </select>
-            <select class="ruleSelect form-control" ng-model="conditions.status" ng-change="filter(conditions)">
-                <option value="">Statusfilter auswählen</option>
-                <option value="in Planung">In Planung</option>
-                <option value="laufend">Laufend</option>
-                <option value="abgelaufen">Abgelaufen</option>
-            </select>
-            <button class="bounceMarkerButton btn btn-warning" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Laufende Projekte!</button>
-        </div> -->
+        <!-- Hier geht der Filter los-->
+
+        <div class="well well-sm btnOnMap" draggable>
+            <div class="btn-group">
+                <div class="btn-group">
+                    <button class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
+                            ng-model="conditions.category"
+                            ng-click="conditions.category = config.categories[0]; filter(conditions)">
+                        <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
+                        <!--NACHHALTIGE <br>MOBILITÄT-->
+                        <i class="material-icons">directions_bike</i>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-default btn-qz-red" title="Nachhaltiges Wirtschaften"
+                            ng-model="conditions.category"
+                            ng-click="conditions.category = config.categories[1]; filter(conditions)">
+                        <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
+                        <i class="material-icons">euro_symbol</i>
+                        <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-default btn-qz-purple" title="Bildung und Wissenschaft"
+                            ng-model="conditions.category"
+                            ng-click="conditions.category = config.categories[2]; filter(conditions)">
+                        <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
+                        <i class="material-icons">school</i>
+                        <!--BILDUNG UND<br>WISSENSCHAFT-->
+                    </button>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-default btn-qz-grey" ng-model="conditions.category"
+                            title="Gemeinschaft und Soziales"
+                            ng-click="conditions.category = config.categories[3]; filter(conditions)">
+                        <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
+                        <i class="material-icons">people</i>
+                        <!--GEMEINSCHAFT<br>UND SOZIALES-->
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
+                            ng-click="conditions.category = config.categories[4]; filter(conditions)"
+                            title="Umwelt und Raumentwicklung">
+                        <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
+                        <i class="material-icons">nature</i>
+                        <!--UMWELT UND<br>RAUMENTWICKLUNG-->
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-default btn-qz-green" ng-model="conditions.category"
+                            ng-click="conditions.category = config.categories[5]; filter(conditions)"
+                            title="Energie und Versorgung">
+                        <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
+                        <i class="material-icons">flash_on</i>
+                        <!--ENERGIE UND<br>VERSORGUNG-->
+                    </button>
+                </div>
+            </div>
+            <button class="btn btn-default"
+                    title="Neuen Ort hinzufügen"
+                    ng-model="addNew"
+                    ng-click="addNew = !addNew"
+                    ng-class="{addNewActive: addNew == true}">
+                <i class="material-icons">add_location</i>
+                <!--{{addNew}}-->
+            </button>
+            <!--<button class="bounceMarkerButton btn btn-warning" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Laufende Projekte!</button>-->
+        </div>
+
+
         <div id="simpleMap"></div>
         <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false"
                     ng-style="showCalendar && {'width': '60%'}">
@@ -93,18 +144,18 @@
                 class="glyphicon glyphicon-calendar"></i></button>
         <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
-        //Testbutton auf der Maparea. Hat keine Funktionalität!
-        <div class="well well-sm btnOnMap">
+        <!--auf der Maparea. mit btOnMap nacher im CSS stylen-->
+        <!--<div class="well well-sm btnOnMap">
             <button class="btn btn-default"
                     title="Neuen Ort hinzufügen"
-                    ng-model="$parent.addNew"
-                    ng-click="$parent.addNew = !$parent.addNew"
+                    ng-model="addNew"
+                    ng-click="addNew = !addNew"
                     ng-class="{addNewActive: addNew == true}">
                 <i class="material-icons">add_location</i>
-                <!--{{addNew}}-->
+
             </button>
 
-        </div>
+        </div>-->
 
     </div>
 
@@ -137,51 +188,62 @@
             <div class="filterArea well well-sm">
                 <span>KATEGORIE AUSWÄHLEN... </span>
                 <div class="btn-group btn-group-justified">
-                    <a class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
-                       ng-model="conditions.category"
-                       ng-click="conditions.category = config.categories[0]; filter(conditions)">
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
+                        ng-model="conditions.category"
+                        ng-click="conditions.category = config.categories[0]; filter(conditions)">
                         <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
                         <!--NACHHALTIGE <br>MOBILITÄT-->
                         <i class="material-icons">directions_bike</i>
-                    </a>
-                    <a href="#" class="btn btn-default btn-qz-red" title="Nachhaltiges Wirtschaften"
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                    <button class="btn btn-default btn-qz-red" title="Nachhaltiges Wirtschaften"
                        ng-model="conditions.category"
                        ng-click="conditions.category = config.categories[1]; filter(conditions)">
                         <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
                         <i class="material-icons">euro_symbol</i>
                         <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
-                    </a>
-                    <a href="#" class="btn btn-default btn-qz-purple" title="Bildung und Wissenschaft"
+                    </button>
+                        </div>
+                    <div class="btn-group">
+                    <button class="btn btn-default btn-qz-purple" title="Bildung und Wissenschaft"
                        ng-model="conditions.category"
                        ng-click="conditions.category = config.categories[2]; filter(conditions)">
                         <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
                         <i class="material-icons">school</i>
                         <!--BILDUNG UND<br>WISSENSCHAFT-->
-                    </a>
+                    </button>
+                        </div>
                 </div>
                 <div class="btn-group btn-group-justified">
-                    <a href="#" class="btn btn-default btn-qz-grey" ng-model="conditions.category"
+                    <div class="btn-group">
+                    <button class="btn btn-default btn-qz-grey" ng-model="conditions.category"
                        title="Gemeinschaft und Soziales"
                        ng-click="conditions.category = config.categories[3]; filter(conditions)">
                         <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
                         <i class="material-icons">people</i>
                         <!--GEMEINSCHAFT<br>UND SOZIALES-->
-                    </a>
-                    <a href="#" class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
+                    </button>
+                        </div>
+                    <div class="btn-group">
+                    <button class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
                        ng-click="conditions.category = config.categories[4]; filter(conditions)"
                        title="Umwelt und Raumentwicklung">
                         <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
                         <i class="material-icons">nature</i>
                         <!--UMWELT UND<br>RAUMENTWICKLUNG-->
-                    </a>
-                    <a href="#" class="btn btn-default btn-qz-green" ng-model="conditions.category"
+                    </button>
+                        </div>
+                    <div class="btn-group">
+                    <button class="btn btn-default btn-qz-green" ng-model="conditions.category"
                        ng-click="conditions.category = config.categories[5]; filter(conditions)"
                        title="Energie und Versorgung">
                         <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
                         <i class="material-icons">flash_on</i>
                         <!--ENERGIE UND<br>VERSORGUNG-->
-
-                    </a>
+                    </button>
+                        </div>
                 </div>
                 <br>
                 <button class="btn btn-default center-block" title="Kategoriefilter zurücksetzen"
@@ -190,14 +252,16 @@
                     <!--Filter zurücksetzen-->
                 </button>
                 <br>
-                <button class="btn btn-default center-block"
+
+                <!--<button class="btn btn-default center-block"
                         title="Neuen Ort hinzufügen"
                         ng-model="$parent.addNew"
                         ng-click="$parent.addNew = !$parent.addNew"
                         ng-class="{addNewActive: addNew == true}">
                     <i class="material-icons">add_location</i>
-                    <!--{{addNew}}-->
-                </button>
+
+                </button>-->
+
             <!--</div>
 
             <div class="filterArea well well-sm">-->
