@@ -55,9 +55,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       var osm = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 18, attribution: osmAttrib});
 
       //zusäzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
-      var map2Url = 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
-      var map2Attrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-      var map2 = new L.TileLayer(map2Url, {minZoom: 5, maxZoom: 18, attribution: map2Attrib});
+      //var map2Url = 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
+      //var map2Attrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+      //var map2 = new L.TileLayer(map2Url, {minZoom: 5, maxZoom: 18, attribution: map2Attrib});
 
       //zusätzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
       var map3Url = 'http://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png';
@@ -65,9 +65,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       var map3 = new L.TileLayer(map3Url, {minZoom: 5, maxZoom: 18, attribution: map3Attrib});
 
       //zusätzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
-      var map4Url = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png';
-      var map4Attrib = 'Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
-      var map4 = new L.TileLayer(map4Url, {minZoom: 5, maxZoom: 18, attribution: map4Attrib});
+      //var map4Url = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png';
+      //var map4Attrib = 'Map tiles by <a href="http://stamen.com" target="_blank">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+      //var map4 = new L.TileLayer(map4Url, {minZoom: 5, maxZoom: 18, attribution: map4Attrib});
 
       //zusätzliche Hintergrundkarte hizufügen. Auf Attribution achten! // Layer control einfügen!
       var map5Url = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
@@ -144,9 +144,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       var baseMaps = {
           "Hydda": map3,
           "Open Street Map": osm,
-          "Radfahrerkarte": map2,
-          "Stamen Toner": map4,
-          "ESRI World Imagery": map5
+          "Satellitenbild": map5
       };
       var overlay = {
           "Points of Interest": markerGroup,

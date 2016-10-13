@@ -213,8 +213,8 @@
                     <option value="">Statusfilter auswählen</option>
                     <option value="in Planung">In Planung</option>
                     <option value="laufend">Laufend</option>
-                    <option value="abgelaufen">Abgeschlossen</option>
-                    //Hier habe ich nur den Text "Abgelaufen" in "Abgeschlossen" geändert. Der Value bleibt immernoch der selbe
+                    <option value="abgeschlossen">Abgeschlossen</option>
+                    //Feldwert in services.js geändert.
                 </select>
                 <!--<button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}"
                         ng-click="currentMarkerBouncingToggle()">
@@ -255,7 +255,7 @@
                     <div ng-if="POI.description" class="poiDescription">
                         <dt>Beschreibung</dt>
                         <br>
-                        <span>{{POI.description}} <a href="{{POI.link}}">Weitere Informationen...</a></span>
+                        <span>{{POI.description}} <a href="{{POI.link}}" target="_blank">Weitere Informationen (Externer Link)</a></span>
                     </div>
                     <span class="rulesHeadline">Nachhaltigkeitsregeln:</span>
                     <ul class="rules">

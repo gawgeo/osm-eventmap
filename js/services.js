@@ -60,7 +60,7 @@ angular.module('osmTestApp.services', [])
                       status = "in Planung";
                   }
                   if (Date.parse(POI.endDate) <= now) {
-                      status = "abgelaufen";
+                      status = "abgeschlossen";
                   }
                   if (Date.parse(POI.startDate) <= now && Date.parse(POI.endDate) >= now) {
                       status = "laufend";
