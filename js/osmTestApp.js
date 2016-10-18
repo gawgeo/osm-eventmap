@@ -148,7 +148,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       };
       var overlay = {
           "Points of Interest": markerGroup,
-          "Oststadt": oststadtPolygon
+          "Grenze der Oststadt": oststadtPolygon
       };
       L.control.layers(baseMaps, overlay, {position: 'bottomleft'}).addTo(map);
 
