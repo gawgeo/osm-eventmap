@@ -8,9 +8,13 @@ angular.module('osmTestApp.filters', [])
               if (conditions.condition && !(POI.title.toUpperCase().indexOf(conditions.condition.toUpperCase())  > -1)) {
                   res = false;
               }
-              if (conditions.category && POI.category !== conditions.category) {
+              if (conditions.categories.length > 0 && conditions.categories.indexOf(POI["category"]) === -1) {
                   res = false;
               }
+              /*
+              if (conditions.category && POI.category !== conditions.category) {
+                  res = false;
+              }*/
               if (conditions.rule && POI[conditions.rule] !== 1) {
                   res = false;
               }

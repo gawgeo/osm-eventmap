@@ -14,7 +14,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       $scope.bouncing = false; // Bouncing-Boolean
       $scope.csvPoiResult = null; // csv-Import Variable
       $scope.csvEventResult = null; // csv-Import Variable
-      $scope.conditions = {};
+      $scope.conditions = { categories: [] };
       $scope.addNew = false;
       $scope.backLinkClick = function () {
           window.location.reload(false);
@@ -47,7 +47,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               //content: "von:" + msgText
           });
       };
-      $scope.uiConfig = { calendar:{height: 450, editable: false, theme:false, eventClick: $scope.eventClick, eventRender:$scope.eventRender, header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
+      $scope.uiConfig = { calendar:{height: 450, editable: false, theme:false, eventClick: $scope.eventClick, eventRender:$scope.eventRender, lang:'de', header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
       
       // OPEN STREET MAPS imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -322,6 +322,14 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
 
 
       // filter view
+      $scope.setCatCondition = function (categoryCondition) {
+          if ($scope.conditions.categories.indexOf(categoryCondition) != -1) {
+              $scope.conditions.categories.splice($scope.conditions.categories.indexOf(categoryCondition),1)
+          } else {
+              $scope.conditions.categories.push(categoryCondition)
+          }
+          $scope.filter($scope.conditions);
+      };
       $scope.filter = function (conditions) {
           console.log(conditions);
           $scope.redPOIs = $filter('poiFilter')($scope.POIs, conditions);

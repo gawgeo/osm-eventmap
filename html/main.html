@@ -71,8 +71,9 @@
             <div class="btn-group">
                 <div class="btn-group">
                     <button class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
-                            ng-model="conditions.category"
-                            ng-click="conditions.category = config.categories[0]; filter(conditions)">
+                            ng-model="conditions.categories"
+                            ng-class="{'active': conditions.categories.indexOf(config.categories[0]) != -1}"
+                            ng-click="setCatCondition(config.categories[0])">
                         <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
                         <!--NACHHALTIGE <br>MOBILITÄT-->
                         <i class="material-icons">directions_bike</i>
@@ -80,8 +81,9 @@
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-default btn-qz-red" title="Nachhaltiges Wirtschaften"
-                            ng-model="conditions.category"
-                            ng-click="conditions.category = config.categories[1]; filter(conditions)">
+                            ng-model="conditions.categories"
+                            ng-class="{'active': conditions.categories.indexOf(config.categories[1]) != -1}"
+                            ng-click="setCatCondition(config.categories[1])">
                         <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
                         <i class="material-icons">euro_symbol</i>
                         <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
@@ -89,8 +91,9 @@
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-default btn-qz-purple" title="Bildung und Wissenschaft"
-                            ng-model="conditions.category"
-                            ng-click="conditions.category = config.categories[2]; filter(conditions)">
+                            ng-model="conditions.categories"
+                            ng-class="{'active': conditions.categories.indexOf(config.categories[2]) != -1}"
+                            ng-click="setCatCondition(config.categories[2])">
                         <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
                         <i class="material-icons">school</i>
                         <!--BILDUNG UND<br>WISSENSCHAFT-->
@@ -98,9 +101,10 @@
                 </div>
 
                 <div class="btn-group">
-                    <button class="btn btn-default btn-qz-grey" ng-model="conditions.category"
+                    <button class="btn btn-default btn-qz-grey" ng-model="conditions.categories"
                             title="Gemeinschaft und Soziales"
-                            ng-click="conditions.category = config.categories[3]; filter(conditions)">
+                            ng-class="{'active': conditions.categories.indexOf(config.categories[3]) != -1}"
+                            ng-click="setCatCondition(config.categories[3])">
                         <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
                         <i class="material-icons">people</i>
                         <!--GEMEINSCHAFT<br>UND SOZIALES-->
@@ -108,7 +112,8 @@
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-default btn-qz-yellow" ng-model="conditions.category"
-                            ng-click="conditions.category = config.categories[4]; filter(conditions)"
+                            ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
+                            ng-click="setCatCondition(config.categories[4])"
                             title="Umwelt und Raumentwicklung">
                         <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
                         <i class="material-icons">nature</i>
@@ -117,7 +122,8 @@
                 </div>
                 <div class="btn-group">
                     <button class="btn btn-default btn-qz-green" ng-model="conditions.category"
-                            ng-click="conditions.category = config.categories[5]; filter(conditions)"
+                            ng-click="setCatCondition(config.categories[5])"
+                            ng-class="{'active': conditions.categories.indexOf(config.categories[5]) != -1}"
                             title="Energie und Versorgung">
                         <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
                         <i class="material-icons">flash_on</i>
