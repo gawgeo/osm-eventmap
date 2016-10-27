@@ -71,9 +71,15 @@
   position: absolute;
   background-color: lightgrey;
   z-index: 200;
+  padding: 0;
+}
+.mapArea .onMapBottomRight {
   bottom: 30px;
   right: 10px;
-  padding: 0;
+}
+.mapArea .onMapTopRight {
+  top: 30px;
+  right: 10px;
 }
 .mapArea .filterOnMap {
   position: absolute;

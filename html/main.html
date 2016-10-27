@@ -1,4 +1,4 @@
-<div ng-controller="osmTestAppCtrl" class="main" xmlns:openNewWindow>
+<div ng-controller="osmTestAppCtrl" class="main" xmlns:openNewWindow xmlns="http://www.w3.org/1999/html">
 
     <!-- Header, including csv-Up/Download -->
     <div class="header">
@@ -65,17 +65,20 @@
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <button ng-if="admin" class="deleteButton btn btn-danger" ng-click="deleteAllPOIs()">Alle Marker löschen!
         </button>
+        <div class="well btnOnMap onMapTopRight">
+        <button class="btn btn-default disabled" title="Quartier Zukunft">
+            <span class="glyphicon glyphicon-sunglasses"></span>
+        </button>
+        </div>
         <!-- Hier geht der Filter los-->
 
-        <div class="well well-sm btnOnMap" draggable>
+        <div class="well well-sm btnOnMap onMapBottomRight" draggable>
             <div class="btn-group">
                 <div class="btn-group">
                     <button class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
                             ng-model="conditions.categories"
                             ng-class="{'active': conditions.categories.indexOf(config.categories[0]) != -1}"
                             ng-click="setCatCondition(config.categories[0])">
-                        <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
-                        <!--NACHHALTIGE <br>MOBILITÄT-->
                         <i class="material-icons">directions_bike</i>
                     </button>
                 </div>
@@ -84,9 +87,7 @@
                             ng-model="conditions.categories"
                             ng-class="{'active': conditions.categories.indexOf(config.categories[1]) != -1}"
                             ng-click="setCatCondition(config.categories[1])">
-                        <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
                         <i class="material-icons">euro_symbol</i>
-                        <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
                     </button>
                 </div>
                 <div class="btn-group">
@@ -94,9 +95,7 @@
                             ng-model="conditions.categories"
                             ng-class="{'active': conditions.categories.indexOf(config.categories[2]) != -1}"
                             ng-click="setCatCondition(config.categories[2])">
-                        <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
                         <i class="material-icons">school</i>
-                        <!--BILDUNG UND<br>WISSENSCHAFT-->
                     </button>
                 </div>
 
@@ -105,9 +104,7 @@
                             title="Gemeinschaft und Soziales"
                             ng-class="{'active': conditions.categories.indexOf(config.categories[3]) != -1}"
                             ng-click="setCatCondition(config.categories[3])">
-                        <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
                         <i class="material-icons">people</i>
-                        <!--GEMEINSCHAFT<br>UND SOZIALES-->
                     </button>
                 </div>
                 <div class="btn-group">
@@ -115,9 +112,7 @@
                             ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
                             ng-click="setCatCondition(config.categories[4])"
                             title="Umwelt und Raumentwicklung">
-                        <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
                         <i class="material-icons">nature</i>
-                        <!--UMWELT UND<br>RAUMENTWICKLUNG-->
                     </button>
                 </div>
                 <div class="btn-group">
@@ -125,9 +120,7 @@
                             ng-click="setCatCondition(config.categories[5])"
                             ng-class="{'active': conditions.categories.indexOf(config.categories[5]) != -1}"
                             title="Energie und Versorgung">
-                        <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
                         <i class="material-icons">flash_on</i>
-                        <!--ENERGIE UND<br>VERSORGUNG-->
                     </button>
                 </div>
             </div>
@@ -185,9 +178,7 @@
 
 
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
-            <a title="Auf zur QZ Homepage!" target="_blank" href="http://quartierzukunft.de">
-                <img src="img/qz.png" height="250" width="250">
-            </a>
+            <br>
             <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
             <br>
             <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
@@ -209,15 +200,13 @@
                 </select>
                 <br>
                 <span>KATEGORIE AUSWÄHLEN... </span>
+                <br>
                 <div class="btn-group btn-group-justified">
                     <div class="btn-group">
-                        <div class="btn-group">
                             <button class="btn btn-default btn-qz-blue" title="Nachhaltige Mobilität"
                                     ng-model="conditions.categories"
                                     ng-class="{'active': conditions.categories.indexOf(config.categories[0]) != -1}"
                                     ng-click="setCatCondition(config.categories[0])">
-                                <!--<div>{{config.categories[0].toUpperCase()}}</div>-->
-                                <!--NACHHALTIGE <br>MOBILITÄT-->
                                 <i class="material-icons">directions_bike</i>
                             </button>
                         </div>
@@ -226,9 +215,7 @@
                                     ng-model="conditions.categories"
                                     ng-class="{'active': conditions.categories.indexOf(config.categories[1]) != -1}"
                                     ng-click="setCatCondition(config.categories[1])">
-                                <!--<div>{{config.categories[1].toUpperCase()}}</div>-->
                                 <i class="material-icons">euro_symbol</i>
-                                <!--NACHHALTIGES<br>WIRTSCHAFTEN-->
                             </button>
                         </div>
                         <div class="btn-group">
@@ -236,20 +223,17 @@
                                     ng-model="conditions.categories"
                                     ng-class="{'active': conditions.categories.indexOf(config.categories[2]) != -1}"
                                     ng-click="setCatCondition(config.categories[2])">
-                                <!--<div>{{config.categories[2].toUpperCase()}}</div>-->
                                 <i class="material-icons">school</i>
-                                <!--BILDUNG UND<br>WISSENSCHAFT-->
                             </button>
                         </div>
-
-                        <div class="btn-group">
+                    </div>
+                <div class="btn-group  btn-group-justified">
+                    <div class="btn-group">
                             <button class="btn btn-default btn-qz-grey" ng-model="conditions.categories"
                                     title="Gemeinschaft und Soziales"
                                     ng-class="{'active': conditions.categories.indexOf(config.categories[3]) != -1}"
                                     ng-click="setCatCondition(config.categories[3])">
-                                <!--<div>{{config.categories[3].toUpperCase()}}</div>-->
                                 <i class="material-icons">people</i>
-                                <!--GEMEINSCHAFT<br>UND SOZIALES-->
                             </button>
                         </div>
                         <div class="btn-group">
@@ -257,9 +241,7 @@
                                     ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
                                     ng-click="setCatCondition(config.categories[4])"
                                     title="Umwelt und Raumentwicklung">
-                                <!--<div>{{config.categories[4].toUpperCase()}}</div>-->
                                 <i class="material-icons">nature</i>
-                                <!--UMWELT UND<br>RAUMENTWICKLUNG-->
                             </button>
                         </div>
                         <div class="btn-group">
@@ -267,21 +249,13 @@
                                     ng-click="setCatCondition(config.categories[5])"
                                     ng-class="{'active': conditions.categories.indexOf(config.categories[5]) != -1}"
                                     title="Energie und Versorgung">
-                                <!--<div>{{config.categories[5].toUpperCase()}}</div>-->
                                 <i class="material-icons">flash_on</i>
-                                <!--ENERGIE UND<br>VERSORGUNG-->
                             </button>
                         </div>
                     </div>
-
-                </div>
-                </select>
-                <!--<button class="bounceMarkerButton btn btn-warning center-block" ng-class="{'active': bouncing}"
-                        ng-click="currentMarkerBouncingToggle()">
-                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Laufende Projekte!
-                </button>-->
             </div>
 
+    <div class="filterArea">
             <uib-accordion close-others="true">
                 <span>
                     <h4>Orte der Nachhaltigkeit - {{filteredPOIs.length}} Treffer</h4>
@@ -333,6 +307,7 @@
                     <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">
                 </uib-accordion-group>
             </uib-accordion>
+                </div>
         </div>
     </div>
 
