@@ -14,6 +14,11 @@
   background-image: none;
   background-color: red;
 }
+.mapArea .active {
+  background-blend-mode: overlay;
+  border-color: transparent;
+  color: white;
+}
 .mapArea .deleteButton {
   position: relative;
   float: right;
@@ -114,6 +119,11 @@
   border-color: lightgrey;
   border-right: none;
   box-shadow: -4px 0 5px 0 #828282;
+}
+.infoArea .active {
+  background-blend-mode: overlay;
+  border-color: transparent;
+  color: white;
 }
 .infoArea .sidebarToggle:focus {
   outline: 0;
@@ -323,6 +333,11 @@ html {
   background-image: none;
   background-color: #76b729;
   text-shadow: none;
+}
+.active {
+  background-blend-mode: overlay;
+  border-color: transparent;
+  color: white;
 }
 .main {
   width: 100%;
