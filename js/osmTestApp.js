@@ -181,6 +181,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
                 '<button class="btn btn-warning" ng-if="admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
                 '<button class="btn btn-danger" ng-if="admin" ng-click="deleteThis()"><span class="glyphicon glyphicon-remove-circle"></span></button>' +
+                '<span class="markerPopup">' + POI.description + '</span>' +
                 '</div>'
               );
               var content = linkFn($scope);
