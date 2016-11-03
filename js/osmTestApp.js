@@ -87,11 +87,11 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       }
 
       map.on('locationfound', onLocationFound);
-      function onLocationError(e) {
-          alert(e.message);
-      }
+      //function onLocationError(e) {
+          //alert(e.message);
+      //}
 
-      map.on('locationerror', onLocationError);
+      //map.on('locationerror', onLocationError);
       // Marker-Gruppen
       var markerGroup = L.layerGroup();
       var oststadtPolygon = new L.Polygon([

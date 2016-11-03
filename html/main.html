@@ -72,7 +72,7 @@
         </div>
         <!-- Hier geht der Filter los-->
 
-        <div class="well well-sm btnOnMap onMapBottomRight" draggable>
+        <div class="well well-sm btnOnMap onMapBottomRight">
             <!--btn default wurde bei den buttons entfernt, damit bei hover nicht grau wird -->
             <div class="btn-group">
                 <div class="btn-group">
@@ -125,13 +125,19 @@
                     </button>
                 </div>
             </div>
-            <button class="btn btn-default"
+            <button class="btn btn-group">
+                <button class="btn btn-group btn-default"
                     title="Neuen Ort hinzufügen"
                     ng-model="addNew"
                     ng-click="addNew = !addNew"
                     ng-class="{addNewActive: addNew == true}">
                 <i class="material-icons">add_location</i>
                 <!--{{addNew}}-->
+                </button>
+                <button class="btn btn_group btn-default"
+                        title="Zeig meine Position!">
+                    <i class="material-icons">near_me</i>
+                </button>
             </button>
             <!--<button class="bounceMarkerButton btn btn-warning" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Laufende Projekte!</button>-->
         </div>
