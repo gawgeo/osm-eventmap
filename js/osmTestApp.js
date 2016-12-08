@@ -140,6 +140,9 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       ], {fill: false, color: "red", clickable: false, weight: 2});
       map.addLayer(oststadtPolygon);
 
+
+
+
       // Layer controls
       var baseMaps = {
           "Hydda": map3,
@@ -173,6 +176,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       });
       // Create Marker out of POIs
       function createLayer(POIs) {
+          markerGroup = L.markerClusterGroup();
           markerGroup.clearLayers();
           $scope.markers = [];
           POIs.forEach(function (POI) {
