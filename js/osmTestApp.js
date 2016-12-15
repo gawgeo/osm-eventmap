@@ -78,15 +78,16 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
       var map = new L.Map('simpleMap'); // Map in <div> element mit dem Namen 'simpleMap' laden
       map.addLayer(map3); // Layer server hinzufügen
       map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
-      map.locate({setView: true, maxZoom: 16});
-      function onLocationFound(e) {
-          var radius = e.accuracy / 2;
-          L.marker(e.latlng).addTo(map)
-              .bindPopup("Sie befinden sich im Umkreis von " + radius + " Metern.").openPopup();
-          L.circle(e.latlng, radius).addTo(map);
-      }
+      // Auskommentiert, da paket leaflet.locatecontrol installiert
+      //map.locate({setView: true, maxZoom: 16});
+      //function onLocationFound(e) {
+          //var radius = e.accuracy / 2;
+          //L.marker(e.latlng).addTo(map)
+            //  .bindPopup("Sie befinden sich im Umkreis von " + radius + " Metern.").openPopup();
+          //L.circle(e.latlng, radius).addTo(map);
+      //}
 
-      map.on('locationfound', onLocationFound);
+      //map.on('locationfound', onLocationFound);
       //function onLocationError(e) {
           //alert(e.message);
       //}
@@ -139,9 +140,23 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
         [49.032331, 8.410987]
       ], {fill: false, color: "red", clickable: false, weight: 2});
       map.addLayer(oststadtPolygon);
+      var osmGeocoder = new L.Control.OSMGeocoder({
+          collapsed: true,
+          position: 'topleft',
+          text: 'Adresse suchen',
+      });
+      osmGeocoder.addTo(map);
+      L.control.locate({
+          options: {
+          drawCircle: false,
+          showPopup: false,
+      },
+          strings: {
+          title: "Finde meine Position!"
 
+      }
 
-
+      }).addTo(map);
 
       // Layer controls
       var baseMaps = {
@@ -174,7 +189,7 @@ angular.module('osmTestApp', ['ngAnimate', 'osmTestApp.services', 'osmTestApp.di
               });
           }
       });
-      // Create Marker out of POIs
+      // Create Marker out of POIs. ClusterGroup geändert für MarkerCluster
       function createLayer(POIs) {
           markerGroup = L.markerClusterGroup();
           markerGroup.clearLayers();
