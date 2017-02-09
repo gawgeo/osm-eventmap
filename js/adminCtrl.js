@@ -3,7 +3,6 @@ var app = angular.module('osmTestApp.adminCtrl', [])
   .controller('adminCtrl', function ($scope, databaseService, csvService) {
       console.log("adminCtrl running!");
 
-
       // Seed
       $scope.seed = function () {
           seedService.seed().then(function() {

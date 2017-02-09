@@ -1,8 +1,7 @@
 angular.module('osmTestApp.filters', [])
   .filter('poiFilter', function(){
-
       return function(poiArray, conditions) {
-          console.log("filter ", poiArray, " by ", conditions);
+          //console.log("filter ", poiArray, " by ", conditions);
           var reduced = [];
           reduced = poiArray.filter(function(POI) {
               var res = true;

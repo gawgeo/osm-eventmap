@@ -31,6 +31,7 @@
     "angular-ui-calendar": "^1.0.1",
     "leaflet.locatecontrol": "^0.60.0",
     "leaflet.markercluster": "^1.0.3",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "angular-ui-router": "^0.4.2"
   }
 }

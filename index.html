@@ -29,6 +29,7 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-ui-bootstrap-datetimepicker/datetimepicker.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!-- Angular Calendar -->
     <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
@@ -51,7 +52,10 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- OSM-TestApp -->
-    <script src="js/services.js"></script>
+    <script src="js/databaseService.js"></script>
+    <script src="js/iconService.js"></script>
+    <script src="js/csvService.js"></script>
+    <script src="js/seedService.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/mainCtrl.js"></script>
@@ -61,7 +65,7 @@
 </head>
 
 <body>
-    <div ng-app="osmTestApp">
-        <div ng-include="'html/main.html'"></div>
+    <div ng-app="osmTestApp" ng-controller="osmTestAppCtrl">
+        <div ui-view></div>
     </div>
 </body>
