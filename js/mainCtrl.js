@@ -76,9 +76,10 @@ angular.module('osmApp.mainCtrl', [])
               var customIcon = iconService.getIcon($scope.config.categoryColors[POI.category] || 'qz-blue', POI.hasEvents);
               var linkFn = $compile(
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
-                '<button class="btn btn-warning" ng-if="$parent.admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
-                '<button class="btn btn-danger" ng-if="$parent.admin" ng-click="deleteThis()"><span class="glyphicon glyphicon-remove-circle"></span></button>' +
                 '<span class="markerPopup">' + POI.description + '</span>' +
+                '<div class="markerPopupAddDate"><button class="btn btn-link" ng-click="newSingleEvent('+ POI.id +')"><span class="glyphicon glyphicon-plus"></span><span>Termin hinzufügen</span></button>' +
+                '<button class="btn btn-warning pull-right" ng-if="$parent.admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
+                '<button class="btn btn-danger pull-right" ng-if="$parent.admin" ng-click="deleteThis()"><span class="glyphicon glyphicon-remove-circle"></span></button></div>' +
                 '</div>'
               );
               var content = linkFn($scope);
@@ -188,15 +189,50 @@ angular.module('osmApp.mainCtrl', [])
       $scope.saveEvent = function (event, poiID) {
           if (!event.id) {
               databaseService.saveEvent(event, poiID).then(function () {
-                  updateCalendar();
+                  $scope.updateView();
+                  $scope.updateCalendar();
               });
           }
+      };
+
+      // Neues Termin Model über Popup
+      $scope.newSingleEvent = function (POIid) {
+          var modalInstance = $uibModal.open({
+              animation: $scope.animationsEnabled,
+              templateUrl: 'html/eventModal.html',
+              size: "small",
+              controller: function ($scope, $uibModalInstance) {
+                  $scope.ok = function () {
+                      $uibModalInstance.close($scope.newEvent);
+                  };
+                  $scope.cancel = function () {
+                      $uibModalInstance.dismiss();
+                  };
+              },
+              resolve: {
+                  newEvent: function() {
+                      return {
+                          "title": "",
+                          "start": "",
+                          "end": "",
+                          "allDay": false,
+                          "url": ""
+                      }
+                  }
+              }
+          });
+          modalInstance.result.then(function (newEvent) {
+              $scope.saveEvent(newEvent, POIid);
+              console.log("Save new Event", newEvent, POIid);
+          }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+          });
       };
 
       // Termin löschen
       $scope.deleteEvent = function (event) {
           databaseService.deleteEvent(event).then(function () {
-              updateCalendar();
+              $scope.updateCalendar();
           });
       };
 
