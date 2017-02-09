@@ -78,7 +78,10 @@ var app = angular.module('osmApp.mapCtrl', [])
           [49.020961, 8.430853],
           [49.024893, 8.423720],
           [49.032331, 8.410987]
-      ], {fill: false, color: "red", clickable: false, weight: 2});
+      ], {
+          fill: false, color: "red",
+          clickable: false,
+          weight: 2});
       map.addLayer(oststadtPolygon);
 
       // Geocoder
@@ -110,6 +113,7 @@ var app = angular.module('osmApp.mapCtrl', [])
           "Points of Interest": markerGroup,
           "Grenze der Oststadt": oststadtPolygon
       };
-      L.control.layers(baseMaps, overlay, {position: 'bottomleft'}).addTo(map);
-
+      L.control.layers(baseMaps, overlay, {
+          position: 'bottomleft'
+      }).addTo(map);
   });

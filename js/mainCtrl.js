@@ -17,11 +17,8 @@ angular.module('osmApp.mainCtrl', [])
       $scope.backLinkClick = function () {
           window.location.reload(false);
       };
-
-      // CONFIG loading
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
-          console.log("Config:", res);
       });
 
       // Map in <div> element mit dem Namen 'simpleMap' laden
@@ -29,6 +26,7 @@ angular.module('osmApp.mainCtrl', [])
       $scope.markerGroup = L.layerGroup();
       var map = $scope.map;
       var markerGroup = $scope.markerGroup;
+      markerGroup = L.markerClusterGroup();
 
       // CALENDAR settings
       $scope.eventSources = []; // calendar sources
@@ -53,13 +51,9 @@ angular.module('osmApp.mainCtrl', [])
       };
       $scope.uiConfig = { calendar:{height: 450, editable: false, theme:false, eventClick: $scope.eventClick, eventRender:$scope.eventRender, lang:'de', header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
 
-
       // Map-Funktionalität
-      // add one marker by click
       map.on('click', function newPoi(event) {
-          if ($scope.addNew === false) {
-              return;
-          }
+          if ($scope.addNew === false) {return;}
           if ($scope.tempMarker) {
               map.removeLayer($scope.tempMarker);
           }
@@ -76,7 +70,6 @@ angular.module('osmApp.mainCtrl', [])
 
       // Create Marker out of POIs
       function createLayer(POIs) {
-          console.log('createLayer called!', POIs);
           markerGroup.clearLayers();
           $scope.markers = [];
           POIs.forEach(function (POI) {
@@ -171,6 +164,7 @@ angular.module('osmApp.mainCtrl', [])
               $scope.updateView();
           });
       };
+
       // update poi and delete temporary marker
       $scope.updatePOI = function (updatePoi, events) {
           map.removeLayer($scope.tempMarker);
@@ -183,11 +177,13 @@ angular.module('osmApp.mainCtrl', [])
           });
           $scope.oldPOI = {};
       };
+
       // close addPOI-form
       $scope.cancel = function () {
           map.removeLayer($scope.tempMarker);
           $scope.formToggle = false;
       };
+
       // Neuen Termin anlegen
       $scope.saveEvent = function (event, poiID) {
           if (!event.id) {
@@ -196,6 +192,7 @@ angular.module('osmApp.mainCtrl', [])
               });
           }
       };
+
       // Termin löschen
       $scope.deleteEvent = function (event) {
           databaseService.deleteEvent(event).then(function () {
