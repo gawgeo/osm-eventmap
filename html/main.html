@@ -1,12 +1,7 @@
 <div ng-controller="osmTestAppCtrl" class="main" xmlns:openNewWindow xmlns="http://www.w3.org/1999/html">
 
     <!-- Header, including csv-Up/Download -->
-    <div class="header">
-        <!--<link rel="stylesheet" href="http://k4r573n.github.io/leaflet-control-osm-geocoder/Control.OSMGeocoder.css" />-->
-        <!--<script src="http://k4r573n.github.io/leaflet-control-osm-geocoder/Control.OSMGeocoder.js"></script>-->
-
-        <!-- <button ng-click="admin = !admin" class="btn btn-success" ng-class="{'active': admin}">Admin</button>-->
-
+    <div class="header" ng-controller="adminCtrl">
         <ng-csv-import ng-show="admin"
                        class="csvImport"
                        content="null"
@@ -134,12 +129,6 @@
                     ng-click="addNew = !addNew"
                     ng-class="{addNewActive: addNew == true}">
                 <i class="material-icons">add_location</i>
-                <!--{{addNew}}-->
-                <!--</button>-->
-                <!--<button class="btn btn_group btn-default"
-                        title="Zeig meine Position!">
-                    <i class="material-icons">near_me</i>
-                </button>-->
             </button>
             <!--<button class="bounceMarkerButton btn btn-warning" ng-class="{'active': bouncing}" ng-click="currentMarkerBouncingToggle()">Laufende Projekte!</button>-->
         </div>
@@ -152,19 +141,6 @@
                 class="glyphicon glyphicon-calendar"></i></button>
         <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
-        <!--auf der Maparea. mit btOnMap nacher im CSS stylen-->
-        <!--<div class="well well-sm btnOnMap">
-            <button class="btn btn-default"
-                    title="Neuen Ort hinzufügen"
-                    ng-model="addNew"
-                    ng-click="addNew = !addNew"
-                    ng-class="{addNewActive: addNew == true}">
-                <i class="material-icons">add_location</i>
-
-            </button>
-
-        </div>-->
-
     </div>
 
     <!-- INFO Area, displaying PointOfInterests, newPoi form -->

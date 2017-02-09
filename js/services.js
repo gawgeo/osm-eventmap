@@ -51,10 +51,10 @@ angular.module('osmTestApp.services', [])
           $http({
               method: 'GET',
               url: '/getPointsOfInterest'
-          }).success(function (data) {
-              console.log("GET POIs", data);
+          }).then(function (res) {
+              console.log("GET POIs", res);
               var now = Date.now();
-              data.forEach(function (POI) {
+              res.data.forEach(function (POI) {
                   var status = "laufend";
                   if (Date.parse(POI.startDate) >= now) {
                       status = "in Planung";
@@ -67,9 +67,7 @@ angular.module('osmTestApp.services', [])
                   }
                   POI["status"] = status;
               });
-              deferred.resolve({'data': data});
-          }).error(function () {
-              window.alert("PointsOfInterest GET failure!");
+              deferred.resolve({'data': res.data});
           });
           return deferred.promise;
       };
@@ -79,11 +77,9 @@ angular.module('osmTestApp.services', [])
           $http({
               method: 'GET',
               url: '/getPOIJson'
-          }).success(function (data) {
+          }).then(function (data) {
               console.log("GET POIs JSON", data);
               deferred.resolve(data);
-          }).error(function () {
-              window.alert("POI-JSON GET failure!");
           });
           return deferred.promise;
       };
@@ -93,11 +89,9 @@ angular.module('osmTestApp.services', [])
           $http({
               method: 'GET',
               url: '/getEventsJson'
-          }).success(function (data) {
+          }).then(function (data) {
               console.log("GET Events JSON", data);
               deferred.resolve(data);
-          }).error(function () {
-              window.alert("Events-JSON GET failure!");
           });
           return deferred.promise;
       };
@@ -108,11 +102,9 @@ angular.module('osmTestApp.services', [])
               url: '/deletePointOfInterest',
               method: "POST",
               data: {'id': POI.id}
-          }).success(function () {
+          }).then(function () {
               console.log("Deleted", POI);
               deferred.resolve();
-          }).error(function () {
-              window.alert("PointsOfInterest delete failure!");
           });
           return deferred.promise;
       };
@@ -123,15 +115,12 @@ angular.module('osmTestApp.services', [])
               url: '/deleteAllPointsOfInterest',
               method: "POST",
               data: {}
-          }).success(function () {
+          }).then(function () {
               console.log("Deleted all PointsOfInterest");
               deferred.resolve();
-          }).error(function () {
-              window.alert("PointsOfInterest all delete failure!");
           });
           return deferred.promise;
       };
-
 
       // Server Communication for EVENTS-Table
       this.saveEvent = function (Event, foreignKey) {
@@ -158,11 +147,9 @@ angular.module('osmTestApp.services', [])
               method: 'GET',
               url: '/getEventsByKey',
               params: {'key': POI.id}
-          }).success(function (data) {
-              console.log("GET", data);
-              deferred.resolve(data);
-          }).error(function () {
-              window.alert("Events GET failure!");
+          }).then(function (res) {
+              console.log("GET", res);
+              deferred.resolve(res.data);
           });
           return deferred.promise;
       };
@@ -171,11 +158,9 @@ angular.module('osmTestApp.services', [])
           $http({
               method: 'GET',
               url: '/getAllEvents'
-          }).success(function (data) {
-              console.log("GET EVENTs", data);
-              deferred.resolve(data);
-          }).error(function () {
-              window.alert("Events GET failure!");
+          }).then(function (res) {
+              console.log("GET EVENTs", res.data);
+              deferred.resolve(res.data);
           });
           return deferred.promise;
       };
@@ -185,11 +170,9 @@ angular.module('osmTestApp.services', [])
               url: '/deleteEvent',
               method: "POST",
               data: {'id': Event.id}
-          }).success(function () {
+          }).then(function () {
               console.log("Deleted", Event);
               deferred.resolve();
-          }).error(function () {
-              window.alert("Event delete failure!");
           });
           return deferred.promise;
       };
@@ -199,11 +182,9 @@ angular.module('osmTestApp.services', [])
               url: '/deleteEventsByKey',
               method: "POST",
               data: {'key': ForeignKey}
-          }).success(function () {
+          }).then(function () {
               console.log("Deleted", Event);
               deferred.resolve();
-          }).error(function () {
-              window.alert("Event delete failure!");
           });
           return deferred.promise;
       };
@@ -213,11 +194,9 @@ angular.module('osmTestApp.services', [])
               url: '/deleteAllEvents',
               method: "POST",
               data: {}
-          }).success(function () {
+          }).then(function () {
               console.log("Deleted all Events");
               deferred.resolve();
-          }).error(function () {
-              window.alert("Events all delete failure!");
           });
           return deferred.promise;
       };
