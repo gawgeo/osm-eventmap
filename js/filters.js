@@ -1,4 +1,4 @@
-angular.module('osmTestApp.filters', [])
+angular.module('osmApp.filters', [])
   .filter('poiFilter', function(){
       return function(poiArray, conditions) {
           //console.log("filter ", poiArray, " by ", conditions);

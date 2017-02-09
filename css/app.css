@@ -396,14 +396,21 @@ html {
 .main .header .csvImport div input {
   padding-top: 4px;
 }
-.main .mapArea {
-  z-index: 0;
+.main .contentWrapper {
+  width: 100%;
   height: 92%;
 }
-.main .infoArea {
+.main .contentWrapper .content {
+  height: 99%;
+}
+.main .contentWrapper .content .mapArea {
+  z-index: 0;
+  height: 100%;
+}
+.main .contentWrapper .content .infoArea {
+  height: 100%;
   box-shadow: -4px 0 5px 0 #828282;
   overflow-x: visible;
-  height: 92%;
   padding-left: 0;
   padding-right: 0;
   border-left: solid 2px #dedede;
@@ -470,7 +477,8 @@ html {
   padding-left: 15px;
   padding-right: 15px;
   box-shadow: 0px -2px 5px 0px #bdbdbd;
-  height: 3.5%;
+  height: 4%;
+  min-height: 35px;
   color: rgba(0, 0, 0, 0.8);
   font-size: 1.2em;
   background-image: url(../img/redox_01.png);

@@ -1,4 +1,4 @@
-angular.module('osmTestApp.csvService', [])
+angular.module('osmApp.csvService', [])
 
   .service('csvService', ['databaseService', '$q', function (databaseService, $q) {
       // icon service delivering customized Icons

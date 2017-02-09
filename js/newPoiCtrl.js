@@ -1,4 +1,4 @@
-var app = angular.module('osmTestApp.newPoiCtrl', [])
+var app = angular.module('osmApp.newPoiCtrl', [])
 
   .controller('newPOICtrl', function ($scope, $timeout, $uibModal, databaseService) {
       $scope.events = [];

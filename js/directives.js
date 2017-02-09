@@ -1,4 +1,4 @@
-angular.module('osmTestApp.directives', [])
+angular.module('osmApp.directives', [])
   .directive('draggable', function(){
       return {
           restrict: 'EA',

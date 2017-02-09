@@ -1,4 +1,4 @@
-angular.module('osmTestApp.seedService', [])
+angular.module('osmApp.seedService', [])
 
   .service('seedService', ['$http', '$q', 'databaseService', function ($http, $q, databaseService) {
       this.seed = function () {
@@ -10,7 +10,7 @@ angular.module('osmTestApp.seedService', [])
               testData.pois.forEach(function (poi) {
                   var deferred = $q.defer();
                   databaseService.savePOI(poi).then(function () {
-                      console.log("savedPoi", poi);
+                      //console.log("savedPoi", poi);
                       deferred.resolve();
                   });
                   databasePromises.push(deferred);
@@ -18,7 +18,7 @@ angular.module('osmTestApp.seedService', [])
               testData.events.forEach(function (event) {
                   var deferred = $q.defer();
                   databaseService.saveEvent(event, event.pointsOfInterest_id).then(function () {
-                      console.log("savedEvent", event);
+                      //console.log("savedEvent", event);
                       deferred.resolve();
                   });
                   databasePromises.push(deferred);

@@ -1,15 +1,9 @@
-var app = angular.module('osmTestApp.adminCtrl', [])
+var app = angular.module('osmApp.adminCtrl', [])
 
-  .controller('adminCtrl', function ($scope, databaseService, csvService) {
+  .controller('adminCtrl', function ($rootScope, $scope, databaseService, csvService, seedService) {
       console.log("adminCtrl running!");
-
-      // Seed
-      $scope.seed = function () {
-          seedService.seed().then(function() {
-              $scope.updateView();
-              $scope.updateCalendar();
-          })
-      };
+      $scope.csvPoiResult = null; // csv-Import Variable
+      $scope.csvEventResult = null; // csv-Import Variable
 
       // CSV-Export
       $scope.csvPoiExport = function () {
@@ -22,17 +16,39 @@ var app = angular.module('osmTestApp.adminCtrl', [])
       $scope.$watch("csvPoiResult", function(res) {
           csvService.importPoiCsv(res).then(function() {
               $scope.csvResult = null;
-              $scope.updateView();
+              broadcast();
           });
       });
 
       $scope.$watch("csvEventResult", function(res) {
+          if ($scope.csvEventResult) {
+              databaseService.deleteAllEvents().then(function() {
+                  csvService.importEventCsv(res).then(function() {
+                      $scope.csvResult = null;
+                      broadcast();
+                  });
+              });
+          }
+      });
+
+      // Seed
+      $scope.seed = function () {
+          seedService.seed().then(function() {
+              console.log("SEED FINISHED");
+              broadcast();
+          })
+      };
+
+      // delete all marker
+      $scope.deleteAllPOIs = function () {
           databaseService.deleteAllEvents().then(function() {
-              csvService.importEventCsv(res).then(function() {
-                  $scope.csvResult = null;
-                  $scope.updateView();
-                  $scope.updateCalendar();
+              databaseService.deleteAllPOIs().then(function () {
+                  broadcast();
               });
           });
-      });
+      };
+
+      function broadcast () {
+          $rootScope.$broadcast('update-view');
+      }
   });

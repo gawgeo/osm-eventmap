@@ -1,15 +1,16 @@
-angular.module('osmTestApp',
+angular.module('osmApp',
   [
       'ngAnimate',
-      'osmTestApp.databaseService',
-      'osmTestApp.csvService',
-      'osmTestApp.seedService',
-      'osmTestApp.iconService',
-      'osmTestApp.directives',
-      'osmTestApp.filters',
-      'osmTestApp.mainCtrl',
-      'osmTestApp.newPoiCtrl',
-      'osmTestApp.adminCtrl',
+      'osmApp.databaseService',
+      'osmApp.csvService',
+      'osmApp.seedService',
+      'osmApp.iconService',
+      'osmApp.directives',
+      'osmApp.filters',
+      'osmApp.mainCtrl',
+      'osmApp.newPoiCtrl',
+      'osmApp.adminCtrl',
+      'osmApp.mapCtrl',
       'ui.router',
       'ui.bootstrap',
       'ui.bootstrap.datetimepicker',
@@ -31,7 +32,7 @@ angular.module('osmTestApp',
         });
   })
 
-  .controller('osmTestAppCtrl', function ($state) {
+  .controller('osmAppCtrl', function ($state) {
       console.log("OSM-App running!");
       $state.go('home');
   });

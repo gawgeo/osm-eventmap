@@ -1,4 +1,4 @@
-angular.module('osmTestApp.databaseService', [])
+angular.module('osmApp.databaseService', [])
 
   .service('databaseService', function ($http, $q) {
       // config json where categories, rules and POI attributes are mentioned
@@ -52,7 +52,7 @@ angular.module('osmTestApp.databaseService', [])
               method: 'GET',
               url: '/getPointsOfInterest'
           }).then(function (res) {
-              console.log("GET POIs", res);
+              console.log("GET POIs", res.data);
               var now = Date.now();
               res.data.forEach(function (POI) {
                   var status = "laufend";

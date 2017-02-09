@@ -1,4 +1,4 @@
-angular.module('osmTestApp.iconService', [])
+angular.module('osmApp.iconService', [])
 
   .service('iconService', function () {
       // icon service delivering customized Icons
