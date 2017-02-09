@@ -116,4 +116,9 @@ var app = angular.module('osmApp.mapCtrl', [])
       L.control.layers(baseMaps, overlay, {
           position: 'bottomleft'
       }).addTo(map);
+
+      map.on('resize', function () {
+          map.invalidateSize();
+      });
+
   });
