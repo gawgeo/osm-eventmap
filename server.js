@@ -4,7 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 
 //Lets define a port we want to listen to
-const PORT=8080;
+const PORT = process.env.PORT || 8080;
 
 //Create a server
 var server = express();
