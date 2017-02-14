@@ -17,9 +17,6 @@ angular.module('osmApp.mainCtrl', [])
       $scope.backLinkClick = function () {
           window.location.reload(false);
       };
-      databaseService.getConfig().then(function (res) {
-          $scope.config = res;
-      });
 
       // Map in <div> element mit dem Namen 'simpleMap' laden
       $scope.map = new L.Map('simpleMap');

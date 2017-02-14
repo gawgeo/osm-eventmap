@@ -30,18 +30,18 @@ module.exports = function(grunt) {
             options: {
                 url: '141.52.52.181',
                 alias: ['http://itas-intranet.itas.kit.edu/'],
-                conf: true,
-                command: 'npm install bower install node server.js',
+                conf: false,
+                command: 'npm install bower install forever restart all',
                 port: '22',
                 path: '/var/www/projects/osm-test-app/',
                 git: 'git@bitbucket.org:tobias_domnik/osm-test-app.git',
                 branch: 'master',
-                ssh: 'tobias@141.52.52.181',
+                ssh: ' ',
                 before: [
                     'echo hello'
                 ],
                 then: [
-                    'grunt build'
+                    'grunt less'
                 ]
             }
         },

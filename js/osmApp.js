@@ -27,14 +27,20 @@ angular.module('osmApp',
         })
 
         .state('admin', {
-            url: '/admin',
+            url: '/qz-admin',
             templateUrl: '../html/mainAdmin.html'
         });
   })
 
-  .controller('osmAppCtrl', function ($state) {
+  .controller('osmAppCtrl', function ($rootScope, $state, databaseService) {
       console.log("OSM-App running!");
       $state.go('home');
+
+      databaseService.getConfig().then(function (res) {
+          $rootScope.config = res;
+          console.log("config loaded: ", $rootScope.config);
+      });
+
   });
 
 

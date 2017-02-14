@@ -77,9 +77,9 @@ angular.module('osmApp.databaseService', [])
           $http({
               method: 'GET',
               url: '/getPOIJson'
-          }).then(function (data) {
-              console.log("GET POIs JSON", data);
-              deferred.resolve(data);
+          }).then(function (res) {
+              console.log("GET POIs JSON", res.data);
+              deferred.resolve(res.data);
           });
           return deferred.promise;
       };
@@ -89,9 +89,9 @@ angular.module('osmApp.databaseService', [])
           $http({
               method: 'GET',
               url: '/getEventsJson'
-          }).then(function (data) {
-              console.log("GET Events JSON", data);
-              deferred.resolve(data);
+          }).then(function (res) {
+              console.log("GET Events JSON", res.data);
+              deferred.resolve(res.data);
           });
           return deferred.promise;
       };

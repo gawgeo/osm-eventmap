@@ -36,8 +36,8 @@ angular.module('osmApp.csvService', [])
               }
               if (poi.id) {
                   databaseService.updatePOI(poi).then(function () {
-                      deferred.resolve();
                       console.log("updatePoi", poi);
+                      deferred.resolve();
                   });
               } else {
                   databaseService.savePOI(poi).then(function () {
