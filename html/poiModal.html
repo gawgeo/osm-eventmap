@@ -89,7 +89,9 @@
             </button>
             <ul class="eventList">
                 <li ng-repeat="e in events">
-                    <span>{{e.title}} - {{e.start | date:'dd.MM.yyyy hh:mm'}}</span><button class="btn eventDeleteButton" ng-click="delete(e)"><i class="glyphicon glyphicon-trash"></i></button>
+                    <span>{{e.title}} - {{e.start | date:'dd.MM.yyyy hh:mm'}} bis {{e.end | date:'dd.MM.yyyy hh:mm'}}</span>
+                    <span>Link: http://{{e.link}}</span>
+                    <button class="btn eventDeleteButton" ng-click="delete(e)"><i class="glyphicon glyphicon-trash"></i></button>
                 </li>
             </ul>
         </label>

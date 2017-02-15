@@ -38,6 +38,7 @@ angular.module('osmApp',
 
       databaseService.getConfig().then(function (res) {
           $rootScope.config = res;
+          $rootScope.datetimeFormat = res.datetimeFormat;
           console.log("config loaded: ", $rootScope.config);
       });
 

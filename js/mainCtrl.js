@@ -219,6 +219,7 @@ angular.module('osmApp.mainCtrl', [])
               }
           });
           modalInstance.result.then(function (newEvent) {
+              newEvent.link = "http://" + newEvent.link;
               $scope.saveEvent(newEvent, POIid);
               console.log("Save new Event", newEvent, POIid);
           }, function () {

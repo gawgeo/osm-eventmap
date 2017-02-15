@@ -77,10 +77,8 @@
         <div ng-controller="mapCtrl" id="simpleMap"></div>
 
         <!-- Calendar -->
-        <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false"
-             ng-style="showCalendar && {'width': '60%'}">
-            <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i
-                    class="glyphicon glyphicon-calendar"></i></button>
+        <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false" ng-style="showCalendar && {'width': '60%'}">
+            <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i class="glyphicon glyphicon-calendar"></i></button>
             <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
     </div>
@@ -229,9 +227,8 @@
                         </ul>
                         <span class="rulesHeadline" ng-if="filteredEvents.length > 0">Termine:</span>
                         <ul class="rules">
-                            <li class="rule"
-                                ng-repeat="event in filteredEvents = (eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true)">
-                                <span>{{event.title}}</span>
+                            <li class="rule" ng-repeat="event in filteredEvents = (eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true)">
+                                <span>{{event.title}} - {{event.start | date : "dd.MM.yy H:mm"}}h bis {{event.end | date : "dd.MM.yy H:mm"}}h <a ng-if="event.link" target="_blank" href="{{event.link}}">- link</a></span>
                             </li>
                         </ul>
                         <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">

@@ -28,7 +28,7 @@ var db = new sqlite3.Database(file);
 
 db.serialize(function() {
     db.run("CREATE TABLE IF NOT EXISTS PointsOfInterest (id INTEGER PRIMARY KEY, title TEXT, lng DOUBLE, lat DOUBLE, category TEXT, description TEXT, link TEXT, hasEvents BOOLEAN, startDate DATETIME, endDate DATETIME, imagePath TEXT, R1 BOOLEAN, R2 BOOLEAN, R3 BOOLEAN, R4 BOOLEAN, R5 BOOLEAN, R6 BOOLEAN, R7 BOOLEAN, R8 BOOLEAN, R9 BOOLEAN, R10 BOOLEAN, R11 BOOLEAN, R12 BOOLEAN, R13 BOOLEAN, R14 BOOLEAN, R15 BOOLEAN)");
-    db.run("CREATE TABLE IF NOT EXISTS Events (id INTEGER PRIMARY KEY, title TEXT, start DATETIME, end DATETIME, allDay BOOLEAN, pointsOfInterest_id INTEGER, FOREIGN KEY(pointsOfInterest_id) REFERENCES PointsOfInterest(id))");
+    db.run("CREATE TABLE IF NOT EXISTS Events (id INTEGER PRIMARY KEY, title TEXT, start DATETIME, end DATETIME, allDay BOOLEAN, link TEXT, pointsOfInterest_id INTEGER, FOREIGN KEY(pointsOfInterest_id) REFERENCES PointsOfInterest(id))");
 });
 
 // Server Database communication
@@ -147,8 +147,8 @@ server.get('/getEventsJson', function(req, res){
 // Add new Event
 server.post('/saveEvent', function(req, res){
     db.run(
-      "INSERT OR IGNORE INTO Events(title, start, end, allDay, pointsOfInterest_id) VALUES (?,?,?,?,?)",
-      [req.body['title'], req.body['start'], req.body['end'], req.body['allDay'], req.body['pointsOfInterest_id']], function(err){
+      "INSERT OR IGNORE INTO Events(title, start, end, allDay, link, pointsOfInterest_id) VALUES (?,?,?,?,?,?)",
+      [req.body['title'], req.body['start'], req.body['end'], req.body['allDay'], req.body['link'], req.body['pointsOfInterest_id']], function(err){
           if (err){
               console.log(err);
               res.status(500);

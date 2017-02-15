@@ -58,6 +58,7 @@
     "start",
     "end",
     "allDay",
+    "link",
     "pointsOfInterest_id"
   ],
   "categoryColors": {
@@ -67,5 +68,6 @@
     "Gemeinschaft und Soziales": "qz-grey",
     "Umwelt und Raumentwicklung": "qz-yellow",
     "Energie und Versorgung": "qz-green"
-  }
+  },
+  "datetimeFormat": "dd.MM.yy H:mm"
 }

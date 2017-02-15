@@ -302,6 +302,10 @@
 .popover {
   background: white;
 }
+.EventLink {
+  display: inline-block;
+  width: 90%;
+}
 body,
 html {
   height: 100%;
