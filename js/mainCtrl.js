@@ -19,11 +19,11 @@ angular.module('osmApp.mainCtrl', [])
       };
 
       // Map in <div> element mit dem Namen 'simpleMap' laden
-      $scope.map = new L.Map('simpleMap');
-      $scope.markerGroup = L.layerGroup();
-      var map = $scope.map;
-      var markerGroup = $scope.markerGroup;
-      markerGroup = L.markerClusterGroup();
+      //$scope.markerGroup = L.layerGroup();
+      var map  = new L.Map('simpleMap');
+      var markerGroup = L.markerClusterGroup();
+      $scope.map = map;
+      $scope.markerGroup = markerGroup;
 
       // CALENDAR settings
       $scope.eventSources = []; // calendar sources
