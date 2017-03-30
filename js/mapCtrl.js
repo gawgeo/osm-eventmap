@@ -5,7 +5,7 @@ var app = angular.module('osmApp.mapCtrl', [])
       var map = $scope.$parent.map;
       var markerGroup = $scope.$parent.markerGroup;
 
-      map.setView(new L.LatLng(49.0148731, 8.4191506), 14); // Position laden
+      map.setView(new L.LatLng(49.0109622707, 8.4299737215), 15); // Position laden
 
       // OPEN STREET MAPS imports and settings
       var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
