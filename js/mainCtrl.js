@@ -124,6 +124,10 @@ angular.module('osmApp.mainCtrl', [])
           });
           map.addLayer(markerGroup);
       }
+      //Enable Bootstrap Tooltip
+      $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+      });
 
       // Make current POI-Marker bouncing
       $scope.currentMarkerBouncingToggle = function () {

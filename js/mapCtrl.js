@@ -85,10 +85,15 @@ var app = angular.module('osmApp.mapCtrl', [])
       map.addLayer(oststadtPolygon);
 
       // Geocoder
+      var northWest = L.latLng(49.0789189956 , 8.2562255859),
+          southEast = L.latLng(48.9577317827, 8.5689926147),
+          bounds = L.latLngBounds(northWest, southEast);
+
       var osmGeocoder = new L.Control.OSMGeocoder({
           collapsed: true,
           position: 'topleft',
-          text: 'Adresse suchen'
+          text: 'Adresse suchen',
+          bounds: bounds
       });
       osmGeocoder.addTo(map);
 
