@@ -18,8 +18,8 @@ var app = angular.module('osmApp.newPoiCtrl', [])
               category: '',
               description: '',
               link: '',
-              startDate: '',
-              endDate: '',
+              startDate: null,
+              endDate: null,
               hasEvents: false,
               imagePath: ''
           };
@@ -54,8 +54,8 @@ var app = angular.module('osmApp.newPoiCtrl', [])
                   newEvent: function() {
                       return {
                           "title": "",
-                          "start": "",
-                          "end": "",
+                          "start": null,
+                          "end": null,
                           "allDay": false,
                           "link": ""
                       }
