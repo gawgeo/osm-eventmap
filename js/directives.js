@@ -1,18 +1,18 @@
 angular.module('osmApp.directives', [])
-  .directive('draggable', function(){
+  .directive('draggable', function () {
       return {
           restrict: 'EA',
-          link: function(scope, element) {
+          link: function (scope, element) {
               //console.log("draggable!", element);
               element.draggable();
           }
       }
   })
 
-  .directive('errSrc', function() {
+  .directive('errSrc', function () {
       return {
-          link: function(scope, element, attrs) {
-              element.bind('error', function() {
+          link: function (scope, element, attrs) {
+              element.bind('error', function () {
                   if (attrs.src != attrs.errSrc) {
                       attrs.$set('src', attrs.errSrc);
                   }
@@ -21,7 +21,7 @@ angular.module('osmApp.directives', [])
       }
   })
 
-  .directive('newPoi', function(){
+  .directive('newPoi', function () {
       return {
           restrict: 'EA',
           controller: 'newPOICtrl',
@@ -38,7 +38,7 @@ angular.module('osmApp.directives', [])
       }
   })
 
-  .directive('scrollTop', function scrollTop() {
+  .directive('scrollTop', function scrollTop($timeout) {
       return {
           restrict: 'A',
           link: function link(scope, element) {
@@ -48,15 +48,21 @@ angular.module('osmApp.directives', [])
                   return jqElement.find('.panel-collapse').hasClass('collapsing');
               }, function (status) {
                   if (scope.collapsing && !status) {
-                      if (jqElement.hasClass('panel-open')) {
-                          $('.pois').animate({
-                              scrollTop: jqElement.offset().top - 50
-                          }, 500);
-                      }
+                      console.log("ScrollOffset: ", jqElement.offset().top);
+                      /*
+                      $timeout(function () {
+                          if (jqElement.hasClass('panel-open')) {
+                              console.log("ScrollOffset: ", jqElement.offset().top);
+                              console.log(jqElement);
+                              $('.pois').animate({
+                                  scrollTop: jqElement.offset().top - 50
+                              }, 500);
+                          }
+                      }, 500);
+                      */
                   }
                   scope.collapsing = status;
               });
-
           }
       };
   });
