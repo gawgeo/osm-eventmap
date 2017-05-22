@@ -1,11 +1,10 @@
-<div class="newPOIWrapper">
+<form class="newPOIWrapper" name="newPoiForm" ng-submit="save(POI)">
     <h3 class="newPOIHeadline" ng-bind="POI.id ? 'Marker updaten' : 'Eintrag hinzufügen'"></h3>
     <div class="modal-body newPOI">
         <div class="form-group">
+
             <div class="attrRow">
-                <!--<label for="title" class="control-label">Titel:</label>-->
-                <!--<br>-->
-                <input class="form-control title" ng-model="POI.title" id="title" placeholder="Titel" type="text">
+                <!-- POSITION -->
                 <div class="POIPosition dropdown">
                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <i class="material-icons">my_location</i>
@@ -22,13 +21,22 @@
                         </li>
                     </ul>
                 </div>
+                <!-- TITLE -->
+                <input class="form-control title" ng-model="POI.title" id="title" name="title" placeholder="Titel festlegen" type="text" ng-minlength="5" ng-maxlength="50" required>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.required">Das ist ein Pflichtfeld.</span>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.minlength">Mindestens 5 Zeichen.</span>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.maxlength">Maximal 50 Zeichen.</span>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.title.$invalid">Eingabe ist ungültig.</span>
             </div>
+
             <div class="attrRow">
                 <!--<label for="POICategory" class="control-label">Nachhaltigkeitskategorie:</label>-->
-                <select class="form-control dropdown-toggle POICategory" ng-model="POI.category" id="POICategory">
+                <select class="form-control dropdown-toggle POICategory" ng-model="POI.category" id="POICategory" name="category" ng-minlength="3" required>
                     <option value="">Nachhaltigkeitskategorie wählen</option>
                     <option ng-repeat="cat in config.categories">{{cat}}</option>
                 </select>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.category.$error.required">Bitte eine Kategorie wählen.</span>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.category.$invalid">Eingabe ist ungültig.</span>
             </div>
 
             <div class="attrRow">
@@ -51,7 +59,13 @@
             </div>
             <div class="attrRow">
                 <!--<label for="message-text" class="control-label">Beschreibung:</label>-->
-                <textarea class="form-control" id="message-text" ng-model="POI.description" placeholder="Beschreibung (max. 600 Zeichen)"></textarea>
+
+                <textarea class="form-control description" ng-model="POI.description" id="message-text"
+                          name="description" placeholder="Beschreibung (max. 600 Zeichen)" ng-maxlength="600" required>
+                </textarea>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.description.$error.required">Das ist ein Pflichtfeld.</span>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.description.$error.maxlength">Maximal 600 Zeichen.</span>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.description.$invalid">Eingabe ist ungültig.</span>
             </div>
             <div class="attrRow POIDate">
                 <div id="dateTime" class="dateTimeWrapper">
@@ -75,11 +89,13 @@
             </div>
             <div class="attrRow POIDate">
                 <!--<label for="POILink" class="control-label">Link:</label>-->
-                <input class="form-control POILink" id="POILink" placeholder="URL mit weiteren Informationen" type="text" ng-model="POI.link">
+                <input class="form-control POILink" id="POILink" name="link" placeholder="http:// - Link mit weiteren Informationen" type="url" ng-model="POI.link">
+                <span ng-show="newPoiForm.$dirty && newPoiForm.link.$invalid">Angegebene URL ist ungültig.</span>
             </div>
             <div class="attrRow ">
                 <!--<label for="POIImgLink" class="control-label">Bild-Link:</label>-->
-                <input class="form-control POIImgLink" id="POIImgLink" placeholder="Bild-Link" type="text" ng-model="POI.imagePath">
+                <input class="form-control POIImgLink" id="POIImgLink" name="imgpath" placeholder="http:// - Bild-Link" type="url" ng-model="POI.imagePath">
+                <span ng-show="newPoiForm.$dirty && newPoiForm.imgpath.$invalid">Angegebene URL ist ungültig.</span>
             </div>
         </div>
         <label for="dateTime">
@@ -95,12 +111,10 @@
                 </li>
             </ul>
         </label>
-
-
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="save(POI)">Speichern</button>
+        <button class="btn btn-primary" type="submit">Speichern</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()">Abbrechen</button>
     </div>
-</div>
+</form>
 

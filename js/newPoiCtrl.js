@@ -14,14 +14,14 @@ var app = angular.module('osmApp.newPoiCtrl', [])
       // Falls POI noch nicht existiert, lege neu an, sonst update von POI
       if (!$scope.oldPoi.id) {
           $scope.POI = {
-              title: '',
-              category: '',
-              description: '',
-              link: '',
+              title: null,
+              category: null,
+              description: null,
+              link: null,
               startdate: null,
               enddate: null,
               hasevents: false,
-              imagepath: ''
+              imagepath: null
           };
       } else {
           $scope.POI = $scope.oldPoi;
