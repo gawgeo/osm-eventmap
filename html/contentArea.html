@@ -3,7 +3,7 @@
 
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <div class="well btnOnMap onMapTopRight">
-            <button class="btn btn-default" data-toggle="tooltip" title="Quartier Zukunft">
+            <button class="btn btn-default" data-toggle="tooltip" ng-click="resetMap()" title="Quartier Zukunft">
                 <img src="/img/QZ_LogoSquare-A.svg" width="75">
             </button>
         </div>
@@ -231,7 +231,7 @@
                         <div ng-if="POI.description" class="poiDescription">
                             <dt>Beschreibung</dt>
                             <br>
-                            <span>{{POI.description}} <a href="{{POI.link}}" target="_blank">Weitere Informationen (Externer Link)</a></span>
+                            <span>{{POI.description}} <a ng-if="POI.link" href="{{POI.link}}" target="_blank">Weitere Informationen (Externer Link)</a></span>
                         </div>
                         <span class="rulesHeadline" ng-if="hasRule(POI)"><a
                                 href="http://www.quartierzukunft.de/was-bedeutet-nachhaltigkeit-eigentlich/"

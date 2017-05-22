@@ -14,6 +14,7 @@ server.use(bodyParser.json());
 
 // Database config
 var conString = process.env.DATABASE_URL || "pg://localAdmin:robin1988@localhost:5432/osm";
+//var conString = process.env.DATABASE_URL || "pg://localAdmin:robin1988@localhost:5432/osm";
 var config = {
     user: 'localAdmin', //env var: PGUSER
     database: 'osm', //env var: PGDATABASE

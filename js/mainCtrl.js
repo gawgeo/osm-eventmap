@@ -64,6 +64,11 @@ angular.module('osmApp.mainCtrl', [])
               });
           }
       });
+      $scope.resetMap = function () {
+          console.log("reset map");
+          map.setView(new L.LatLng(49.0109622707, 8.4299737215), 15);
+      };
+
 
       // Create Marker out of POIs
       function createLayer(POIs) {
@@ -128,6 +133,7 @@ angular.module('osmApp.mainCtrl', [])
       $(function () {
           $('[data-toggle="tooltip"]').tooltip()
       });
+
 
       // Make current POI-Marker bouncing
       $scope.currentMarkerBouncingToggle = function () {
