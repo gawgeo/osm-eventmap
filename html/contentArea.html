@@ -215,13 +215,13 @@
                                 <dt>Kategorie</dt>
                                 <dd>{{POI.category}}</dd>
                             </div>
-                            <div ng-if="POI.startDate">
+                            <div ng-if="POI.startdate">
                                 <dt>Beginn</dt>
-                                <dd>{{POI.startDate | date:'dd.MM.yyyy hh:mm'}}</dd>
+                                <dd>{{POI.startdate | date:'dd.MM.yyyy hh:mm'}}</dd>
                             </div>
-                            <div ng-if="POI.endDate">
+                            <div ng-if="POI.enddate">
                                 <dt>Ende</dt>
-                                <dd>{{POI.endDate | date:'dd.MM.yyyy HH:mm'}}</dd>
+                                <dd>{{POI.enddate | date:'dd.MM.yyyy HH:mm'}}</dd>
                             </div>
                             <div ng-if="POI.status">
                                 <dt>Status</dt>
@@ -233,11 +233,13 @@
                             <br>
                             <span>{{POI.description}} <a href="{{POI.link}}" target="_blank">Weitere Informationen (Externer Link)</a></span>
                         </div>
-                        <span class="rulesHeadline"><a
+                        <span class="rulesHeadline" ng-if="hasRule(POI)"><a
                                 href="http://www.quartierzukunft.de/was-bedeutet-nachhaltigkeit-eigentlich/"
-                                target="_blank  " title="Weitere Informationen zum Begriff Nachhaltigkeit">Unterstützte Nachhaltigkeitsregeln:</a></span>
+                                target="_blank  " title="Weitere Informationen zum Begriff Nachhaltigkeit">
+                                    Unterstützte Nachhaltigkeitsregeln:
+                        </a></span>
                         <ul class="rules">
-                            <li class="rule" ng-if="POI[short] === 1" ng-repeat="(short, rule) in config.rules">
+                            <li class="rule" ng-if="POI[short] == true" ng-repeat="(short, rule) in config.rules">
                                 {{rule}}
                             </li>
                         </ul>

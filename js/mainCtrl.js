@@ -253,6 +253,12 @@ angular.module('osmApp.mainCtrl', [])
           console.log($scope.redPOIs);
           createLayer($scope.redPOIs);
       };
+      $scope.hasRule = function (POI) {
+          var rules = Object.keys($scope.config.rules);
+          return rules.some(function(rule) {
+             return POI[rule] === true;
+          });
+      };
 
       // update view
       $scope.updateView = function () {

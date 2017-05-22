@@ -56,13 +56,13 @@ angular.module('osmApp.databaseService', [])
               var now = Date.now();
               res.data.forEach(function (POI) {
                   var status = "laufend";
-                  if (Date.parse(POI.startDate) >= now) {
+                  if (Date.parse(POI.startdate) >= now) {
                       status = "in Planung";
                   }
-                  if (Date.parse(POI.endDate) <= now) {
+                  if (Date.parse(POI.enddate) <= now) {
                       status = "abgeschlossen";
                   }
-                  if (Date.parse(POI.startDate) <= now && Date.parse(POI.endDate) >= now) {
+                  if (Date.parse(POI.startdate) <= now && Date.parse(POI.enddate) >= now) {
                       status = "laufend";
                   }
                   POI["status"] = status;

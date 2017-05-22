@@ -34,6 +34,12 @@ angular.module('osmApp.csvService', [])
                   poi.lng = poi.lng.replace(/,/g, '.');
                   poi.lat = poi.lat.replace(/,/g, '.');
               }
+              if (!poi.startdate) {
+                  poi.startdate =  null;
+              }
+              if (!poi.enddate) {
+                  poi.enddate =  null;
+              }
               if (poi.id) {
                   databaseService.updatePOI(poi).then(function () {
                       console.log("updatePoi", poi);
@@ -72,6 +78,12 @@ angular.module('osmApp.csvService', [])
           var databasePromises = [];
           newEvents.forEach(function (event) {
               var deferred = $q.defer();
+              if (!event.start) {
+                  event.start =  null;
+              }
+              if (!event.end) {
+                  event.end =  null;
+              }
               databaseService.saveEvent(event, event["pointsOfInterest_id"]).then(function () {
                   deferred.resolve();
               });

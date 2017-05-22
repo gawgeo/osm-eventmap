@@ -7,8 +7,8 @@
       "lng": 8.400249481,
       "description": "Der botanische Garten is - vor allem im Sommer - wirklich sehr sehr schön.",
       "hasEvents": 1,
-      "endDate": "",
-      "startDate": "",
+      "endDate": null,
+      "startDate": null,
       "imagePath": "http://www.botanischer-garten-karlsruhe.de/uploads/_processed_/csm_19_karlsruhe_bg_aussen_wintergarten_lmz327944_1996_9e83621886.jpg",
       "link": "http://www.botanischer-garten-karlsruhe.de/garten/",
       "R1": 1,
@@ -34,8 +34,8 @@
       "lng": 8.395421505,
       "description": "Das ist das ITAS. Jeder kennt es...",
       "hasEvents": 0,
-      "endDate": "",
-      "startDate": "",
+      "endDate": null,
+      "startDate": null,
       "imagePath": "https://www.itas.kit.edu/img/logo_itas_start_de.jpg",
       "link": "www.itas.kit.edu",
       "R1": 1,
@@ -61,8 +61,8 @@
       "lng": 8.416364193,
       "description": "KIT-Bib mit Drehtürproblematik.",
       "hasEvents": 0,
-      "endDate": "",
-      "startDate": "",
+      "endDate": null,
+      "startDate": null,
       "imagePath": "http://www.bibliothek.kit.edu/galerie/KIT-Bibliothek-Sued/Aussenansichten/slides/Ansicht_Ost_-4_TM.php",
       "link": "http://www.bibliothek.kit.edu/",
       "R1": 1,
@@ -223,8 +223,8 @@
       "lng": 8.403940201,
       "description": "Hier kann von jeder in fast jede Bahn umgestiegen werden!",
       "hasEvents": 0,
-      "endDate": "",
-      "startDate": "",
+      "endDate": null,
+      "startDate": null,
       "imagePath": "",
       "link": "",
       "R1": 1,
@@ -250,8 +250,8 @@
       "lng": 8.42634201,
       "description": "Eine lebendige Hochschule kann mit dem Erreichten zwar zufrieden sein, sollte sich aber nie damit begnügen. In einer Zeit, in der unsere Gesellschaft immer stärker von neuen technischen Entwicklungen bestimmt wird, übernimmt die Musikhochschule verstärkt die Aufgabe, daran mitzuwirken, den lebensnotwendigen Freiraum für Kreativität und Selbstverwirklichung zu erhalten.",
       "hasEvents": 0,
-      "endDate": "",
-      "startDate": "",
+      "endDate": null,
+      "startDate": null,
       "imagePath": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Karlsruhe_schloss_gottesau.jpg/220px-Karlsruhe_schloss_gottesau.jpg",
       "link": "http://www.hfm-karlsruhe.de/hfm/",
       "R1": 0,
@@ -277,8 +277,8 @@
       "lng": 8.411235809,
       "description": "Jenseits des Schlosses zum Hardtwald hin liegt der Schloss­gar­ten mit dem alten Botani­schen Garten im Westen und dem Fasanen­gar­ten im Osten.",
       "hasEvents": 0,
-      "endDate": "",
-      "startDate": "",
+      "endDate": null,
+      "startDate": null,
       "imagePath": "",
       "link": "",
       "R1": 0,
@@ -304,8 +304,8 @@
       "lng": 8.40385437,
       "description": "Hier wird nachhaltig mit unserem Wald umgegangen.",
       "hasEvents": 0,
-      "endDate": "",
-      "startDate": "",
+      "endDate": null,
+      "startDate": null,
       "imagePath": "http://presse.karlsruhe.de/db/meldungen/2047/waldimg_38652_bildgroesse_aendern.jpg",
       "link": "http://www.karlsruhe.de/",
       "R1": 1,
@@ -329,10 +329,10 @@
     {
       "title": "Gemeinsames Musizieren",
       "allDay": null,
-      "start": "2017-02-31T12:00:00.000Z",
-      "end": "2017-02-31T16:00:00.000Z",
+      "start": "2017-02-20T12:00:00.000Z",
+      "end": "2017-02-22T16:00:00.000Z",
       "link": "",
-      "pointsOfInterest_id": 10
+      "pointsOfInterest_id": 3
     },
     {
       "title": "Gemeinsames Musizieren",
@@ -340,7 +340,7 @@
       "start": "2017-02-06T12:00:00.000Z",
       "end": "2017-02-06T16:00:00.000Z",
       "link": "",
-      "pointsOfInterest_id": 10
+      "pointsOfInterest_id": 3
     },
     {
       "title": "Gemeinsames Musizieren",
@@ -348,7 +348,7 @@
       "start": "2017-02-27T12:00:00.000Z",
       "end": "2017-02-27T16:00:00.000Z",
       "link": "",
-      "pointsOfInterest_id": 10
+      "pointsOfInterest_id": 3
     },
     {
       "title": "Begehung des Gartens",
@@ -396,7 +396,7 @@
       "start": "2017-03-23T16:00:00.000Z",
       "end": "2017-03-30T20:00:00.000Z",
       "link": "",
-      "pointsOfInterest_id": 12
+      "pointsOfInterest_id": 2
     }
   ]
 }

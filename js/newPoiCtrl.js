@@ -18,10 +18,10 @@ var app = angular.module('osmApp.newPoiCtrl', [])
               category: '',
               description: '',
               link: '',
-              startDate: null,
-              endDate: null,
-              hasEvents: false,
-              imagePath: ''
+              startdate: null,
+              enddate: null,
+              hasevents: false,
+              imagepath: ''
           };
       } else {
           $scope.POI = $scope.oldPoi;
@@ -56,7 +56,7 @@ var app = angular.module('osmApp.newPoiCtrl', [])
                           "title": "",
                           "start": null,
                           "end": null,
-                          "allDay": false,
+                          "allday": false,
                           "link": ""
                       }
                   }
