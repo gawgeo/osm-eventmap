@@ -57,13 +57,15 @@ var app = angular.module('osmApp.newPoiCtrl', [])
                           "start": null,
                           "end": null,
                           "allday": false,
-                          "link": ""
+                          "link": null
                       }
                   }
               }
           });
           modalInstance.result.then(function (newEvent) {
-              newEvent.link = "http://" + newEvent.link;
+              if (newEvent.link) {
+                  newEvent.link = "http://" + newEvent.link;
+              }
               $scope.events.push(newEvent);
           }, function () {
               console.log('Modal dismissed at: ' + new Date());
