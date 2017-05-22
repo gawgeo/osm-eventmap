@@ -59,7 +59,6 @@
             </div>
             <div class="attrRow">
                 <!--<label for="message-text" class="control-label">Beschreibung:</label>-->
-
                 <textarea class="form-control description" ng-model="POI.description" id="message-text"
                           name="description" placeholder="Beschreibung (max. 600 Zeichen)" ng-maxlength="600" required>
                 </textarea>
@@ -70,21 +69,19 @@
             <div class="attrRow POIDate">
                 <div id="dateTime" class="dateTimeWrapper">
                     <label for="startDate" class="control-label">Beginn:</label>
-                    <div datetimepicker ng-model="POI.startDate"
-                                    id="startDate"
-                                    class="dateTimepicker"
-                                    date-format="{{format}}"
-                                    date-options="{}"
-                                    show-meridian="false">
-                    </div>
+                    <input ng-model="POI.startdate"
+                           id="startDate"
+                           type="datetime-local"
+                           name="startdate"
+                           class="dateTimepicker form-control">
+                    </input>
                     <label for="endDate" class="control-label">Ende:</label>
-                    <div datetimepicker ng-model="POI.endDate"
-                                    id="endDate"
-                                    class="dateTimepicker"
-                                    date-format="{{format}}"
-                                    date-options="{}"
-                                    show-meridian="false">
-                    </div>
+                    <input ng-model="POI.enddate"
+                           id="endDate"
+                           type="datetime-local"
+                           name="enddate"
+                           class="dateTimepicker form-control">
+                    </input>
                 </div>
             </div>
             <div class="attrRow POIDate">
@@ -99,14 +96,14 @@
             </div>
         </div>
         <label for="dateTime">
-            <button ng-click="addEvent()" class="btn eventAddButton" title="Neuen Kalendereintrag hinzufügen.">
+            <button type='button' ng-click="addEvent()" class="btn eventAddButton" title="Neuen Kalendereintrag hinzufügen.">
                 <i class="material-icons">add_alert</i>
                 <!--<i class="glyphicon glyphicon-plus"></i>-->
             </button>
             <ul class="eventList">
                 <li ng-repeat="e in events">
                     <span>{{e.title}} - {{e.start | date:'dd.MM.yyyy hh:mm'}} bis {{e.end | date:'dd.MM.yyyy hh:mm'}}</span>
-                    <span>Link: http://{{e.link}}</span>
+                    <span ng-if="e.link">Link: <a>{{e.link}}</a></span>
                     <button class="btn eventDeleteButton" ng-click="delete(e)"><i class="glyphicon glyphicon-trash"></i></button>
                 </li>
             </ul>

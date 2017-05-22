@@ -3,11 +3,18 @@
    display: block;
    padding: 1em 1em 1em 1em;
  }
-}
-.popover {
-  background: white;
-}
-.EventLink {
-  display: inline-block;
-  width: 90%;
+
+  .popover {
+    background: white;
+  }
+
+  .title.ng-valid, .link.ng-valid {
+    background-color: rgba(128, 194, 138, 0.5);;
+  }
+  .title.ng-dirty.ng-invalid-required {
+    background-color: rgba(220, 138, 138, 0.5);;
+  }
+  .title.ng-dirty.ng-invalid-minlength, .title.ng-dirty.ng-invalid-maxlength {
+    background-color: rgba(210, 213, 37, 0.5);;
+  }
 }

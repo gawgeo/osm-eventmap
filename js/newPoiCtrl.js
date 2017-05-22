@@ -3,7 +3,6 @@ var app = angular.module('osmApp.newPoiCtrl', [])
   .controller('newPOICtrl', function ($scope, $timeout, $uibModal, databaseService) {
       $scope.events = [];
       $scope.POI = {};
-      $scope.format = 'dd.MM.yyyy';
       $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
       databaseService.getEventsByKey($scope.oldPoi).then(function (res) {
           if (res) {
@@ -54,8 +53,8 @@ var app = angular.module('osmApp.newPoiCtrl', [])
                   newEvent: function() {
                       return {
                           "title": "",
-                          "start": null,
-                          "end": null,
+                          "startdate": null,
+                          "enddate": null,
                           "allday": false,
                           "link": null
                       }
@@ -63,9 +62,6 @@ var app = angular.module('osmApp.newPoiCtrl', [])
               }
           });
           modalInstance.result.then(function (newEvent) {
-              if (newEvent.link) {
-                  newEvent.link = "http://" + newEvent.link;
-              }
               $scope.events.push(newEvent);
           }, function () {
               console.log('Modal dismissed at: ' + new Date());

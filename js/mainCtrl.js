@@ -12,15 +12,19 @@ angular.module('osmApp.mainCtrl', [])
       $scope.status = {}; // active Marker status
       $scope.markers = []; // Markers-Array
       $scope.bouncing = false; // Bouncing-Boolean
-      $scope.conditions = { categories: [] };
+      $scope.conditions = {categories: []};
       $scope.addNew = false;
       $scope.backLinkClick = function () {
           window.location.reload(false);
       };
+      $scope.dateOptions = {
+          enableDate: true,
+          enableTime: true
+      };
 
       // Map in <div> element mit dem Namen 'simpleMap' laden
       //$scope.markerGroup = L.layerGroup();
-      var map  = new L.Map('simpleMap');
+      var map = new L.Map('simpleMap');
       var markerGroup = L.markerClusterGroup();
       $scope.map = map;
       $scope.markerGroup = markerGroup;
@@ -31,12 +35,12 @@ angular.module('osmApp.mainCtrl', [])
           $scope.selectedPOI = $scope.POIs.find(function (POI) {
               return POI.id === date.pointsofinterest_id;
           });
-          $scope.markers.filter(function(marker) {
+          $scope.markers.filter(function (marker) {
               return marker.POIid === $scope.selectedPOI.id;
           })[0].openPopup();
           $scope.status[$scope.selectedPOI.id] = true;
       };
-      $scope.eventRender = function(date, element, view ) {
+      $scope.eventRender = function (date, element, view) {
           var msgText = $scope.POIs.find(function (POI) {
               return POI.id === date.pointsofinterest_id;
           }).title;
@@ -46,11 +50,23 @@ angular.module('osmApp.mainCtrl', [])
               //content: "von:" + msgText
           });
       };
-      $scope.uiConfig = { calendar:{height: 450, editable: false, theme:false, eventClick: $scope.eventClick, eventRender:$scope.eventRender, lang:'de', header:{ left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}}};
+      $scope.uiConfig = {
+          calendar: {
+              height: 450,
+              editable: false,
+              theme: false,
+              eventClick: $scope.eventClick,
+              eventRender: $scope.eventRender,
+              lang: 'de',
+              header: {left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}
+          }
+      };
 
       // Map-Funktionalität
       map.on('click', function newPoi(event) {
-          if ($scope.addNew === false) {return;}
+          if ($scope.addNew === false) {
+              return;
+          }
           if ($scope.tempMarker) {
               map.removeLayer($scope.tempMarker);
           }
@@ -79,7 +95,7 @@ angular.module('osmApp.mainCtrl', [])
               var linkFn = $compile(
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
                 '<span class="markerPopup">' + POI.description + '</span>' +
-                '<div class="markerPopupAddDate"><button class="btn btn-link" ng-click="newSingleEvent('+ POI.id +')"><span class="glyphicon glyphicon-plus"></span><span>Termin hinzufügen</span></button>' +
+                '<div class="markerPopupAddDate"><button class="btn btn-link" ng-click="newSingleEvent(' + POI.id + ')"><span class="glyphicon glyphicon-plus"></span><span>Termin hinzufügen</span></button>' +
                 '<button class="btn btn-warning pull-right" ng-if="$parent.admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
                 '<button class="btn btn-danger pull-right" ng-if="$parent.admin" ng-click="deleteThis()"><span class="glyphicon glyphicon-remove-circle"></span></button></div>' +
                 '</div>'
@@ -89,7 +105,7 @@ angular.module('osmApp.mainCtrl', [])
               marker.bindPopup(content[0]).on("popupopen", function () {
                   var currentMarker = this;
                   $scope.deleteThis = function () {
-                      databaseService.deleteEventsByKey(POI.id).then(function() {
+                      databaseService.deleteEventsByKey(POI.id).then(function () {
                           databaseService.deletePOI(POI).then(function () {
                               $scope.updateView();
                               $scope.updateCalendar();
@@ -102,7 +118,10 @@ angular.module('osmApp.mainCtrl', [])
                           map.removeLayer($scope.tempMarker);
                       }
                       $scope.formToggle = true;
-                      $scope.tempMarker = L.marker({'lng': POI.lng, 'lat': POI.lat}, {draggable: 'true', icon: iconService.getIcon('qz-red')}).addTo(map);
+                      $scope.tempMarker = L.marker({'lng': POI.lng, 'lat': POI.lat}, {
+                          draggable: 'true',
+                          icon: iconService.getIcon('qz-red')
+                      }).addTo(map);
                   };
               });
               marker.on('click', function () {
@@ -118,8 +137,8 @@ angular.module('osmApp.mainCtrl', [])
                   }
               });
               marker.setBouncingOptions({
-                  bounceHeight : 5,    // height of the bouncing
-                  bounceSpeed  : 150    // bouncing speed coefficient
+                  bounceHeight: 5,    // height of the bouncing
+                  bounceSpeed: 150    // bouncing speed coefficient
               });
               marker["POIid"] = POI.id;
               // Make current event bouncing
@@ -129,6 +148,7 @@ angular.module('osmApp.mainCtrl', [])
           });
           map.addLayer(markerGroup);
       }
+
       //Enable Bootstrap Tooltip
       $(function () {
           $('[data-toggle="tooltip"]').tooltip()
@@ -140,7 +160,7 @@ angular.module('osmApp.mainCtrl', [])
           // Make current event bouncing
           $scope.bouncing = !$scope.bouncing;
           if ($scope.bouncing) {
-              markerGroup.getLayers().forEach(function(marker) {
+              markerGroup.getLayers().forEach(function (marker) {
                   if (marker.current) {
                       marker.bounce();
                   }
@@ -153,7 +173,7 @@ angular.module('osmApp.mainCtrl', [])
       // Cross-Select POI (in Calendar, Marker, Accordion)
       $scope.selectPOI = function (POI) {
           $scope.selectedPOI = POI;
-          $scope.markers.filter(function(marker) {
+          $scope.markers.filter(function (marker) {
               return marker.POIid === POI.id;
           })[0].openPopup();
       };
@@ -164,7 +184,7 @@ angular.module('osmApp.mainCtrl', [])
           map.removeLayer($scope.tempMarker);
           databaseService.savePOI(newPOI).then(function (res) {
               $scope.formToggle = false;
-              events.forEach(function(event) {
+              events.forEach(function (event) {
                   console.log("type of ", typeof (res.data.id));
                   $scope.saveEvent(event, res.data.id);
               });
@@ -178,7 +198,7 @@ angular.module('osmApp.mainCtrl', [])
           map.removeLayer($scope.tempMarker);
           databaseService.updatePOI(updatePoi).then(function () {
               $scope.formToggle = false;
-              events.forEach(function(event) {
+              events.forEach(function (event) {
                   $scope.saveEvent(event, updatePoi.id);
               });
               $scope.updateView();
@@ -217,11 +237,11 @@ angular.module('osmApp.mainCtrl', [])
                   };
               },
               resolve: {
-                  newEvent: function() {
+                  newEvent: function () {
                       return {
                           "title": "",
-                          "start": null,
-                          "end": null,
+                          "startdate": null,
+                          "enddate": null,
                           "allday": false,
                           "url": ""
                       }
@@ -229,7 +249,6 @@ angular.module('osmApp.mainCtrl', [])
               }
           });
           modalInstance.result.then(function (newEvent) {
-              newEvent.link = "http://" + newEvent.link;
               $scope.saveEvent(newEvent, POIid);
               console.log("Save new Event", newEvent, POIid);
           }, function () {
@@ -247,7 +266,7 @@ angular.module('osmApp.mainCtrl', [])
       // filter view
       $scope.setCatCondition = function (categoryCondition) {
           if ($scope.conditions.categories.indexOf(categoryCondition) != -1) {
-              $scope.conditions.categories.splice($scope.conditions.categories.indexOf(categoryCondition),1)
+              $scope.conditions.categories.splice($scope.conditions.categories.indexOf(categoryCondition), 1)
           } else {
               $scope.conditions.categories.push(categoryCondition)
           }
@@ -261,8 +280,8 @@ angular.module('osmApp.mainCtrl', [])
       };
       $scope.hasRule = function (POI) {
           var rules = Object.keys($scope.config.rules);
-          return rules.some(function(rule) {
-             return POI[rule] === true;
+          return rules.some(function (rule) {
+              return POI[rule] === true;
           });
       };
 
@@ -276,15 +295,15 @@ angular.module('osmApp.mainCtrl', [])
       $scope.updateCalendar = function () {
           databaseService.getEvents().then(function (res) {
               console.log(res);
-              res.forEach(function(e) {
-                  e["allDay"]  = e.allday;
-                  e["start"]  = e.startdate;
-                  e["end"]  = e.enddate;
+              res.forEach(function (e) {
+                  e["allDay"] = e.allday;
+                  e["start"] = e.startdate;
+                  e["end"] = e.enddate;
               });
               $scope.eventSources[0] = {"events": res};
           });
       };
-      $scope.$on('update-view', function(event, args) {
+      $scope.$on('update-view', function (event, args) {
           console.log("Update View!");
           $scope.updateView();
           $scope.updateCalendar();

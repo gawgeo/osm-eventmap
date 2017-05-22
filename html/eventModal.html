@@ -1,40 +1,49 @@
-<div class="eventModal">
+<form class="eventModal" name="newEventForm" ng-submit="ok()">
     <div class="modal-header">
         <h3 class="modal-title">Neuen Termin anlegen</h3>
     </div>
     <div class="modal-body">
         <div class="eventAttr">
             <!--<label for="title" class="control-label">Name</label>-->
-            <input class="form-control title" ng-model="newEvent.title" id="title"
-                   placeholder="Titel eingeben" type="text">
+            <input class="form-control title" ng-model="newEvent.title" id="title" name="title"
+                   placeholder="Titel eingeben" type="text" ng-minlength="5" ng-maxlength="50" required>
+            <span ng-show="newEventForm.$dirty && newEventForm.title.$error.required">Das ist ein Pflichtfeld.</span>
+            <span ng-show="newEventForm.$dirty && newEventForm.title.$error.minlength">Mindestens 5 Zeichen.</span>
+            <span ng-show="newEventForm.$dirty && newEventForm.title.$error.maxlength">Maximal 50 Zeichen.</span>
+            <span ng-show="newEventForm.$dirty && newEventForm.title.$invalid">Eingabe ist ungültig.</span>
         </div>
         <div class="eventAttr">
             <label for="startDate" class="control-label">Beginn:</label><br>
-            <datetimepicker ng-model="newEvent.start"
-                            id="startDate"
-                            class="dateTimepicker"
-                            date-format="{{format}}"
-                            date-options="dateOptions"
-                            show-meridian="false">
-            </datetimepicker>
+            <input ng-model="newEvent.startdate"
+                   id="startDate"
+                   type="datetime-local"
+                   name="startdate"
+                   class="dateTimepicker form-control"
+                   ng-model-options="{}"
+                   required>
+            </input>
+            <span ng-show="newEventForm.$dirty && newEventForm.startdate.$invalid && !newEventForm.startdate.$error.required">Startzeitpunkt muss gesetzt werden.</span>
         </div>
         <div class="eventAttr">
             <label for="endDate" class="control-label">Ende:</label><br>
-            <datetimepicker ng-model="newEvent.end"
-                            id="endDate"
-                            class="dateTimepicker"
-                            date-format="{{format}}"
-                            date-options="dateOptions"
-                            show-meridian="false">
-            </datetimepicker>
+            <input ng-model="newEvent.enddate"
+                   id="endDate"
+                   type="datetime-local"
+                   name="enddate"
+                   class="dateTimepicker form-control"
+                   required>
+            </input>
+            <span ng-show="newEventForm.$dirty && newEventForm.enddate.$invalid && !newEventForm.enddate.$error.required">Endzeitpunkt muss gesetzt werden.</span>
         </div>
         <div class="eventAttr">
             <label for="EventLink" class="control-label">Link:</label>
-            <div><span>http://</span><input class="form-control EventLink" id="EventLink" type="text" ng-model="newEvent.link"></div>
+            <div><input class="form-control EventLink" id="EventLink" name="link" type="url" ng-model="newEvent.link">
+            </div>
+            <span ng-show="newEventForm.$dirty && newEventForm.link.$invalid">Angegebene URL ist ungültig.</span>
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">Speichern</button>
+        <button class="btn btn-primary" type="submit">Speichern</button>
         <button class="btn btn-warning" type="button" ng-click="cancel()">Abbrechen</button>
     </div>
-</div>
+</form>

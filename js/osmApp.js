@@ -36,6 +36,8 @@ angular.module('osmApp',
       console.log("OSM-App running!");
       $state.go('home');
 
+      $rootScope.format = 'dd.MM.yy H:mm';
+
       databaseService.getConfig().then(function (res) {
           $rootScope.config = res;
           $rootScope.datetimeFormat = res.datetimeFormat;

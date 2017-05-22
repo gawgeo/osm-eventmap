@@ -209,7 +209,7 @@ server.post('/saveEvent', function (req, res) {
             return console.error('could not connect to postgres', err);
         }
         client.query("INSERT INTO Events(title, startdate, enddate, allday, link, pointsofinterest_id) VALUES ($1,$2,$3,$4,$5,$6)",
-          [req.body['title'], req.body['start'], req.body['end'], req.body['allday'], req.body['link'], req.body['pointsofinterest_id']],
+          [req.body['title'], req.body['startdate'], req.body['enddate'], req.body['allday'], req.body['link'], req.body['pointsofinterest_id']],
           function (err) {
               if (err) {
                   console.log(err);
