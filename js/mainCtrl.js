@@ -29,7 +29,7 @@ angular.module('osmApp.mainCtrl', [])
       $scope.eventSources = []; // calendar sources
       $scope.eventClick = function (date, event, view) {
           $scope.selectedPOI = $scope.POIs.find(function (POI) {
-              return POI.id === date.pointsOfInterest_id;
+              return POI.id === date.pointsofinterest_id;
           });
           $scope.markers.filter(function(marker) {
               return marker.POIid === $scope.selectedPOI.id;
@@ -38,7 +38,7 @@ angular.module('osmApp.mainCtrl', [])
       };
       $scope.eventRender = function(date, element, view ) {
           var msgText = $scope.POIs.find(function (POI) {
-              return POI.id === date.pointsOfInterest_id;
+              return POI.id === date.pointsofinterest_id;
           }).title;
           element.tooltip({ //oder Popover?
               title: date.title + " von: " + msgText,
@@ -214,9 +214,9 @@ angular.module('osmApp.mainCtrl', [])
                   newEvent: function() {
                       return {
                           "title": "",
-                          "start": "",
-                          "end": "",
-                          "allDay": false,
+                          "start": null,
+                          "end": null,
+                          "allday": false,
                           "url": ""
                       }
                   }
@@ -269,6 +269,12 @@ angular.module('osmApp.mainCtrl', [])
       };
       $scope.updateCalendar = function () {
           databaseService.getEvents().then(function (res) {
+              console.log(res);
+              res.forEach(function(e) {
+                  e["allDay"]  = e.allday;
+                  e["start"]  = e.startdate;
+                  e["end"]  = e.enddate;
+              });
               $scope.eventSources[0] = {"events": res};
           });
       };

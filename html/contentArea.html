@@ -245,11 +245,11 @@
                         </ul>
                         <span class="rulesHeadline" ng-if="filteredEvents.length > 0">Termine:</span>
                         <ul class="rules">
-                            <li class="rule" ng-repeat="event in filteredEvents = (eventSources[0].events | filter:{pointsOfInterest_id: POI.id}:true)">
+                            <li class="rule" ng-repeat="event in filteredEvents = (eventSources[0].events | filter:{pointsofinterest_id: POI.id}:true)">
                                 <span>{{event.title}} - {{event.start | date : "dd.MM.yy H:mm"}}h bis {{event.end | date : "dd.MM.yy H:mm"}}h <a ng-if="event.link" target="_blank" href="{{event.link}}">- link</a></span>
                             </li>
                         </ul>
-                        <img ng-src="{{POI.imagePath}}" err-src="../img/qzIcon.png">
+                        <img ng-src="{{POI.imagepath}}" err-src="../img/qzIcon.png">
                     </uib-accordion-group>
                 </uib-accordion>
             </div>

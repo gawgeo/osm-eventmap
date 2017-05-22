@@ -124,7 +124,7 @@ angular.module('osmApp.databaseService', [])
 
       // Server Communication for EVENTS-Table
       this.saveEvent = function (Event, foreignKey) {
-          Event["pointsOfInterest_id"] = foreignKey;
+          Event["pointsofinterest_id"] = foreignKey;
           var deferred = $q.defer();
           $http({
               url: '/saveEvent',
