@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var pg = require("pg");
 var pgp = require('pg-promise')(/*options*/);
+var parse = require('pg-connection-string').parse;
 
 // Lets define a port we want to listen to
 const PORT = process.env.PORT || 8080;
@@ -13,21 +14,15 @@ server.use(express.static(__dirname));
 server.use(bodyParser.json());
 
 // Database config
-var conString = process.env.DATABASE_URL || "pg://localAdmin:robin1988@localhost:5432/osm";
+var conString = process.env.DATABASE_URL || "postgres://oweomeokvotjyc:8be95ef02d7a47d65127cf38e686e22a7795cb1ec0276881df7ca17d7f67298b@ec2-176-34-113-15.eu-west-1.compute.amazonaws.com:5432/d6t7ke9pjlpldp";
 //var conString = process.env.DATABASE_URL || "pg://localAdmin:robin1988@localhost:5432/osm";
-var config = {
-    user: 'localAdmin', //env var: PGUSER
-    database: 'osm', //env var: PGDATABASE
-    password: 'robin1988', //env var: PGPASSWORD
-    host: 'localhost', // Server hosting the postgres database
-    port: 5432, //env var: PGPORT
-    max: 10, // max number of clients in the pool
-    idleTimeoutMillis: 30000 // how long a client is allowed to remain idle before being closed
-};
-const pool = new pg.Pool(config);
+var config = parse(conString);
+config["ssl"] = true;
+console.log(config);
 
 //Initialize DB
-var client = new pg.Client(conString);
+const pool = new pg.Pool(config);
+
 //Create Poi and Events Table
 var table1 = "CREATE TABLE IF NOT EXISTS PointsOfInterest (id SERIAL PRIMARY KEY, title TEXT, lng DOUBLE PRECISION, lat DOUBLE PRECISION, category TEXT, description TEXT, link TEXT, hasevents BOOLEAN, startdate TIMESTAMP, enddate TIMESTAMP, imagepath TEXT, r1 BOOLEAN, r2 BOOLEAN, r3 BOOLEAN, r4 BOOLEAN, r5 BOOLEAN, r6 BOOLEAN, r7 BOOLEAN, r8 BOOLEAN, r9 BOOLEAN, r10 BOOLEAN, r11 BOOLEAN, r12 BOOLEAN, r13 BOOLEAN, r14 BOOLEAN, r15 BOOLEAN)";
 var table2 = "CREATE TABLE IF NOT EXISTS Events (id SERIAL PRIMARY KEY, title TEXT, startdate TIMESTAMP, enddate TIMESTAMP, allDay BOOLEAN, link TEXT, pointsofinterest_id SERIAL REFERENCES PointsOfInterest(id))";
@@ -44,7 +39,6 @@ db.tx(function (t) {
       console.log("error: ", error);
   }
 );
-
 
 // Server Database communication
 // Save PointsOfInterest to DB
