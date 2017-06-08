@@ -27,13 +27,6 @@ var app = angular.module('osmApp.newPoiCtrl', [])
       }
       databaseService.getConfig().then(function (res) {
           $scope.config = res;
-          Object.keys(res.rules).forEach(function (shortRule) {
-              if ($scope.POI[shortRule]) {
-                  $scope.POI[shortRule] = ($scope.POI[shortRule] === 1);
-              } else {
-                  $scope.POI[shortRule] = false;
-              }
-          });
       });
 
       $scope.addEvent = function () {
