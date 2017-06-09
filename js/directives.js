@@ -62,7 +62,43 @@ angular.module('osmApp.directives', [])
               });
           }
       };
-  });
+  })
+
+  .directive('validateBefore', function validateBefore() {
+      return {
+          restrict: 'A',
+          require: '?ngModel',
+          link: function ($scope, $element, $attrs, ngModel) {
+              ngModel.$validators.validateBefore = function (modelValue) {
+                  var compareTo = $scope.$eval($attrs.validateBefore).$viewValue;
+                  if (!!modelValue) {
+                      return modelValue.isBefore(compareTo);
+                  } else {
+                      return true;
+                  }
+              };
+          }
+      };
+  })
+  .directive('validateAfter', function validateAfter() {
+      return {
+          restrict: 'A',
+          require: '?ngModel',
+          link: function ($scope, $element, $attrs, ngModel) {
+              ngModel.$validators.validateAfter = function (modelValue) {
+                  console.log(modelValue);
+                  var compareTo = $scope.$eval($attrs.validateAfter).$viewValue;
+                  if (!!modelValue) {
+                      return modelValue.isAfter(compareTo);
+                  } else {
+                      return true;
+                  }
+              };
+          }
+      };
+  })
+
+;
 
 
 

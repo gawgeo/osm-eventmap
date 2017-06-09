@@ -3,6 +3,22 @@ Leaflet.markercluster
 
 (all changes without author notice are by [@danzel](https://github.com/danzel))
 
+## 1.0.5 (2017-04-26)
+
+### Improvements
+
+ * Allow passing fitBounds options to zoomToBounds (by [@timkelty](https://github.com/timkelty)) [#779](https://github.com/Leaflet/Leaflet.markercluster/pull/779)
+
+### Bugfixes
+
+ * Fixed bug where disableClusteringAtZoom being 0 is treated the same as null (by [@MrCheeze](https://github.com/MrCheeze)) [#773](https://github.com/Leaflet/Leaflet.markercluster/pull/773)
+
+## 1.0.4 (2017-03-14)
+
+### Bugfixes
+
+ * Fix errors removing a MarkerClusterGroup from the map during an animation [#758](https://github.com/Leaflet/Leaflet.markercluster/issues/758)
+
 ## 1.0.3 (2017-02-02)
 
 ### Bugfixes
@@ -84,7 +100,7 @@ Leaflet.markercluster
  * Fix interaction between zoomOrSpiderfy and disableClusteringAtZoom (by [@ghybs](https://github.com/ghybs)) [#633](https://github.com/Leaflet/Leaflet.markercluster/issues/633) [#648](https://github.com/Leaflet/Leaflet.markercluster/issues/648)
 
 
-##0.4 (2013-12-19)
+## 0.4 (2013-12-19)
 
 ### Improvements
 
@@ -96,7 +112,7 @@ Leaflet.markercluster
  * Fix some cases zoomToShowLayer wouldn't work  (Reported by [@absemetov](https://github.com/absemetov)) [#203](https://github.com/Leaflet/Leaflet.markercluster/issues/203) [#228](https://github.com/Leaflet/Leaflet.markercluster/issues/228) [#286](https://github.com/Leaflet/Leaflet.markercluster/issues/286)
 
 
-##0.3 (2013-12-18)
+## 0.3 (2013-12-18)
 
 ### Improvements
 

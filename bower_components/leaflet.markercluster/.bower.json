@@ -1,6 +1,6 @@
 {
   "name": "leaflet.markercluster",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "homepage": "https://github.com/Leaflet/Leaflet.markercluster",
   "authors": [
     "Dave Leaver <danzel@localhost.geek.nz>"
@@ -24,11 +24,11 @@
   "dependencies": {
     "leaflet": ">= 1.0.3"
   },
-  "_release": "1.0.3",
+  "_release": "1.0.5",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.3",
-    "commit": "0b024d5cb64e9318a621dba1f0dda709d6a945a2"
+    "tag": "v1.0.5",
+    "commit": "60fd2eedb18b0db28db6eb3351e1262c05dc875d"
   },
   "_source": "https://github.com/Leaflet/Leaflet.markercluster.git",
   "_target": "^1.0.3",

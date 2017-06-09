@@ -18,8 +18,7 @@ angular.module('osmApp.mainCtrl', [])
           window.location.reload(false);
       };
       $scope.dateOptions = {
-          enableDate: true,
-          enableTime: true
+          format: 'DD.MM.YYYY HH:mm'
       };
 
       // Map in <div> element mit dem Namen 'simpleMap' laden
@@ -228,13 +227,14 @@ angular.module('osmApp.mainCtrl', [])
               animation: $scope.animationsEnabled,
               templateUrl: 'html/eventModal.html',
               size: "small",
-              controller: function ($scope, $uibModalInstance) {
+              controller: function ($scope, $uibModalInstance, dateOptions) {
                   $scope.ok = function () {
                       $uibModalInstance.close($scope.newEvent);
                   };
                   $scope.cancel = function () {
                       $uibModalInstance.dismiss();
                   };
+                  $scope.dateOptions = dateOptions;
               },
               resolve: {
                   newEvent: function () {
@@ -242,10 +242,11 @@ angular.module('osmApp.mainCtrl', [])
                           "title": "",
                           "startdate": null,
                           "enddate": null,
-                          "allday": false,
+                          "allday": null,
                           "url": ""
                       }
-                  }
+                  },
+                  dateOptions: $scope.dateOptions
               }
           });
           modalInstance.result.then(function (newEvent) {

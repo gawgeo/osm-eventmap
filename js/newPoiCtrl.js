@@ -4,6 +4,9 @@ var app = angular.module('osmApp.newPoiCtrl', [])
       $scope.events = [];
       $scope.POI = {};
       $scope.popup = {'startDateOpen': false, 'endDateOpen': false};
+      $scope.dateOptions = {
+          format: 'DD.MM.YYYY HH:mm'
+      };
       databaseService.getEventsByKey($scope.oldPoi).then(function (res) {
           if (res) {
               console.log("Bisherige Events: ", res);

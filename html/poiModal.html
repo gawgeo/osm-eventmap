@@ -67,20 +67,41 @@
             </div>
             <div class="attrRow POIDate">
                 <div id="dateTime" class="dateTimeWrapper">
-                    <label for="startDate" class="control-label">Beginn:</label>
-                    <input ng-model="POI.startdate"
-                           id="startDate"
-                           type="datetime-local"
-                           name="startdate"
-                           class="dateTimepicker form-control">
-                    </input>
-                    <label for="endDate" class="control-label">Ende:</label>
-                    <input ng-model="POI.enddate"
-                           id="endDate"
-                           type="datetime-local"
-                           name="enddate"
-                           class="dateTimepicker form-control">
-                    </input>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error': dates_form.dateFrom.$invalid }">
+                                <label for="startdate">Von</label>
+                                <div class="input-group">
+                                    <input name="startdate" id="startdate" class="form-control"
+                                           datetimepicker
+                                           ng-model="POI.startdate"
+                                           options="dateOptions"
+                                           required>
+                                    <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error': dates_form.dateTo.$invalid }">
+                                <label for="enddate">Bis</label>
+                                <div class="input-group">
+                                    <input name="enddate" id="enddate" class="form-control"
+                                           datetimepicker
+                                           ng-model="POI.enddate"
+                                           options="dateOptions"
+                                           required>
+                                    <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span ng-show="newEventForm.$dirty && newEventForm.startdate.$invalid && !newEventForm.startdate.$error.required">Startzeitpunkt muss gesetzt werden.</span>
+                    <span ng-show="newEventForm.$dirty && newEventForm.startdate.$invalid && !newEventForm.startdate.$error.required">Startzeitpunkt muss gesetzt werden.</span>
+                </div>
                 </div>
             </div>
             <div class="attrRow POIDate">
