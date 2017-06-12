@@ -44,7 +44,7 @@ L.MarkerCluster = L.Marker.extend({
 	},
 
 	//Zoom to the minimum of showing all of the child markers, or the extents of this cluster
-	zoomToBounds: function () {
+	zoomToBounds: function (fitBoundsOptions) {
 		var childClusters = this._childClusters.slice(),
 			map = this._group._map,
 			boundsZoom = map.getBoundsZoom(this._bounds),
@@ -67,7 +67,7 @@ L.MarkerCluster = L.Marker.extend({
 		} else if (boundsZoom <= mapZoom) { //If fitBounds wouldn't zoom us down, zoom us down instead
 			this._group._map.setView(this._latlng, mapZoom + 1);
 		} else {
-			this._group._map.fitBounds(this._bounds);
+			this._group._map.fitBounds(this._bounds, fitBoundsOptions);
 		}
 	},
 
@@ -241,8 +241,8 @@ L.MarkerCluster = L.Marker.extend({
 		);
 	},
 
-	_recursivelyAnimateChildrenInAndAddSelfToMap: function (bounds, previousZoomLevel, newZoomLevel) {
-		this._recursively(bounds, newZoomLevel, this._group._map.getMinZoom(),
+	_recursivelyAnimateChildrenInAndAddSelfToMap: function (bounds, mapMinZoom, previousZoomLevel, newZoomLevel) {
+		this._recursively(bounds, newZoomLevel, mapMinZoom,
 			function (c) {
 				c._recursivelyAnimateChildrenIn(bounds, c._group._map.latLngToLayerPoint(c.getLatLng()).round(), previousZoomLevel);
 
@@ -250,7 +250,7 @@ L.MarkerCluster = L.Marker.extend({
 				//As a hack we only do a animation free zoom on a single level zoom, if someone does multiple levels then we always animate
 				if (c._isSingleParent() && previousZoomLevel - 1 === newZoomLevel) {
 					c.clusterShow();
-					c._recursivelyRemoveChildrenFromMap(bounds, previousZoomLevel); //Immediately remove our children as we are replacing them. TODO previousBounds not bounds
+					c._recursivelyRemoveChildrenFromMap(bounds, mapMinZoom, previousZoomLevel); //Immediately remove our children as we are replacing them. TODO previousBounds not bounds
 				} else {
 					c.clusterHide();
 				}
@@ -329,9 +329,9 @@ L.MarkerCluster = L.Marker.extend({
 	},
 
 	//exceptBounds: If set, don't remove any markers/clusters in it
-	_recursivelyRemoveChildrenFromMap: function (previousBounds, zoomLevel, exceptBounds) {
+	_recursivelyRemoveChildrenFromMap: function (previousBounds, mapMinZoom, zoomLevel, exceptBounds) {
 		var m, i;
-		this._recursively(previousBounds, this._group._map.getMinZoom() - 1, zoomLevel - 1,
+		this._recursively(previousBounds, mapMinZoom - 1, zoomLevel - 1,
 			function (c) {
 				//Remove markers at every level
 				for (i = c._markers.length - 1; i >= 0; i--) {

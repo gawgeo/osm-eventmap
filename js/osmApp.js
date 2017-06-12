@@ -13,7 +13,7 @@ angular.module('osmApp',
       'osmApp.mapCtrl',
       'ui.router',
       'ui.bootstrap',
-      'ui.bootstrap.datetimepicker',
+      'ae-datetimepicker',
       'ui.calendar',
       'ngCsv',
       'ngCsvImport'

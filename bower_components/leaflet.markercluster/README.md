@@ -48,8 +48,8 @@ removed link to h1 and indented back 2 spaces all links.
 
 ## Using the plugin
 Include the plugin CSS and JS files on your page after Leaflet files, using your method of choice:
-* [Download the `v1.0.0` release](https://github.com/Leaflet/Leaflet.markercluster/archive/v1.0.0.zip)
-* Use unpkg CDN: `https://unpkg.com/leaflet.markercluster@1.0.0/dist/`
+* [Download the `v1.0.5` release](https://github.com/Leaflet/Leaflet.markercluster/archive/v1.0.5.zip)
+* Use unpkg CDN: `https://unpkg.com/leaflet.markercluster@1.0.5/dist/`
 * Install with npm: `npm install leaflet.markercluster`
 
 In each case, use files in the `dist` folder:
@@ -245,10 +245,12 @@ markers.on('clusterclick', function (a) {
 #### Zooming to the bounds of a cluster
 When you receive an event from a cluster you can zoom to its bounds in one easy step.
 If all of the markers will appear at a higher zoom level, that zoom level is zoomed to instead.
+`zoomToBounds` takes an optional argument to pass [options to the resulting `fitBounds` call](http://leafletjs.com/reference.html#map-fitboundsoptions).
+
 See [marker-clustering-zoomtobounds.html](http://leaflet.github.io/Leaflet.markercluster/example/marker-clustering-zoomtobounds.html) for a working example.
 ```javascript
 markers.on('clusterclick', function (a) {
-	a.layer.zoomToBounds();
+	a.layer.zoomToBounds({padding: [20, 20]});
 });
 ```
 
@@ -286,3 +288,4 @@ Check also the below sub-plugins:
 | [Leaflet.FeatureGroup.SubGroup](https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup) | Creates a Feature Group that adds its child layers into a parent group when added to a map (e.g. through L.Control.Layers). Typical usage is to dynamically add/remove groups of markers from Marker Cluster. | [ghybs](https://github.com/ghybs) |
 | [Leaflet.MarkerCluster.LayerSupport](https://github.com/ghybs/Leaflet.MarkerCluster.LayerSupport) | Brings compatibility with L.Control.Layers and other Leaflet plugins. I.e. everything that uses direct calls to map.addLayer and map.removeLayer. | [ghybs](https://github.com/ghybs) |
 | [Leaflet.MarkerCluster.Freezable](https://github.com/ghybs/Leaflet.MarkerCluster.Freezable) | Adds the ability to freeze clusters at a specified zoom. E.g. freezing at maxZoom + 1 makes as if clustering was programmatically disabled. | [ghybs](https://github.com/ghybs) |
+| [Leaflet.MarkerCluster.PlacementStrategies](https://github.com/adammertel/Leaflet.MarkerCluster.PlacementStrategies) | Implements new strategies to position clustered markers (eg: clock, concentric circles, ...). Recommended to use with circleMarkers. [Demo](https://adammertel.github.io/Leaflet.MarkerCluster.PlacementStrategies/demo/demo1.html) | [adammertel](https://github.com/adammertel) / [UNIVIE](http://carto.univie.ac.at/) |
