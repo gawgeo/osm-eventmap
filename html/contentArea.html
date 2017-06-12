@@ -3,7 +3,7 @@
 
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <div class="well btnOnMap onMapTopRight">
-            <button class="btn btn-default" data-toggle="tooltip" ng-click="resetMap()" title="Quartier Zukunft">
+            <button class="btn btn-default" data-toggle="tooltip" data-placement="left" ng-click="resetMap()" title="Zurück zur Oststadt!">
                 <img src="/img/QZ_LogoSquare-A.svg" width="75">
             </button>
         </div>
@@ -77,7 +77,8 @@
                 title="Neuen Ort hinzufügen"
                 ng-model="addNew"
                 ng-click="addNew = !addNew"
-                ng-class="{addNewActive: addNew == true}">
+                ng-class="{addNewActive: addNew == true}"
+                data-toggle="tooltip">
             <i class="material-icons">add_location</i>
         </button>
         </div>
