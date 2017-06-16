@@ -21,7 +21,8 @@
                     </ul>
                 </div>
                 <!-- TITLE -->
-                <input class="form-control title" ng-model="POI.title" id="title" name="title" placeholder="Titel festlegen" type="text" ng-minlength="5" ng-maxlength="50" required>
+                <input class="form-control title" ng-model="POI.title" id="title" name="title"
+                       placeholder="Titel festlegen" type="text" ng-minlength="5" ng-maxlength="50" required>
                 <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.required">Das ist ein Pflichtfeld.</span>
                 <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.minlength">Mindestens 5 Zeichen.</span>
                 <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.maxlength">Maximal 50 Zeichen.</span>
@@ -30,7 +31,8 @@
 
             <div class="attrRow">
                 <!--<label for="POICategory" class="control-label">Nachhaltigkeitskategorie:</label>-->
-                <select class="form-control dropdown-toggle POICategory" ng-model="POI.category" id="POICategory" name="category" ng-minlength="3" required>
+                <select class="form-control dropdown-toggle POICategory" ng-model="POI.category" id="POICategory"
+                        name="category" ng-minlength="3" required>
                     <option value="">Nachhaltigkeitskategorie wählen</option>
                     <option ng-repeat="cat in config.categories">{{cat}}</option>
                 </select>
@@ -50,7 +52,7 @@
                                   <span class="input-group-addon">
                                     <input type="checkbox" ng-model="POI[short]">
                                   </span>
-                                  <span class="form-control">{{rule}}</span>
+                                <span class="form-control">{{rule}}</span>
                             </div>
                         </li>
                     </ul>
@@ -102,32 +104,40 @@
                     <span ng-show="newEventForm.$dirty && newEventForm.startdate.$invalid && !newEventForm.startdate.$error.required">Startzeitpunkt muss gesetzt werden.</span>
                     <span ng-show="newEventForm.$dirty && newEventForm.startdate.$invalid && !newEventForm.startdate.$error.required">Startzeitpunkt muss gesetzt werden.</span>
                 </div>
-                </div>
-            </div>
-            <div class="attrRow POIDate">
-                <!--<label for="POILink" class="control-label">Link:</label>-->
-                <input class="form-control POILink" id="POILink" name="link" placeholder="http:// - Link mit weiteren Informationen" type="url" ng-model="POI.link">
-                <span ng-show="newPoiForm.$dirty && newPoiForm.link.$invalid">Angegebene URL ist ungültig.</span>
-            </div>
-            <div class="attrRow ">
-                <!--<label for="POIImgLink" class="control-label">Bild-Link:</label>-->
-                <input class="form-control POIImgLink" id="POIImgLink" name="imgpath" placeholder="http:// - Bild-Link" type="url" ng-model="POI.imagePath">
-                <span ng-show="newPoiForm.$dirty && newPoiForm.imgpath.$invalid">Angegebene URL ist ungültig.</span>
             </div>
         </div>
-        <label for="dateTime">
-            <button type='button' ng-click="addEvent()" class="btn eventAddButton" title="Neuen Kalendereintrag hinzufügen.">
-                <i class="material-icons">add_alert</i>
-                <!--<i class="glyphicon glyphicon-plus"></i>-->
-            </button>
-            <ul class="eventList">
-                <li ng-repeat="e in events">
-                    <span>{{e.title}} - {{e.start | date:'dd.MM.yyyy hh:mm'}} bis {{e.end | date:'dd.MM.yyyy hh:mm'}}</span>
-                    <span ng-if="e.link">Link: <a>{{e.link}}</a></span>
-                    <button class="btn eventDeleteButton" ng-click="delete(e)"><i class="glyphicon glyphicon-trash"></i></button>
-                </li>
-            </ul>
-        </label>
+        <div class="attrRow POIDate">
+            <!--<label for="POILink" class="control-label">Link:</label>-->
+            <input class="form-control POILink" id="POILink" name="link"
+                   placeholder="http:// - Link mit weiteren Informationen" type="url" ng-model="POI.link">
+            <span ng-show="newPoiForm.$dirty && newPoiForm.link.$invalid">Angegebene URL ist ungültig.</span>
+        </div>
+        </br>
+        <div class="attrRow">
+            <!--<label for="POIImgLink" class="control-label">Bild-Link:</label>-->
+            <input class="form-control POIImgLink" id="POIImgLink" name="imgpath" placeholder="http:// - Bild-Link"
+                   type="url" ng-model="POI.imagePath">
+            <span ng-show="newPoiForm.$dirty && newPoiForm.imgpath.$invalid">Angegebene URL ist ungültig.</span>
+        </div>
+        </br>
+        <div class="attrRow">
+            <label for="dateTime">
+                <button type='button' ng-click="addEvent()" class="btn eventAddButton"
+                        title="Neuen Kalendereintrag hinzufügen.">
+                    <i class="material-icons">add_alert</i>
+                    <!--<i class="glyphicon glyphicon-plus"></i>-->
+                </button>
+                <ul class="eventList">
+                    <li ng-repeat="e in events">
+                        <span>{{e.title}} - {{e.start | date:'dd.MM.yyyy hh:mm'}} bis {{e.end | date:'dd.MM.yyyy hh:mm'}}</span>
+                        <span ng-if="e.link">Link: <a>{{e.link}}</a></span>
+                        <button class="btn eventDeleteButton" ng-click="delete(e)"><i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </li>
+                </ul>
+            </label>
+        </div>
+    </div>
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary" type="submit">Speichern</button>

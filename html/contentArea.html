@@ -3,7 +3,7 @@
 
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <div class="well btnOnMap onMapTopRight">
-            <button class="btn btn-default" data-toggle="tooltip" ng-click="resetMap()" title="Quartier Zukunft">
+            <button class="btn btn-default" data-toggle="tooltip" data-placement="left" ng-click="resetMap()" title="Karte zurücksetzten" tooltip >
                 <img src="/img/QZ_LogoSquare-A.svg" width="75">
             </button>
         </div>
@@ -118,7 +118,7 @@
             <br>
             <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
             <div class="filterArea well well-sm">
-                <span data-toggle="tooltip" title="Begriff eingeben um im Titel der Nachhaltgkeitsorte zu suchen.">SUCHEN IM TITEL NACH... </span>
+                <span data-toggle="tooltip" title="Begriff eingeben um im Titel der Nachhaltgkeitsorte zu suchen." tooltip>SUCHEN IM TITEL NACH... </span>
                 <input class="form-control" ng-model="conditions.condition"
                        ng-change="filter(conditions)">
 
@@ -136,14 +136,15 @@
                 <br>
                 <span>KATEGORIE AUSWÄHLEN... </span>
                 <br>
-                <div class="btn-group btn-group-justified" data-toggle="tooltip">
+                <div class="btn-group btn-group-justified" data-toggle="tooltip" tooltip>
                     <div class="btn-group">
                         <!--auch hier wie in maparea btn-default raus -->
                         <button class="btn btn-qz-blue" title="Nachhaltige Mobilität"
                                 data-toggle="tooltip"
                                 ng-model="conditions.categories"
                                 ng-class="{'active': conditions.categories.indexOf(config.categories[0]) != -1}"
-                                ng-click="setCatCondition(config.categories[0])">
+                                ng-click="setCatCondition(config.categories[0])"
+                                tooltip>
                             <i class="material-icons">directions_bike</i>
                         </button>
                     </div>
@@ -152,7 +153,8 @@
                                 data-toggle="tooltip"
                                 ng-model="conditions.categories"
                                 ng-class="{'active': conditions.categories.indexOf(config.categories[1]) != -1}"
-                                ng-click="setCatCondition(config.categories[1])">
+                                ng-click="setCatCondition(config.categories[1])"
+                                tooltip>
                             <i class="material-icons">euro_symbol</i>
                         </button>
                     </div>
@@ -161,7 +163,8 @@
                                 data-toggle="tooltip"
                                 ng-model="conditions.categories"
                                 ng-class="{'active': conditions.categories.indexOf(config.categories[2]) != -1}"
-                                ng-click="setCatCondition(config.categories[2])">
+                                ng-click="setCatCondition(config.categories[2])"
+                                tooltip>
                             <i class="material-icons">school</i>
                         </button>
                     </div>
@@ -172,7 +175,8 @@
                                 title="Gemeinschaft und Soziales"
                                 data-toggle="tooltip"
                                 ng-class="{'active': conditions.categories.indexOf(config.categories[3]) != -1}"
-                                ng-click="setCatCondition(config.categories[3])">
+                                ng-click="setCatCondition(config.categories[3])"
+                                tooltip>
                             <i class="material-icons">people</i>
                         </button>
                     </div>
@@ -181,7 +185,8 @@
                                 ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
                                 ng-click="setCatCondition(config.categories[4])"
                                 data-toggle="tooltip"
-                                title="Umwelt und Raumentwicklung">
+                                title="Umwelt und Raumentwicklung"
+                                tooltip>
                             <i class="material-icons">nature</i>
                         </button>
                     </div>
@@ -190,7 +195,8 @@
                                 ng-click="setCatCondition(config.categories[5])"
                                 ng-class="{'active': conditions.categories.indexOf(config.categories[5]) != -1}"
                                 data-toggle="tooltip"
-                                title="Energie und Versorgung">
+                                title="Energie und Versorgung"
+                                tooltip>
                             <i class="material-icons">flash_on</i>
                         </button>
                     </div>
