@@ -34,7 +34,7 @@ angular.module('osmApp',
   .controller('osmAppCtrl', function ($rootScope, $scope, $state, $uibModal, databaseService) {
       console.log("OSM-App running!");
       $state.go('home');
-
+      $scope.loaded = true;
       // mobile device checks
       function isMobile() {
           var check = false;
