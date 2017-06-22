@@ -6,7 +6,7 @@
         <div class="eventAttr">
             <!--<label for="title" class="control-label">Name</label>-->
             <input class="form-control title" ng-model="newEvent.title" id="title" name="title"
-                   placeholder="Titel eingeben" type="text" ng-minlength="5" ng-maxlength="50" required>
+                   placeholder="Titel eingeben" type="text" ng-minlength="5" ng-maxlength="50" pattern=".{5,50}" required>
             <span ng-show="newEventForm.$dirty && newEventForm.title.$error.required">Das ist ein Pflichtfeld.</span>
             <span ng-show="newEventForm.$dirty && newEventForm.title.$error.minlength">Mindestens 5 Zeichen.</span>
             <span ng-show="newEventForm.$dirty && newEventForm.title.$error.maxlength">Maximal 50 Zeichen.</span>
