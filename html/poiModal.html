@@ -22,10 +22,10 @@
                 </div>
                 <!-- TITLE -->
                 <input class="form-control title" ng-model="POI.title" id="title" name="title"
-                       placeholder="Titel festlegen" type="text" ng-minlength="5" ng-maxlength="50" required>
+                       placeholder="Titel festlegen" type="text" ng-minlength="5" ng-maxlength="75" pattern=".{5,75}" ng-required="true">
                 <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.required">Das ist ein Pflichtfeld.</span>
                 <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.minlength">Mindestens 5 Zeichen.</span>
-                <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.maxlength">Maximal 50 Zeichen.</span>
+                <span ng-show="newPoiForm.$dirty && newPoiForm.title.$error.maxlength">Maximal 75 Zeichen.</span>
                 <span ng-show="newPoiForm.$dirty && newPoiForm.title.$invalid">Eingabe ist ungültig.</span>
             </div>
 
@@ -77,8 +77,7 @@
                                     <input name="startdate" id="startdate" class="form-control"
                                            datetimepicker
                                            ng-model="POI.startdate"
-                                           options="dateOptions"
-                                           required>
+                                           options="dateOptions">
                                     <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -92,8 +91,7 @@
                                     <input name="enddate" id="enddate" class="form-control"
                                            datetimepicker
                                            ng-model="POI.enddate"
-                                           options="dateOptions"
-                                           required>
+                                           options="dateOptions">
                                     <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
