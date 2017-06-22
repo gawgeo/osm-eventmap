@@ -48,21 +48,19 @@ angular.module('osmApp.directives', [])
                   return jqElement.find('.panel-collapse').hasClass('collapsing');
               }, function (status) {
                   if (scope.collapsing && !status) {
-                    /*
                       if (jqElement.hasClass('panel-open')) {
-                          console.log("ScrollOffset: ", jqElement.offset().top);
-                          console.log(jqElement);
+                          //console.log("Status: ", status, " collapsing: ", scope.collapsing, " ScrollOffset: ", jqElement.offset().top, element);
                           $('.pois').animate({
-                              scrollTop: jqElement.offset().top - 50
+                              scrollTop: element[0].offsetTop - 10
                           }, 500);
                       }
-                    */
                   }
                   scope.collapsing = status;
               });
           }
       };
   })
+
 
   .directive('validateBefore', function validateBefore() {
       return {
