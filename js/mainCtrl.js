@@ -166,9 +166,12 @@ angular.module('osmApp.mainCtrl', [])
       // Cross-Select POI (in Calendar, Marker, Accordion)
       $scope.selectPOI = function (POI) {
           $scope.selectedPOI = POI;
-          $scope.markers.filter(function (marker) {
+          var m = $scope.markers.filter(function (marker) {
               return marker.POIid === POI.id;
-          })[0].openPopup();
+          })[0];
+          markerGroup.zoomToShowLayer(m, function() {
+              m.openPopup();
+          });
       };
 
       // CRUD-Handling with Database
