@@ -15,7 +15,7 @@ angular.module('osmApp.filters', [])
               if (conditions.category && POI.category !== conditions.category) {
                   res = false;
               }*/
-              if (conditions.rule && POI[conditions.rule] !== 1) {
+              if (conditions.rule && !POI[conditions.rule]) {
                   res = false;
               }
               if (conditions.status && POI.status !== conditions.status) {
