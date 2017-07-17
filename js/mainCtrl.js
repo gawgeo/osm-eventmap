@@ -135,10 +135,12 @@ angular.module('osmApp.mainCtrl', [])
                       });
                   }
               });
+              /*
               marker.setBouncingOptions({
                   bounceHeight: 5,    // height of the bouncing
                   bounceSpeed: 150    // bouncing speed coefficient
               });
+              */
               marker["POIid"] = POI.id;
               // Make current event bouncing
               marker["current"] = POI.status === "laufend" || POI.status === "";
@@ -152,6 +154,7 @@ angular.module('osmApp.mainCtrl', [])
       $scope.currentMarkerBouncingToggle = function () {
           // Make current event bouncing
           $scope.bouncing = !$scope.bouncing;
+          /*
           if ($scope.bouncing) {
               markerGroup.getLayers().forEach(function (marker) {
                   if (marker.current) {
@@ -161,6 +164,7 @@ angular.module('osmApp.mainCtrl', [])
           } else {
               L.Marker.stopAllBouncingMarkers();
           }
+          */
       };
 
       // Cross-Select POI (in Calendar, Marker, Accordion)
