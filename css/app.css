@@ -72,6 +72,9 @@
 .mapArea .uiCalendarWrapper .uiCalendar {
   padding: 0.5em;
 }
+.mapArea .fc-time {
+  display: none !important;
+}
 .mapArea .btnOnMap {
   position: absolute;
   background-color: lightgrey;
