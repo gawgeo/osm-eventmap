@@ -84,6 +84,32 @@ var app = angular.module('osmApp.mapCtrl', [])
           weight: 2});
       map.addLayer(oststadtPolygon);
 
+
+      var freiFlaeche1 = new L.Polygon([
+          [49.032341, 8.410995],
+          [49.030878, 8.409408],
+          [49.031036, 8.406361],
+          [49.024135, 8.405470],
+          [49.013624, 8.408443],
+          [49.022804, 8.411058]
+      ], {
+          fill: true, color: "yellow",
+          clickable: false,
+          weight: 2});
+
+      var freiFlaeche2 = new L.Polygon([
+          [49.019028, 8.436568],
+          [49.020451, 8.432399],
+          [49.020961, 8.430853],
+          [49.024893, 8.423220],
+          [49.032631, 8.410987]
+      ], {
+          fill: true, color: "blue",
+          clickable: false,
+          weight: 2});
+
+      var freiFlaechen = L.layerGroup([freiFlaeche1, freiFlaeche2]);
+
       // Geocoder
       var northWest = L.latLng(49.0789189956 , 8.2562255859),
           southEast = L.latLng(48.9577317827, 8.5689926147),
@@ -116,7 +142,8 @@ var app = angular.module('osmApp.mapCtrl', [])
       };
       var overlay = {
           "Points of Interest": markerGroup,
-          "Grenze der Oststadt": oststadtPolygon
+          "Grenze der Oststadt": oststadtPolygon,
+          "Freiflächen": freiFlaechen
       };
       L.control.layers(baseMaps, overlay, {
           position: 'bottomleft'
