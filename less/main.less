@@ -147,7 +147,6 @@ body, html {
 
   .smallMap {
     .make-md-column(9);
-    height: 50%;!important;
   }
   .bigMap {
     .make-md-column(11.9);
@@ -183,6 +182,16 @@ body, html {
 // rudimentary adjustment for responsive design
 @media (max-width: @screen-md-min) {
   .main {
-    overflow: auto;
+    .h4, h4{
+      font-size: 36px;
+    }
+
+    .contentWrapper {
+      .content {
+        .mapArea {
+          height: 50%;
+        }
+      }
+    }
   }
 }
