@@ -55,7 +55,7 @@
     background-color: lightgrey;
     z-index: 200;
     top: 10px;
-    left: 50px;
+    left: 10px;
     padding: 0;
     border: solid #c1c1c1 1px;
     border-radius: 4px;
@@ -113,13 +113,52 @@
 }
 
 .leaflet-control {
-
+  position: absolute;
+  top: 110px;
+  left: 5px;
   .leaflet-control-geocoder {
     a {
 
     }
   }
   .leaflet-control-geocoder-expanded {
+
+  }
+}
+// rudimentary adjustment for responsive design
+@media (max-width: @screen-md-min) {
+  .main {
+    .h4, h4{
+      font-size: 36px;
+    }
+    .material-icons{
+      font-size: 56px;
+    }
+    .btn {
+      font-size: 48px;
+    }
+    .leaflet-top {
+      font-size: 48px;
+
+    }
+    .leaflet-control-zoom-out{
+      //font-size: 48px;
+      display: none;
+    }
+    .leaflet-control-zoom-in {
+      //font-size: 48px;
+      display: none;
+    }
+    .leaflet-control-geocoder-toggle {
+      display: none;
+      width: 60px;
+      height: 60px;
+    }
+    .leaflet-control-locate {
+
+    }
+  }
+  .btnOnMap {
 
   }
 }
