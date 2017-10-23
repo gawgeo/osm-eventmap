@@ -53,17 +53,17 @@
 }
 .mapArea .uiCalendarWrapper {
   position: absolute;
-  background-color: lightgrey;
   z-index: 200;
-  top: 10px;
+  top: 140px;
   left: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
   padding: 0;
-  border: solid #c1c1c1 1px;
-  border-radius: 4px;
+  background-clip: padding-box;
 }
 .mapArea .uiCalendarWrapper .calendarToggle {
   background-color: white;
-  padding: 0.3em 0.7em 0.3em 0.7em;
+  padding: 0.3em 7px 0.3em 7px;
   color: grey;
 }
 .mapArea .uiCalendarWrapper .calendarToggle:focus {
@@ -106,10 +106,13 @@
   font-size: 8px;
   padding-top: 5px;
 }
-.leaflet-control {
+.leaflet-control-geocoder {
   position: absolute;
-  top: 110px;
-  left: 5px;
+  left: 50px;
+}
+.leaflet-control-locate {
+  position: absolute;
+  top: 80px;
 }
 @media (max-width: 992px) {
   .main .h4,
