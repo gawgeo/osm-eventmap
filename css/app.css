@@ -125,14 +125,7 @@
   .main .leaflet-top {
     font-size: 48px;
   }
-  .main .leaflet-control-zoom-out {
-    display: none;
-  }
-  .main .leaflet-control-zoom-in {
-    display: none;
-  }
   .main .leaflet-control-geocoder-toggle {
-    display: none;
     width: 60px;
     height: 60px;
   }
