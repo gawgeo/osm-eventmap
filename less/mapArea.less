@@ -53,8 +53,8 @@
   .uiCalendarWrapper {
     position: absolute;
     z-index: 200;
-    top: 140px;
-    left: 10px;
+    top: 10px;
+    left: 120px;
     border: 2px solid rgba(0,0,0,0.2);
     border-radius: 5px;
     padding: 0;
@@ -125,6 +125,10 @@
 // rudimentary adjustment for responsive design
 @media (max-width: @screen-md-min) {
   .main {
+    .calendarToggle {
+      width: auto;
+      height: auto;
+    }
     .h4, h4 {
       font-size: 36px;
     }
@@ -136,7 +140,6 @@
     }
     .leaflet-top {
       font-size: 48px;
-
     }
     .leaflet-control-zoom-out {
       //font-size: 48px;
@@ -148,11 +151,31 @@
     }
     .leaflet-control-geocoder-toggle {
       //display: none;
-      width: 60px;
-      height: 60px;
+      width: 100px;
+      height: 100px;
     }
     .leaflet-control-locate {
 
+    }
+    .leaflet-control-layers-toggle {
+      height: 100px;
+      width: 100px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    .leaflet-bar-part-single {
+      width: 100px;
+      height: 100px;
+    }
+    .leaflet-control-layers-expanded {
+      font-size: 32px;
+    }
+    .markerPopupTitle{
+      font-size: 22px;
+    }
+    .markerPopup{
+      font-size: 18px;
     }
   }
 

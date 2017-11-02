@@ -94,7 +94,7 @@ angular.module('osmApp.mainCtrl', [])
               var linkFn = $compile(
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
                 '<span class="markerPopup">' + POI.description + '</span>' +
-                '<div class="markerPopupAddDate"><button class="btn btn-link" ng-click="newSingleEvent(' + POI.id + ')"><span class="glyphicon glyphicon-plus"></span><span>Termin hinzufügen</span></button>' +
+                '<div class="markerPopupAddDate"><button class="btn btn-link" data-toggle="tooltip" tooltip title="Neuen Termin hinzufügen" ng-click="newSingleEvent(' + POI.id + ')"><i class="material-icons">add_alert</i></button>' +
                 '<button class="btn btn-warning pull-right" ng-if="$parent.admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
                 '<button class="btn btn-danger pull-right" ng-if="$parent.admin" ng-click="deleteThis()"><span class="glyphicon glyphicon-remove-circle"></span></button></div>' +
                 '</div>'

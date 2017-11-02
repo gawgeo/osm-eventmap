@@ -67,6 +67,24 @@ angular.module('osmApp',
               console.log('Modal dismissed at: ' + new Date());
           });
       };
+      // Nachhaltigkeitsspaziergang modal
+      $scope.opennhSpaziergangModal = function () {
+          var modalInstance = $uibModal.open({
+              animation: $scope.animationsEnabled,
+              templateUrl: 'html/nhSpaziergangModal.html',
+              size: "large",
+              controller: function ($scope, $uibModalInstance) {
+                  $scope.cancel = function () {
+                      $uibModalInstance.dismiss();
+                  };
+              }
+          });
+          modalInstance.result.then(function () {
+              console.log("Model closed");
+          }, function () {
+              console.log('Modal dismissed at: ' + new Date());
+          });
+      };
 
       databaseService.getConfig().then(function (res) {
           $rootScope.config = res;

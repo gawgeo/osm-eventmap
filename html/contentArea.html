@@ -71,11 +71,14 @@
                 ng-class="{addNewActive: addNew == true}">
             <i class="material-icons">add_location</i>
         </button>
-        <button class="btn btn-group btn-default"
-                data-toggle="tooltip"
-                title="Nachhaltigkeitsspaziergang">
-            <i class="material-icons">directions_run</i>
-        </button>
+            <button class="btn btn-qz-yellow" ng-model="conditions.category"
+                    ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
+                    ng-click="setCatCondition(config.categories[4]); opennhSpaziergangModal()"
+                    data-toggle="tooltip"
+                    title="Nachhaltigkeitsspaziergang"
+                    tooltip>
+                <i class="material-icons">directions_run</i>
+            </button>
 
         </div>
 
@@ -181,9 +184,9 @@
                                 ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
                                 ng-click="setCatCondition(config.categories[4])"
                                 data-toggle="tooltip"
-                                title="Umwelt und Raumentwicklung"
+                                title="Nachhaltigkeitsspaziergang"
                                 tooltip>
-                            <i class="material-icons">nature</i>
+                            <i class="material-icons">directions_run</i>
                         </button>
                     </div>
                     <div class="btn-group">

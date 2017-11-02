@@ -54,8 +54,8 @@
 .mapArea .uiCalendarWrapper {
   position: absolute;
   z-index: 200;
-  top: 140px;
-  left: 10px;
+  top: 10px;
+  left: 120px;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 0;
@@ -115,6 +115,10 @@
   top: 80px;
 }
 @media (max-width: 992px) {
+  .main .calendarToggle {
+    width: auto;
+    height: auto;
+  }
   .main .h4,
   .main h4 {
     font-size: 36px;
@@ -129,8 +133,28 @@
     font-size: 48px;
   }
   .main .leaflet-control-geocoder-toggle {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
+  }
+  .main .leaflet-control-layers-toggle {
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .main .leaflet-bar-part-single {
+    width: 100px;
+    height: 100px;
+  }
+  .main .leaflet-control-layers-expanded {
+    font-size: 32px;
+  }
+  .main .markerPopupTitle {
+    font-size: 22px;
+  }
+  .main .markerPopup {
+    font-size: 18px;
   }
 }
 .infoArea {
@@ -228,12 +252,26 @@
   }
 }
 @media (max-width: 992px) {
+  .h4,
+  h4 {
+    font-size: 48px;
+  }
   .pois {
     overflow-y: auto;
     overflow-x: hidden;
   }
   .pois img {
     width: 100%;
+  }
+  .panel-body {
+    font-size: 32px;
+  }
+  .poiDescription {
+    font-size: 32px;
+  }
+  .form-control {
+    height: auto;
+    font-size: 36px;
   }
 }
 .newPOIWrapper {
@@ -731,6 +769,14 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+@media (max-width: 992px) {
+  .modal-open {
+    font-size: 28px;
+  }
+  .btn {
+    font-size: 28px;
+  }
+}
 body,
 html {
   height: 100%;
@@ -957,9 +1003,12 @@ html {
 @media (max-width: 992px) {
   .main .h4,
   .main h4 {
-    font-size: 36px;
+    font-size: 48px;
   }
   .main .contentWrapper .content .mapArea {
     height: 50%;
+  }
+  .panel-body {
+    font-size: 32px;
   }
 }
