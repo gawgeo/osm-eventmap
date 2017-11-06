@@ -87,16 +87,6 @@
     padding: 0.1em 0.3em 0.1em 0.3em;
   }
 
-  @media (min-width: @screen-md-min) {
-    .POIRules {
-      ul {
-        li {
-          white-space: nowrap;
-        }
-      }
-    }
-  }
-
   .title.ng-valid, .category.ng-valid, .description.ng-valid, .link.ng-valid, .imgpath.ng-valid {
     background-color: rgba(128, 194, 138, 0.5);;
   }
@@ -106,8 +96,24 @@
   .title.ng-dirty.ng-invalid-minlength, .title.ng-dirty.ng-invalid-maxlength, .description.ng-dirty.ng-invalid-maxlength, .description.ng-dirty.ng-invalid-minlength {
     background-color: rgba(210, 213, 37, 0.5);;
   }
+}
 
-  @media (max-width: @screen-md-min) {
+// PC-Ansicht
+@media (min-width: @screen-md-min) {
+  .POIRules {
+    ul {
+      li {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+// Handy-Ansicht
+@media (max-width: @screen-md-min) {
+  .newPOIWrapper {
+
+
     .POIRules {
       ul {
         li {
@@ -117,6 +123,5 @@
         }
       }
     }
-
   }
 }
