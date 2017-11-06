@@ -86,7 +86,8 @@
         <div ng-controller="mapCtrl" id="simpleMap"></div>
 
         <!-- Calendar -->
-        <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false" ng-style="showCalendar && {'width': '60%'}">
+        <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false"
+             ng-class="{'showCalendar': showCalendar}">
             <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i class="glyphicon glyphicon-calendar"></i></button>
             <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>

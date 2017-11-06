@@ -54,8 +54,8 @@
 .mapArea .uiCalendarWrapper {
   position: absolute;
   z-index: 200;
-  top: 10px;
-  left: 120px;
+  top: 140px;
+  left: 10px;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 0;
@@ -71,6 +71,9 @@
 }
 .mapArea .uiCalendarWrapper .uiCalendar {
   padding: 0.5em;
+}
+.mapArea .showCalendar {
+  width: 60%;
 }
 .mapArea .btnOnMap {
   position: absolute;
@@ -115,6 +118,17 @@
   top: 80px;
 }
 @media (max-width: 992px) {
+  .main .uiCalendarWrapper .calendarToggle {
+    padding: 0 0 0 0;
+    height: 32px;
+    font-size: 28px;
+  }
+  .main .showCalendar {
+    width: 95%;
+  }
+  .main .leaflet-control-locate a {
+    font-size: 20px;
+  }
   .main .calendarToggle {
     width: auto;
     height: auto;
