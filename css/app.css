@@ -1022,6 +1022,9 @@ html {
   .main .contentWrapper .content .mapArea {
     height: 50%;
   }
+  .tooltip {
+    font-size: 28px;
+  }
   .panel-body {
     font-size: 32px;
   }
