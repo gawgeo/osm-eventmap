@@ -53,8 +53,8 @@
   .uiCalendarWrapper {
     position: absolute;
     z-index: 200;
-    top: 10px;
-    left: 120px;
+    top: 140px;
+    left: 10px;
     border: 2px solid rgba(0,0,0,0.2);
     border-radius: 5px;
     padding: 0;
@@ -70,6 +70,9 @@
     .uiCalendar {
       padding: 0.5em;
     }
+  }
+  .showCalendar {
+      width: 60%
   }
 
   .btnOnMap {
@@ -125,6 +128,19 @@
 // rudimentary adjustment for responsive design
 @media (max-width: @screen-md-min) {
   .main {
+    .uiCalendarWrapper {
+      .calendarToggle {
+        padding: 0 0 0 0;
+        height: 32px;
+        font-size: 28px;
+      }
+    }
+    .showCalendar {
+      width: 95%
+    }
+    .leaflet-control-locate a {
+      font-size: 20px;
+    }
     .calendarToggle {
       width: auto;
       height: auto;
