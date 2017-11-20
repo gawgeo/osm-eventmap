@@ -75,6 +75,46 @@
 .mapArea .showCalendar {
   width: 60%;
 }
+.mapArea .legendeGewerbe {
+  color: #e74226;
+  font-size: small;
+}
+.mapArea .legendePark {
+  color: #18e42b;
+  font-size: small;
+}
+.mapArea .legendeUni {
+  color: #fbef67;
+  font-size: small;
+}
+.mapArea .legendeWald {
+  color: #5ca877;
+  font-size: small;
+}
+.mapArea .legendeKleingarten {
+  color: #92b944;
+  font-size: small;
+}
+.mapArea .legendeMulti {
+  color: #e6a026;
+  font-size: small;
+}
+.mapArea .legendeKreativ {
+  color: #e95fad;
+  font-size: small;
+}
+.mapArea .legendeSport {
+  color: #7c1598;
+  font-size: small;
+}
+.mapArea .legendeFriedhof {
+  color: #987b15;
+  font-size: small;
+}
+.mapArea .legendePlatz {
+  color: #1932b3;
+  font-size: small;
+}
 .mapArea .btnOnMap {
   position: absolute;
   background-color: lightgrey;
@@ -87,6 +127,11 @@
 }
 .mapArea .onMapTopRight {
   top: 10px;
+  right: 10px;
+}
+.mapArea .onMapCenterRight {
+  padding: 1px 0;
+  top: 250px;
   right: 10px;
 }
 .mapArea .filterOnMap {
