@@ -4,6 +4,7 @@ var app = angular.module('osmApp.mapCtrl', [])
       console.log("mapCtrl running!");
       var map = $scope.$parent.map;
       var markerGroup = $scope.$parent.markerGroup;
+      var showLegende = $scope.$parent.showLegende;
 
       map.setView(new L.LatLng(49.0109622707, 8.4299737215), 15); // Position laden
 
@@ -938,4 +939,14 @@ var app = angular.module('osmApp.mapCtrl', [])
           map.invalidateSize();
       });
 
+      map.on('overlayadd', function (e) {
+          if (e.name === "Freiflächen") {
+              showLegende(true);
+          }
+      });
+      map.on('overlayremove', function (e) {
+          if (e.name === "Freiflächen") {
+              showLegende(false);
+          }
+      });
   });

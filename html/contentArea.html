@@ -1,35 +1,41 @@
 <div class="content" ng-controller="mainCtrl">
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
-
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <div class="well btnOnMap onMapTopRight">
-            <button class="btn btn-default" data-toggle="tooltip" data-placement="left" ng-click="resetMap()" title="Karte zurücksetzen" tooltip >
+            {{legende}}
+            <button class="btn btn-default" data-toggle="tooltip" data-placement="left" ng-click="resetMap()"
+                    title="Karte zurücksetzen" tooltip>
                 <img src="/img/QZ_LogoSquare-A.svg" width="75">
             </button>
         </div>
-        <div class="well legendenListe onMapCenterRight disabled">
-            <button class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Legende der Freiflächen" tooltip >
-                <p class="legende legendeGewerbe">Gewerbeflächen (versiegelt)</p>
-                <p class="legende legendePark">Parks und öffentlich zugängige Grünflächen</p>
-                <p class="legende legendeUni">Universitäre Frei- und Grünflächen</p>
-                <p class="legende legendeWald">Wald</p>
-                <p class="legende legendeKleingarten">Kleingarten</p>
-                <p class="legende legendeMulti">multifunktionale Freiflächen</p>
-                <p class="legende legendeKreativ">Kreativ- und Gewerbepark Schlachthof</p>
-                <p class="legende legendeSport">Sportflächen</p>
-                <p class="legende legendeFriedhof">Friedhof</p>
-                <p class="legende legendeFriedhof">Plätze</p>
-            </button>
+        <div ng-show="legende.show"
+             ng-click=""
+             class="well legende btn"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="Legende der Freiflächen"
+             tooltip draggable>
+            <h3>Legende zu Freiflächen</h3>
+            <p class="legendeGewerbe">Gewerbeflächen (versiegelt)</p>
+            <p class="legendePark">Parks und öffentlich zugängige Grünflächen</p>
+            <p class="legendeUni">Universitäre Frei- und Grünflächen</p>
+            <p class="legendeWald">Wald</p>
+            <p class="legendeKleingarten">Kleingarten</p>
+            <p class="legendeMulti">multifunktionale Freiflächen</p>
+            <p class="legendeKreativ">Kreativ- und Gewerbepark Schlachthof</p>
+            <p class="legendeSport">Sportflächen</p>
+            <p class="legendeFriedhof">Friedhof</p>
+            <p class="legendeFriedhof">Plätze</p>
         </div>
 
         <div class="well well-sm btnOnMap onMapBottomRight">
-        <button class="btn btn-group btn-default"
-                title="Neuen Ort hinzufügen"
-                ng-model="addNew"
-                ng-click="addNew = !addNew"
-                ng-class="{addNewActive: addNew == true}">
-            <i class="material-icons">add_location</i>
-        </button>
+            <button class="btn btn-group btn-default"
+                    title="Neuen Ort hinzufügen"
+                    ng-model="addNew"
+                    ng-click="addNew = !addNew"
+                    ng-class="{addNewActive: addNew == true}">
+                <i class="material-icons">add_location</i>
+            </button>
             <button class="btn btn-qz-yellow" ng-model="conditions.category"
                     ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
                     ng-click="setCatCondition(config.categories[4]); opennhSpaziergangModal()"
@@ -46,7 +52,8 @@
         <!-- Calendar -->
         <div class="well well-sm uiCalendarWrapper" ng-init="showCalendar = false"
              ng-class="{'showCalendar': showCalendar}">
-            <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i class="glyphicon glyphicon-calendar"></i></button>
+            <button class="btn calendarToggle" ng-click="showCalendar = !showCalendar"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
             <div class="uiCalendar" ng-if="showCalendar" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
         </div>
     </div>
@@ -73,7 +80,8 @@
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
 
             <div class="filterArea well well-sm">
-                <span data-toggle="tooltip" title="Begriff eingeben um im Titel der Nachhaltgkeitsorte zu suchen." tooltip><h4>SUCHEN IM TITEL NACH...</h4> </span>
+                <span data-toggle="tooltip" title="Begriff eingeben um im Titel der Nachhaltgkeitsorte zu suchen."
+                      tooltip><h4>SUCHEN IM TITEL NACH...</h4> </span>
                 <input class="form-control" ng-model="conditions.condition"
                        ng-change="filter(conditions)">
 
@@ -206,8 +214,10 @@
                         </ul>
                         <span class="rulesHeadline" ng-if="filteredEvents.length > 0">Termine:</span>
                         <ul class="rules">
-                            <li class="rule" ng-repeat="event in filteredEvents = (eventSources[0].events | filter:{pointsofinterest_id: POI.id}:true)">
-                                <span>{{event.title}} - {{event.start | date : "dd.MM.yy H:mm"}}h bis {{event.end | date : "dd.MM.yy H:mm"}}h <a ng-if="event.link" target="_blank" href="{{event.link}}">- link</a></span>
+                            <li class="rule"
+                                ng-repeat="event in filteredEvents = (eventSources[0].events | filter:{pointsofinterest_id: POI.id}:true)">
+                                <span>{{event.title}} - {{event.start | date : "dd.MM.yy H:mm"}}h bis {{event.end | date : "dd.MM.yy H:mm"}}h <a
+                                        ng-if="event.link" target="_blank" href="{{event.link}}">- link</a></span>
                             </li>
                         </ul>
                         <img ng-src="{{POI.imagepath}}" err-src="../img/qzIcon.png">

@@ -2,32 +2,6 @@
   position: absolute;
   width: 100%;
   margin: 0 auto;
-  /* onMap Filter-Area disabled
-  .filterArea {
-    top: 90%;
-    left: 15%;
-    width: 75%;
-    height: 4em;
-    position: relative;
-    z-index: 100;
-    border: solid grey 1px;
-    border-radius: 4px;
-    box-shadow: 5px 5px 5px grey;
-    padding-left: 3%;
-    input {
-      display: inline-block;
-      width: 18%;
-    }
-    select {
-      width: 18%;
-      display: inline-block;
-    }
-    .bounceMarkerButton {
-      width: 18%;
-      float: right;
-      overflow: hidden;
-    }
-  }*/
 }
 .mapArea #simpleMap {
   position: absolute;
@@ -35,6 +9,17 @@
   z-index: 10;
   width: 100%;
   height: 100%;
+}
+.mapArea .leaflet-control-geocoder {
+  position: absolute;
+  left: 50px;
+}
+.mapArea .leaflet-control-locate {
+  position: absolute;
+  top: 80px;
+}
+.mapArea .leaflet-popup-content-wrapper {
+  min-width: 250px;
 }
 .mapArea .addNewActive {
   background-image: none;
@@ -52,65 +37,48 @@
   top: 1em;
   z-index: 20;
 }
-.mapArea .uiCalendarWrapper {
-  position: absolute;
-  z-index: 200;
-  top: 140px;
-  left: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  padding: 0;
-  background-clip: padding-box;
-}
-.mapArea .uiCalendarWrapper .calendarToggle {
-  background-color: white;
-  padding: 0.3em 7px 0.3em 7px;
-  color: grey;
-}
-.mapArea .uiCalendarWrapper .calendarToggle:focus {
-  outline: 0;
-}
-.mapArea .uiCalendarWrapper .uiCalendar {
-  padding: 0.5em;
-}
-.mapArea .showCalendar {
-  width: 60%;
-}
-.mapArea .legendenListe {
+.mapArea .legende {
   position: absolute;
   background-color: lightgrey;
+  width: 300px;
+  top: 50%;
+  left: 2%;
   z-index: 200;
-  padding: 0;
+  padding: 1em;
   font-size: small;
 }
-.mapArea .legendenListe .legendeGewerbe {
+.mapArea .legende h3 {
+  margin-top: 0.3em;
+  padding-bottom: 0.5em;
+}
+.mapArea .legende .legendeGewerbe {
   color: #e74226;
 }
-.mapArea .legendenListe .legendePark {
+.mapArea .legende .legendePark {
   color: #18e42b;
 }
-.mapArea .legendenListe .legendeUni {
+.mapArea .legende .legendeUni {
   color: #fbef67;
 }
-.mapArea .legendenListe .legendeWald {
+.mapArea .legende .legendeWald {
   color: #5ca877;
 }
-.mapArea .legendenListe .legendeKleingarten {
+.mapArea .legende .legendeKleingarten {
   color: #92b944;
 }
-.mapArea .legendenListe .legendeMulti {
+.mapArea .legende .legendeMulti {
   color: #e6a026;
 }
-.mapArea .legendenListe .legendeKreativ {
+.mapArea .legende .legendeKreativ {
   color: #e95fad;
 }
-.mapArea .legendenListe .legendeSport {
+.mapArea .legende .legendeSport {
   color: #7c1598;
 }
-.mapArea .legendenListe .legendeFriedhof {
+.mapArea .legende .legendeFriedhof {
   color: #987b15;
 }
-.mapArea .legendenListe .legendePlatz {
+.mapArea .legende .legendePlatz {
   color: #1932b3;
 }
 .mapArea .btnOnMap {
@@ -138,6 +106,30 @@
   bottom: 30px;
   right: 20px;
 }
+.mapArea .uiCalendarWrapper {
+  position: absolute;
+  z-index: 200;
+  top: 140px;
+  left: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 0;
+  background-clip: padding-box;
+}
+.mapArea .uiCalendarWrapper .calendarToggle {
+  background-color: white;
+  padding: 0.3em 7px 0.3em 7px;
+  color: grey;
+}
+.mapArea .uiCalendarWrapper .calendarToggle:focus {
+  outline: 0;
+}
+.mapArea .uiCalendarWrapper .uiCalendar {
+  padding: 0.5em;
+}
+.mapArea .showCalendar {
+  width: 60%;
+}
 .markerPopup .markerPopupTitle {
   font-weight: bold;
   text-align: center;
@@ -151,14 +143,6 @@
 .markerPopup .markerPopupAddDate {
   font-size: 8px;
   padding-top: 5px;
-}
-.leaflet-control-geocoder {
-  position: absolute;
-  left: 50px;
-}
-.leaflet-control-locate {
-  position: absolute;
-  top: 80px;
 }
 @media (max-width: 992px) {
   .main .uiCalendarWrapper .calendarToggle {
@@ -866,9 +850,6 @@ html {
   height: 100%;
   width: 100%;
   font-family: 'Raleway', sans-serif;
-}
-.leaflet-popup-content-wrapper {
-  min-width: 250px;
 }
 .spinner {
   display: inline-block;

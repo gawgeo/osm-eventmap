@@ -14,6 +14,7 @@ angular.module('osmApp.mainCtrl', [])
       $scope.bouncing = false; // Bouncing-Boolean
       $scope.conditions = {categories: []};
       $scope.addNew = false;
+      $scope.legende = { "show": false };
       $scope.backLinkClick = function () {
           window.location.reload(false);
       };
@@ -22,11 +23,15 @@ angular.module('osmApp.mainCtrl', [])
       };
 
       // Map in <div> element mit dem Namen 'simpleMap' laden
-      //$scope.markerGroup = L.layerGroup();
       var map = new L.Map('simpleMap');
       var markerGroup = L.markerClusterGroup();
       $scope.map = map;
       $scope.markerGroup = markerGroup;
+      $scope.showLegende = function (val) {
+          $scope.$apply(function () {
+              $scope.legende.show = val;
+          });
+      };
 
       // CALENDAR settings
       $scope.eventSources = []; // calendar sources
