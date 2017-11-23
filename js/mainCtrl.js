@@ -60,6 +60,10 @@ angular.module('osmApp.mainCtrl', [])
               header: {left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}
           }
       };
+      //Landscape-Modus verbieten
+      //if(window.innerHeight < window.innerWidth){
+        //  alert("Bitte drehen Sie ihr Gerät hochkant.");
+      //}
 
       // Map-Funktionalität
       map.on('click', function newPoi(event) {
