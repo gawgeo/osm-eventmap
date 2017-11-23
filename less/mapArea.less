@@ -25,6 +25,7 @@
     top: 1em;
     z-index: 20;
   }
+  /* onMap Filter-Area disabled
   .filterArea {
     top: 90%;
     left: 15%;
@@ -49,7 +50,7 @@
       float: right;
       overflow: hidden;
     }
-  }
+  }*/
   .uiCalendarWrapper {
     position: absolute;
     z-index: 200;
@@ -75,46 +76,23 @@
       width: 60%
   }
 
-  .legendeGewerbe{
-      color: rgb(231,66,38);
-      font-size: small;
-    }
-    .legendePark {
-      color: rgb(24, 228, 43);
-      font-size: small;
-    }
-    .legendeUni {
-      color: rgb(251, 239, 103);
-      font-size: small;
-    }
-    .legendeWald {
-      color: rgb(92, 168, 119);
-      font-size: small;
-    }
-    .legendeKleingarten {
-      color: rgb(146, 185, 68);
-      font-size: small;
-    }
-    .legendeMulti {
-      color: rgb(230, 160, 38);
-      font-size: small;
-    }
-    .legendeKreativ {
-      color: rgb(233, 95, 173);
-      font-size: small;
-    }
-    .legendeSport {
-      color: rgb(124, 21, 152);
-      font-size: small;
-    }
-    .legendeFriedhof {
-      color: rgb(152, 123, 21);
-      font-size: small;
-    }
-    .legendePlatz {
-      color: rgb(25, 50, 179);
-      font-size: small;
-    }
+  .legendenListe {
+    position: absolute;
+    background-color: lightgrey;
+    z-index: 200;
+    padding: 0;
+    font-size: small;
+    .legendeGewerbe { color: rgb(231,66,38); }
+    .legendePark { color: rgb(24, 228, 43); }
+    .legendeUni { color: rgb(251, 239, 103); }
+    .legendeWald { color: rgb(92, 168, 119); }
+    .legendeKleingarten { color: rgb(146, 185, 68); }
+    .legendeMulti { color: rgb(230, 160, 38); }
+    .legendeKreativ { color: rgb(233, 95, 173); }
+    .legendeSport { color: rgb(124, 21, 152); }
+    .legendeFriedhof { color: rgb(152, 123, 21); }
+    .legendePlatz { color: rgb(25, 50, 179); }
+  }
 
   .btnOnMap {
     position: absolute;
@@ -171,42 +149,6 @@
   top: 80px;
 }
 
-.btn-qz-blue{
-  background-image:none;
-  background-color: #0087c6;
-  text-shadow:none;
-}
-.btn-qz-red{
-  background-image: none;
-  background-color: #e74011;
-  text-shadow:none;
-}
-.btn-qz-purple{
-  background-image:none;
-  background-color: #951b81;
-  text-shadow:none;
-}
-.btn-qz-grey {
-  background-image:none;
-  background-color: #575656;
-  text-shadow:none;
-}
-.btn-qz-yellow {
-  background-image:none;
-  background-color: #f9b000;
-  text-shadow:none;
-}
-.btn-qz-green{
-  background-image:none;
-  background-color: #76b729;
-  text-shadow:none;
-}
-.active{
-  background-blend-mode: overlay;
-  border-color: transparent;
-  color: white;
-}
-
 // rudimentary adjustment for responsive design
 @media (max-width: @screen-md-min) {
   .main {
@@ -239,16 +181,7 @@
     .leaflet-top {
       font-size: 48px;
     }
-    .leaflet-control-zoom-out {
-      //font-size: 48px;
-      //display: none;
-    }
-    .leaflet-control-zoom-in {
-      //font-size: 48px;
-      //display: none;
-    }
     .leaflet-control-geocoder-toggle {
-      //display: none;
       width: 100px;
       height: 100px;
     }
@@ -275,9 +208,5 @@
     .markerPopup{
       font-size: 18px;
     }
-  }
-
-  .btnOnMap {
-
   }
 }

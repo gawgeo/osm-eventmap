@@ -2,6 +2,32 @@
   position: absolute;
   width: 100%;
   margin: 0 auto;
+  /* onMap Filter-Area disabled
+  .filterArea {
+    top: 90%;
+    left: 15%;
+    width: 75%;
+    height: 4em;
+    position: relative;
+    z-index: 100;
+    border: solid grey 1px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px grey;
+    padding-left: 3%;
+    input {
+      display: inline-block;
+      width: 18%;
+    }
+    select {
+      width: 18%;
+      display: inline-block;
+    }
+    .bounceMarkerButton {
+      width: 18%;
+      float: right;
+      overflow: hidden;
+    }
+  }*/
 }
 .mapArea #simpleMap {
   position: absolute;
@@ -25,31 +51,6 @@
   right: 1em;
   top: 1em;
   z-index: 20;
-}
-.mapArea .filterArea {
-  top: 90%;
-  left: 15%;
-  width: 75%;
-  height: 4em;
-  position: relative;
-  z-index: 100;
-  border: solid grey 1px;
-  border-radius: 4px;
-  box-shadow: 5px 5px 5px grey;
-  padding-left: 3%;
-}
-.mapArea .filterArea input {
-  display: inline-block;
-  width: 18%;
-}
-.mapArea .filterArea select {
-  width: 18%;
-  display: inline-block;
-}
-.mapArea .filterArea .bounceMarkerButton {
-  width: 18%;
-  float: right;
-  overflow: hidden;
 }
 .mapArea .uiCalendarWrapper {
   position: absolute;
@@ -75,45 +76,42 @@
 .mapArea .showCalendar {
   width: 60%;
 }
-.mapArea .legendeGewerbe {
+.mapArea .legendenListe {
+  position: absolute;
+  background-color: lightgrey;
+  z-index: 200;
+  padding: 0;
+  font-size: small;
+}
+.mapArea .legendenListe .legendeGewerbe {
   color: #e74226;
-  font-size: small;
 }
-.mapArea .legendePark {
+.mapArea .legendenListe .legendePark {
   color: #18e42b;
-  font-size: small;
 }
-.mapArea .legendeUni {
+.mapArea .legendenListe .legendeUni {
   color: #fbef67;
-  font-size: small;
 }
-.mapArea .legendeWald {
+.mapArea .legendenListe .legendeWald {
   color: #5ca877;
-  font-size: small;
 }
-.mapArea .legendeKleingarten {
+.mapArea .legendenListe .legendeKleingarten {
   color: #92b944;
-  font-size: small;
 }
-.mapArea .legendeMulti {
+.mapArea .legendenListe .legendeMulti {
   color: #e6a026;
-  font-size: small;
 }
-.mapArea .legendeKreativ {
+.mapArea .legendenListe .legendeKreativ {
   color: #e95fad;
-  font-size: small;
 }
-.mapArea .legendeSport {
+.mapArea .legendenListe .legendeSport {
   color: #7c1598;
-  font-size: small;
 }
-.mapArea .legendeFriedhof {
+.mapArea .legendenListe .legendeFriedhof {
   color: #987b15;
-  font-size: small;
 }
-.mapArea .legendePlatz {
+.mapArea .legendenListe .legendePlatz {
   color: #1932b3;
-  font-size: small;
 }
 .mapArea .btnOnMap {
   position: absolute;
@@ -161,41 +159,6 @@
 .leaflet-control-locate {
   position: absolute;
   top: 80px;
-}
-.btn-qz-blue {
-  background-image: none;
-  background-color: #0087c6;
-  text-shadow: none;
-}
-.btn-qz-red {
-  background-image: none;
-  background-color: #e74011;
-  text-shadow: none;
-}
-.btn-qz-purple {
-  background-image: none;
-  background-color: #951b81;
-  text-shadow: none;
-}
-.btn-qz-grey {
-  background-image: none;
-  background-color: #575656;
-  text-shadow: none;
-}
-.btn-qz-yellow {
-  background-image: none;
-  background-color: #f9b000;
-  text-shadow: none;
-}
-.btn-qz-green {
-  background-image: none;
-  background-color: #76b729;
-  text-shadow: none;
-}
-.active {
-  background-blend-mode: overlay;
-  border-color: transparent;
-  color: white;
 }
 @media (max-width: 992px) {
   .main .uiCalendarWrapper .calendarToggle {
@@ -280,6 +243,33 @@
 .infoArea .pois {
   margin-left: 0.5em;
   height: 100%;
+}
+.infoArea .pois .filterArea {
+  background-image: none;
+  text-shadow: none;
+}
+.infoArea .pois .filterArea .btn-qz-blue {
+  background-color: #0087c6;
+}
+.infoArea .pois .filterArea .btn-qz-red {
+  background-color: #e74011;
+}
+.infoArea .pois .filterArea .btn-qz-purple {
+  background-color: #951b81;
+}
+.infoArea .pois .filterArea .btn-qz-grey {
+  background-color: #575656;
+}
+.infoArea .pois .filterArea .btn-qz-yellow {
+  background-color: #f9b000;
+}
+.infoArea .pois .filterArea .btn-qz-green {
+  background-color: #76b729;
+}
+.infoArea .pois .filterArea .active {
+  background-blend-mode: overlay;
+  border-color: transparent;
+  color: white;
 }
 .infoArea .pois .panel-title > a:hover,
 .infoArea .pois a:visited,

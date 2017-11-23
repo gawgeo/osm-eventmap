@@ -7,7 +7,7 @@
                 <img src="/img/QZ_LogoSquare-A.svg" width="75">
             </button>
         </div>
-        <div class="well btnOnMap onMapCenterRight disabled">
+        <div class="well legendenListe onMapCenterRight disabled">
             <button class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Legende der Freiflächen" tooltip >
                 <p class="legende legendeGewerbe">Gewerbeflächen (versiegelt)</p>
                 <p class="legende legendePark">Parks und öffentlich zugängige Grünflächen</p>
@@ -38,7 +38,6 @@
                     tooltip>
                 <i class="material-icons">directions_run</i>
             </button>
-
         </div>
 
         <!-- Map Container -->
@@ -72,10 +71,7 @@
 
 
         <div ng-if="!formToggle" class="pois" ng-style="!showSidebar && {'display': 'none'}">
-            <!--<br>
-            <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
-            <br>-->
-            <!--Nachhaltigkeitskategorien koennen hier ausgewählt werden -->
+
             <div class="filterArea well well-sm">
                 <span data-toggle="tooltip" title="Begriff eingeben um im Titel der Nachhaltgkeitsorte zu suchen." tooltip><h4>SUCHEN IM TITEL NACH...</h4> </span>
                 <input class="form-control" ng-model="conditions.condition"
@@ -162,7 +158,7 @@
                 </div>
             </div>
 
-            <div class="filterArea">
+            <div>
                 <uib-accordion close-others="true">
                 <span>
                     <h4>Orte der Nachhaltigkeit - {{filteredPOIs.length}} Treffer</h4>
