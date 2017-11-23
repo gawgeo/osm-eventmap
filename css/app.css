@@ -162,6 +162,41 @@
   position: absolute;
   top: 80px;
 }
+.btn-qz-blue {
+  background-image: none;
+  background-color: #0087c6;
+  text-shadow: none;
+}
+.btn-qz-red {
+  background-image: none;
+  background-color: #e74011;
+  text-shadow: none;
+}
+.btn-qz-purple {
+  background-image: none;
+  background-color: #951b81;
+  text-shadow: none;
+}
+.btn-qz-grey {
+  background-image: none;
+  background-color: #575656;
+  text-shadow: none;
+}
+.btn-qz-yellow {
+  background-image: none;
+  background-color: #f9b000;
+  text-shadow: none;
+}
+.btn-qz-green {
+  background-image: none;
+  background-color: #76b729;
+  text-shadow: none;
+}
+.active {
+  background-blend-mode: overlay;
+  border-color: transparent;
+  color: white;
+}
 @media (max-width: 992px) {
   .main .uiCalendarWrapper .calendarToggle {
     padding: 0 0 0 0;
@@ -842,41 +877,6 @@ html {
   width: 100%;
   font-family: 'Raleway', sans-serif;
 }
-.btn-qz-blue {
-  background-image: none;
-  background-color: #0087c6;
-  text-shadow: none;
-}
-.btn-qz-red {
-  background-image: none;
-  background-color: #e74011;
-  text-shadow: none;
-}
-.btn-qz-purple {
-  background-image: none;
-  background-color: #951b81;
-  text-shadow: none;
-}
-.btn-qz-grey {
-  background-image: none;
-  background-color: #575656;
-  text-shadow: none;
-}
-.btn-qz-yellow {
-  background-image: none;
-  background-color: #f9b000;
-  text-shadow: none;
-}
-.btn-qz-green {
-  background-image: none;
-  background-color: #76b729;
-  text-shadow: none;
-}
-.active {
-  background-blend-mode: overlay;
-  border-color: transparent;
-  color: white;
-}
 .leaflet-popup-content-wrapper {
   min-width: 250px;
 }
@@ -928,7 +928,6 @@ html {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  height: 7.5%;
   z-index: 100;
   text-align: center;
   padding: 0.2em;
