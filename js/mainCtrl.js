@@ -5,6 +5,7 @@ angular.module('osmApp.mainCtrl', [])
       // Variabels
       $scope.POIs = []; // list of all Pois
       $scope.admin = false; // Admin-Boolean toggle
+      $scope.user = false; // User-Boolean toggle
       $scope.formToggle = false; // show and hide newPOI-Form
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
@@ -104,7 +105,7 @@ angular.module('osmApp.mainCtrl', [])
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
                 '<span class="markerPopup">' + POI.description + '</span>' +
                 '<div class="markerPopupAddDate"><button class="btn btn-link" data-toggle="tooltip" tooltip title="Neuen Termin hinzufügen" ng-click="newSingleEvent(' + POI.id + ')"><i class="material-icons">add_alert</i></button>' +
-                '<button class="btn btn-warning pull-right" ng-if="$parent.admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
+                '<button class="btn btn-warning pull-right" ng-if="$parent.admin || $parent.user" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
                 '<button class="btn btn-danger pull-right" ng-if="$parent.admin" ng-click="deleteThis()"><span class="glyphicon glyphicon-remove-circle"></span></button></div>' +
                 '</div>'
               );

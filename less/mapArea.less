@@ -42,25 +42,50 @@
     position: absolute;
     background-color: lightgrey;
     width: 300px;
-    top: 50%;
-    left: 2%;
+    top: 25%;
+    right: 2%;
     z-index: 200;
     padding: 1em;
     font-size: small;
-    h3 {
-      margin-top: 0.3em;
-      padding-bottom: 0.5em;
+    .legendeCloseButton {
+      float: right;
     }
-    .legendeGewerbe { color: rgb(231,66,38); }
-    .legendePark { color: rgb(24, 228, 43); }
-    .legendeUni { color: rgb(251, 239, 103); }
-    .legendeWald { color: rgb(92, 168, 119); }
-    .legendeKleingarten { color: rgb(146, 185, 68); }
-    .legendeMulti { color: rgb(230, 160, 38); }
-    .legendeKreativ { color: rgb(233, 95, 173); }
-    .legendeSport { color: rgb(124, 21, 152); }
-    .legendeFriedhof { color: rgb(152, 123, 21); }
-    .legendePlatz { color: rgb(25, 50, 179); }
+    .legendeHeadline {
+      font-size: 20px;
+      text-decoration: underline;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .legendeGewerbe {
+      color: rgb(231, 66, 38);
+    }
+    .legendePark {
+      color: rgb(24, 228, 43);
+    }
+    .legendeUni {
+      color: rgb(251, 239, 103);
+    }
+    .legendeWald {
+      color: rgb(92, 168, 119);
+    }
+    .legendeKleingarten {
+      color: rgb(146, 185, 68);
+    }
+    .legendeMulti {
+      color: rgb(230, 160, 38);
+    }
+    .legendeKreativ {
+      color: rgb(233, 95, 173);
+    }
+    .legendeSport {
+      color: rgb(124, 21, 152);
+    }
+    .legendeFriedhof {
+      color: rgb(152, 123, 21);
+    }
+    .legendePlatz {
+      color: rgb(25, 50, 179);
+    }
   }
   .btnOnMap {
     position: absolute;
@@ -94,7 +119,7 @@
     z-index: 200;
     top: 140px;
     left: 10px;
-    border: 2px solid rgba(0,0,0,0.2);
+    border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 0;
     background-clip: padding-box;
@@ -111,7 +136,7 @@
     }
   }
   .showCalendar {
-      width: 60%
+    width: 60%
   }
 }
 
@@ -132,66 +157,71 @@
   }
 }
 
-
-
 // rudimentary adjustment for responsive design
 @media (max-width: @screen-md-min) {
-  .main {
-    .uiCalendarWrapper {
-      .calendarToggle {
-        padding: 0 0 0 0;
-        height: 32px;
-        font-size: 28px;
-      }
-    }
-    .showCalendar {
-      width: 95%
-    }
-    .leaflet-control-locate a {
-      font-size: 20px;
-    }
+  .uiCalendarWrapper {
     .calendarToggle {
-      width: auto;
-      height: auto;
+      padding: 0 0 0 0;
+      height: 32px;
+      font-size: 28px;
     }
-    .h4, h4 {
-      font-size: 36px;
-    }
-    .material-icons {
-      font-size: 56px;
-    }
-    .btn {
-      font-size: 48px;
-    }
-    .leaflet-top {
-      font-size: 48px;
-    }
-    .leaflet-control-geocoder-toggle {
-      width: 100px;
-      height: 100px;
-    }
-    .leaflet-control-locate {
+  }
+  .legende {
+    top: 25%;
+    right: 2%;
+  }
+  .legendeHeadline {
+    font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .showCalendar {
+    width: 95%
+  }
+  .leaflet-control-locate a {
+    font-size: 20px;
+  }
+  .calendarToggle {
+    width: auto;
+    height: auto;
+  }
+  .h4, h4 {
+    font-size: 36px;
+  }
+  .material-icons {
+    font-size: 56px;
+  }
+  .btn {
+    font-size: 48px;
+  }
+  .leaflet-top {
+    font-size: 48px;
+  }
+  .leaflet-control-geocoder-toggle {
+    width: 100px;
+    height: 100px;
+  }
+  .leaflet-control-locate {
 
-    }
-    .leaflet-control-layers-toggle {
-      height: 100px;
-      width: 100px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-    }
-    .leaflet-bar-part-single {
-      width: 100px;
-      height: 100px;
-    }
-    .leaflet-control-layers-expanded {
-      font-size: 32px;
-    }
-    .markerPopupTitle{
-      font-size: 22px;
-    }
-    .markerPopup{
-      font-size: 18px;
-    }
+  }
+  .leaflet-control-layers-toggle {
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+  .leaflet-bar-part-single {
+    width: 100px;
+    height: 100px;
+  }
+  .leaflet-control-layers-expanded {
+    font-size: 32px;
+  }
+  .markerPopupTitle {
+    font-size: 22px;
+  }
+  .markerPopup {
+    font-size: 18px;
   }
 }

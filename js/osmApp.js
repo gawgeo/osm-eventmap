@@ -25,6 +25,10 @@ angular.module('osmApp',
             url: '/',
             templateUrl: '../html/main.html'
         })
+        .state('user', {
+            url: '/qz-user',
+            templateUrl: '../html/mainUser.html'
+        })
         .state('admin', {
             url: '/qz-admin',
             templateUrl: '../html/mainAdmin.html'

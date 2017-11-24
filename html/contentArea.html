@@ -2,7 +2,6 @@
     <!-- MAP Area, displaying leaflet-map, calendar and filterArea -->
     <div class="mapArea" ng-class="{'smallMap': showSidebar, 'bigMap': !showSidebar}">
         <div class="well btnOnMap onMapTopRight">
-            {{legende}}
             <button class="btn btn-default" data-toggle="tooltip" data-placement="left" ng-click="resetMap()"
                     title="Karte zurücksetzen" tooltip>
                 <img src="/img/QZ_LogoSquare-A.svg" width="75">
@@ -15,7 +14,8 @@
              data-placement="top"
              title="Legende der Freiflächen"
              tooltip draggable>
-            <h3>Legende zu Freiflächen</h3>
+            <div><button class="btn legendeCloseButton" ng-click="legende.show = false">x</button></div>
+            <p class="legendeHeadline">Legende zu Freiflächen</p>
             <p class="legendeGewerbe">Gewerbeflächen (versiegelt)</p>
             <p class="legendePark">Parks und öffentlich zugängige Grünflächen</p>
             <p class="legendeUni">Universitäre Frei- und Grünflächen</p>

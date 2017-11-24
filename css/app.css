@@ -41,15 +41,20 @@
   position: absolute;
   background-color: lightgrey;
   width: 300px;
-  top: 50%;
-  left: 2%;
+  top: 25%;
+  right: 2%;
   z-index: 200;
   padding: 1em;
   font-size: small;
 }
-.mapArea .legende h3 {
-  margin-top: 0.3em;
-  padding-bottom: 0.5em;
+.mapArea .legende .legendeCloseButton {
+  float: right;
+}
+.mapArea .legende .legendeHeadline {
+  font-size: 20px;
+  text-decoration: underline;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 .mapArea .legende .legendeGewerbe {
   color: #e74226;
@@ -145,56 +150,65 @@
   padding-top: 5px;
 }
 @media (max-width: 992px) {
-  .main .uiCalendarWrapper .calendarToggle {
+  .uiCalendarWrapper .calendarToggle {
     padding: 0 0 0 0;
     height: 32px;
     font-size: 28px;
   }
-  .main .showCalendar {
+  .legende {
+    top: 25%;
+    right: 2%;
+  }
+  .legendeHeadline {
+    font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .showCalendar {
     width: 95%;
   }
-  .main .leaflet-control-locate a {
+  .leaflet-control-locate a {
     font-size: 20px;
   }
-  .main .calendarToggle {
+  .calendarToggle {
     width: auto;
     height: auto;
   }
-  .main .h4,
-  .main h4 {
+  .h4,
+  h4 {
     font-size: 36px;
   }
-  .main .material-icons {
+  .material-icons {
     font-size: 56px;
   }
-  .main .btn {
+  .btn {
     font-size: 48px;
   }
-  .main .leaflet-top {
+  .leaflet-top {
     font-size: 48px;
   }
-  .main .leaflet-control-geocoder-toggle {
+  .leaflet-control-geocoder-toggle {
     width: 100px;
     height: 100px;
   }
-  .main .leaflet-control-layers-toggle {
+  .leaflet-control-layers-toggle {
     height: 100px;
     width: 100px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
   }
-  .main .leaflet-bar-part-single {
+  .leaflet-bar-part-single {
     width: 100px;
     height: 100px;
   }
-  .main .leaflet-control-layers-expanded {
+  .leaflet-control-layers-expanded {
     font-size: 32px;
   }
-  .main .markerPopupTitle {
+  .markerPopupTitle {
     font-size: 22px;
   }
-  .main .markerPopup {
+  .markerPopup {
     font-size: 18px;
   }
 }
