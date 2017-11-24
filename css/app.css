@@ -86,9 +86,6 @@
 .mapArea .legende .legendePlatz {
   color: #1932b3;
 }
-.mapArea .fc-time {
-  display: none !important;
-}
 .mapArea .btnOnMap {
   position: absolute;
   background-color: lightgrey;
