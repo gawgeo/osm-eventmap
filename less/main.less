@@ -12,52 +12,6 @@ body, html {
   font-family: 'Raleway', sans-serif;
 }
 
-.btn-qz-blue {
-  background-image: none;
-  background-color: #0087c6;
-  text-shadow: none;
-}
-
-.btn-qz-red {
-  background-image: none;
-  background-color: #e74011;
-  text-shadow: none;
-}
-
-.btn-qz-purple {
-  background-image: none;
-  background-color: #951b81;
-  text-shadow: none;
-}
-
-.btn-qz-grey {
-  background-image: none;
-  background-color: #575656;
-  text-shadow: none;
-}
-
-.btn-qz-yellow {
-  background-image: none;
-  background-color: #f9b000;
-  text-shadow: none;
-}
-
-.btn-qz-green {
-  background-image: none;
-  background-color: #76b729;
-  text-shadow: none;
-}
-
-.active {
-  background-blend-mode: overlay;
-  border-color: transparent;
-  color: white;
-}
-
-.leaflet-popup-content-wrapper {
-  min-width: 250px;
-}
-
 .spinner {
   display: inline-block;
   border-radius: 50px;
@@ -98,12 +52,12 @@ body, html {
   .header {
     position: absolute;
     .make-md-column(12);
-    height: 4.5%;
     z-index: 100;
     text-align: center;
     padding: 0.2em;
     color: rgba(0, 0, 0, .8);
-    background-image: url(../img/redox_01.png);
+    //background-image: url(../img/redox_01.png);
+    background-color: white;
     font-size: 1.8em;
     border-bottom: solid 1px #dedede;
     box-shadow: 0px 4px 5px 0px rgba(130, 130, 130, 1);
@@ -188,6 +142,21 @@ body, html {
 // rudimentary adjustment for responsive design
 @media (max-width: @screen-md-min) {
   .main {
-    overflow: auto;
+    .h4, h4{
+      font-size: 48px;
+    }
+    .contentWrapper {
+      .content {
+        .mapArea {
+          height: 50%;
+        }
+      }
+    }
+  }
+  .tooltip {
+     font-size: 28px;
+  }
+  .panel-body{
+    font-size: 32px;
   }
 }

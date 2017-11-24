@@ -8,7 +8,7 @@ angular.module('osmApp.iconService', [])
               iconAnchor: [12.5, 41], // point of the icon which will correspond to marker's location
               shadowAnchor: [22, 93],  // the same for the shadow
               popupAnchor: [0, -41], // point from which the popup should open relative to the iconAnchor
-              iconSize: [25, 41],
+              iconSize: [35, 51],
               shadowUrl: './img/marker-shadow.png',
               shadowSize: [68, 95]
           });

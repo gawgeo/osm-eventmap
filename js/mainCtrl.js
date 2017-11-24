@@ -5,6 +5,7 @@ angular.module('osmApp.mainCtrl', [])
       // Variabels
       $scope.POIs = []; // list of all Pois
       $scope.admin = false; // Admin-Boolean toggle
+      $scope.user = false; // User-Boolean toggle
       $scope.formToggle = false; // show and hide newPOI-Form
       $scope.oldPOI = {}; // save old poi variable on update
       $scope.selectedPOI = null; // currently selected Poi
@@ -14,6 +15,7 @@ angular.module('osmApp.mainCtrl', [])
       $scope.bouncing = false; // Bouncing-Boolean
       $scope.conditions = {categories: []};
       $scope.addNew = false;
+      $scope.legende = { "show": false };
       $scope.backLinkClick = function () {
           window.location.reload(false);
       };
@@ -22,11 +24,15 @@ angular.module('osmApp.mainCtrl', [])
       };
 
       // Map in <div> element mit dem Namen 'simpleMap' laden
-      //$scope.markerGroup = L.layerGroup();
       var map = new L.Map('simpleMap');
       var markerGroup = L.markerClusterGroup();
       $scope.map = map;
       $scope.markerGroup = markerGroup;
+      $scope.showLegende = function (val) {
+          $scope.$apply(function () {
+              $scope.legende.show = val;
+          });
+      };
 
       // CALENDAR settings
       $scope.eventSources = []; // calendar sources
@@ -60,6 +66,10 @@ angular.module('osmApp.mainCtrl', [])
               header: {left: 'month basicWeek basicDay', center: 'title', right: 'today prev,next'}
           }
       };
+      //Landscape-Modus verbieten
+      //if(window.innerHeight < window.innerWidth){
+        //  alert("Bitte drehen Sie ihr Gerät hochkant.");
+      //}
 
       // Map-Funktionalität
       map.on('click', function newPoi(event) {
@@ -94,8 +104,8 @@ angular.module('osmApp.mainCtrl', [])
               var linkFn = $compile(
                 '<div class="markerPopup"><span class="markerPopupTitle">' + POI.title + '</span>' +
                 '<span class="markerPopup">' + POI.description + '</span>' +
-                '<div class="markerPopupAddDate"><button class="btn btn-link" ng-click="newSingleEvent(' + POI.id + ')"><span class="glyphicon glyphicon-plus"></span><span>Termin hinzufügen</span></button>' +
-                '<button class="btn btn-warning pull-right" ng-if="$parent.admin" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
+                '<div class="markerPopupAddDate"><button class="btn btn-link" data-toggle="tooltip" tooltip title="Neuen Termin hinzufügen" ng-click="newSingleEvent(' + POI.id + ')"><i class="material-icons">add_alert</i></button>' +
+                '<button class="btn btn-warning pull-right" ng-if="$parent.admin || $parent.user" ng-click="updateThis()"><span class="glyphicon glyphicon-pencil"></span></button>' +
                 '<button class="btn btn-danger pull-right" ng-if="$parent.admin" ng-click="deleteThis()"><span class="glyphicon glyphicon-remove-circle"></span></button></div>' +
                 '</div>'
               );
