@@ -92,6 +92,9 @@
   z-index: 200;
   padding: 0;
 }
+.mapArea .btn-qz-yellow {
+  background-color: #f9b000;
+}
 .mapArea .onMapBottomRight {
   bottom: 30px;
   right: 10px;
