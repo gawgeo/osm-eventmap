@@ -158,6 +158,9 @@
     height: 32px;
     font-size: 28px;
   }
+  .mobileHidden {
+    display: none;
+  }
   .legende {
     top: 25%;
     right: 2%;
@@ -459,6 +462,9 @@
   }
 }
 @media (max-width: 992px) {
+  .body .h3 {
+    font-size: 48px;
+  }
   .newPOIWrapper .POIRules ul li span {
     height: auto;
   }
@@ -1047,6 +1053,9 @@ html {
   }
 }
 @media (max-width: 992px) {
+  .main .material-icons {
+    font-size: 56px;
+  }
   .main .h4,
   .main h4 {
     font-size: 48px;
