@@ -38,7 +38,7 @@
             </button>
             <button class="btn btn-qz-yellow" ng-model="conditions.category"
                     ng-class="{'active': conditions.categories.indexOf(config.categories[4]) != -1}"
-                    ng-click="setCatCondition(config.categories[4]); opennhSpaziergangModal()"
+                    ng-click="setCatCondition(config.categories[4]); (conditions.categories.indexOf(config.categories[4]) != -1) ? opennhSpaziergangModal(): return;"
                     data-toggle="tooltip"
                     title="Nachhaltigkeitsspaziergang"
                     tooltip>
