@@ -1,0 +1,22 @@
+<div class="main" ng-controller="adminCtrl" ng-init="user = true" xmlns:openNewWindow
+     xmlns="http://www.w3.org/1999/html">
+    <div class="header">
+        <h4 align="center">Nachhaltigkeits-Karte Karlsruhe Oststadt</h4>
+    </div>
+    <!-- ContentArea -->
+    <div class="contentWrapper" ng-include="'./html/contentArea.html'"></div>
+    <!-- Footer -->
+    <div class="footer">QuartierZukunft, ITAS, KIT.
+        <a href="http://quartierzukunft.de/quartier-zukunft/anlass-2/" class="btn btn-default" role="button"
+
+           target="_blank" data-toggle="tooltip" title="Beispieltext QZ." tooltip>
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        </a>
+        <a href="mailto:info@quartierzukunft.de" target="_blank" class="btn btn-danger">
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+        </a>
+        <button class="btn btn-success">
+            <span class="glyphicon glyphicon-user" aria-hidden="true" ui-sref="home"></span>
+        </button>
+    </div>
+</div>
